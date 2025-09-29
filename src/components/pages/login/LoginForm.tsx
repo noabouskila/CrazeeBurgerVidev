@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 
+
+
 export default function LoginForm() {
   
   //state
   const [prenom, setPrenom] = useState <string>("");
-  
-
+ 
 
   // logic
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     alert(`Bonjour ${prenom} !`);
+   
     setPrenom("");
+    
   };
 
   const handleChange = (e: {
