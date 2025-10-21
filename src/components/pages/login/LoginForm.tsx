@@ -13,9 +13,8 @@ export default function LoginForm() {
   // logic
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // alert(`Bonjour ${prenom} !`);
     setPrenom("");
-    navigate("/orderPage", { state: { prenom } });
+    navigate(`/orderPage/${prenom}`);
     
   };
 

@@ -12,7 +12,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<LoginPage />} />
-      <Route path="/orderPage" element={<OrderPage />} />
+      <Route path="/orderPage/:username" element={<OrderPage />} />
 
       {/* Redirection automatique si l'utilisateur écrit /order */}
       <Route path="/order" element={<Navigate to="/orderPage" replace />} />

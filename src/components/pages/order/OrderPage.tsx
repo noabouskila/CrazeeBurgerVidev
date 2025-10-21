@@ -1,15 +1,14 @@
-import { Link, useLocation} from "react-router-dom";
+import { Link , useParams} from "react-router-dom";
 
 
 export default function OrderPage() {
 
-    const location = useLocation();
-    const prenom = location.state?.prenom || "invité";
- 
+    const { username } = useParams();
+    
 
   return (
     <div>
-      <h1>Bienvenue {prenom}</h1>
+      <h1>Bonjour {username}</h1>
       <Link to="/">
         <button>Deconnexion</button>
       </Link>
