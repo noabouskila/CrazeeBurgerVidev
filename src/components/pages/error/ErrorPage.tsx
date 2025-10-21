@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 export default function ErrorPage() {
@@ -5,7 +6,9 @@ export default function ErrorPage() {
     <div>
       <h1>404 - Page non trouvée</h1>
       <p>La page que vous recherchez n'existe pas.</p>
-      <a href="/">Retourner vers la page d'accueil</a>
+      <Link to="/">
+        <button>Retourner vers la page d'accueil</button>
+      </Link>
     </div>
   );
 }

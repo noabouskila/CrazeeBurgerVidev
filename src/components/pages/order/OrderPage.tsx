@@ -8,9 +8,11 @@ export default function OrderPage() {
  
 
   return (
-   <div>
-    <h1>Bienvenue {prenom}</h1>
-    <Link to="/">Deconnexion</Link>
-   </div>
-  )
+    <div>
+      <h1>Bienvenue {prenom}</h1>
+      <Link to="/">
+        <button>Deconnexion</button>
+      </Link>
+    </div>
+  );
 }
