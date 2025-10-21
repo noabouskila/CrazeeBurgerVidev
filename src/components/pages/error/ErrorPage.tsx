@@ -1,0 +1,11 @@
+
+
+export default function ErrorPage() {
+  return (
+    <div>
+      <h1>404 - Page non trouvée</h1>
+      <p>La page que vous recherchez n'existe pas.</p>
+      <a href="/">Retourner vers la page d'accueil</a>
+    </div>
+  );
+}
