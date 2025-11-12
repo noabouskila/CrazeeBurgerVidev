@@ -14,25 +14,30 @@ export default function Logo() {
 }
 
 export const LogoStyled = styled.div`
-  
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+  transform: scale(2.5);
+
+  img {
+    /* width: 200px;
+    height: 150px; */
+    object-fit: contain;
+    object-position: center;
+    height: 60px;
+    width: 80px;
+    margin: 0 5px;
+  }
+
+  span {
     color: ${theme.colors.primary};
-    display: flex;
-    align-items: center;
-
-    img {
-      width: 200px;
-      height: 150px;
-    }
-
-    span {
-      font-family: Amatic SC;
-      font-weight: 700;
-      font-size: 110px;
-      line-height: 0px;
-      letter-spacing: 1.5px;
-      text-align: center;
-      vertical-align: middle;
-      text-transform: uppercase;
-    }
-
+    font-family: "Amatic SC", cursive;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 0px;
+    letter-spacing: 1.5px;
+    text-align: center;
+    vertical-align: middle;
+    text-transform: uppercase;
+  }
 `;
