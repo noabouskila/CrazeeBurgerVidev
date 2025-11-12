@@ -1,5 +1,5 @@
 
-import LogoCrazeeBurger from "/src/assets/F03 logo.png";
+import LogoCrazeeBurger from "/assets/F03 logo.png";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
