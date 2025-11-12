@@ -7,7 +7,7 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   Icon?: React.ReactNode;
 };
 
-export default function Input({ value, onChange, Icon, ...extraProps }: InputProps) {
+export default function TextInput({ value, onChange, Icon, ...extraProps }: InputProps) {
   return (
     <InputStyled>
       {Icon}
