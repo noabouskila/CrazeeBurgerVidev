@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { theme } from "../../../theme";
+import styled from "styled-components";
+import { theme } from "../../theme";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   value: string;
@@ -7,14 +7,18 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   Icon?: React.ReactNode;
 };
 
-export default function TextInput({ value, onChange, Icon, ...extraProps }: InputProps) {
+export default function TextInput({
+  value,
+  onChange,
+  Icon,
+  ...extraProps
+}: InputProps) {
   return (
     <InputStyled>
       {Icon}
       <input type="text" value={value} onChange={onChange} {...extraProps} />
     </InputStyled>
   );
-     
 }
 
 export const InputStyled = styled.div`
@@ -38,12 +42,13 @@ export const InputStyled = styled.div`
   input {
     border: none;
     font-size: ${theme.fonts.P0};
+    width:100% ;
   }
-  
+ 
+
   input:focus,
   input:hover,
   input:active {
     outline: none;
   }
-  
 `;
