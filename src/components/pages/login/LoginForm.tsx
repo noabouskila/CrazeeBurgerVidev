@@ -55,25 +55,24 @@ export const LoginFormStyled = styled.form`
   max-width: 500px;
   min-width: 400px;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
+  padding: 2.5rem ${theme.spacing.lg};
 
   div.titleLogin {
     h1 {
       color: ${theme.colors.white};
-      font-size: 48px;
+      font-size: ${theme.fonts.size.P5};
     }
 
     hr {
       border: none; /* supprime le style par défaut */
       height: 2px;
-      background-color: ${theme.colors.primary};
-      margin-bottom: 40px;
+      background-color: ${theme.colors.loginLine};
+      margin-bottom: ${theme.gridUnit * 5}px;
     }
 
     h2 {
       color: ${theme.colors.white};
-
-      font-size: 36px;
+      font-size: ${theme.fonts.size.P4};
       text-align: center;
       margin: 10px 10px 10px;
     }
@@ -87,7 +86,8 @@ export const LoginFormStyled = styled.form`
 
     .iconButton {
       margin-left: 10px;
-      margin-top: 2px;
+      margin-top: ${theme.gridUnit / 4 }px;
+      font-size: ${theme.fonts.size.P0};
     }
   }
 `;

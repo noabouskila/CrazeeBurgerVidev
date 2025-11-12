@@ -16,10 +16,11 @@ export const PrimaryButtonStyled = styled.button`
   font-family: "Open Sans", sans-serif;
   background-color: ${theme.colors.primary};
   color: ${theme.colors.white};
-  font-size: ${theme.fonts.P0};
+  border-radius: ${theme.borderRadius.round};
+  border: none;
+  font-size: ${theme.fonts.size.P0};
   width: 400px;
   height: 53px;
-  border-radius: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;

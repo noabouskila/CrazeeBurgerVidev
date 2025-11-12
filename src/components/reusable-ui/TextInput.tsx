@@ -23,28 +23,32 @@ export default function TextInput({
 
 export const InputStyled = styled.div`
   background-color: ${theme.colors.white};
-  border-radius: 5px;
   padding-top: 18px;
   padding-right: 24px;
   padding-bottom: 18px;
   padding-left: 24px;
   margin-bottom: 20px;
-
+  border-radius: ${theme.borderRadius.round};
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 
   svg {
-    color: ${theme.colors.greyDark};
+    color: ${theme.colors.greySemiDark};
   }
 
   input {
     border: none;
-    font-size: ${theme.fonts.P0};
-    width:100% ;
+    font-size: ${theme.fonts.size.P0};
+    color: ${theme.colors.dark};
+    width: 100%;
+
+    &::placeholder {
+      background-color: ${theme.colors.white};
+      color: ${theme.colors.greyMedium};
+    }
   }
- 
 
   input:focus,
   input:hover,

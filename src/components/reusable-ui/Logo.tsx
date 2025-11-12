@@ -32,8 +32,8 @@ export const LogoStyled = styled.div`
   span {
     color: ${theme.colors.primary};
     font-family: "Amatic SC", cursive;
-    font-weight: 700;
-    font-size: 36px;
+    font-weight: ${theme.fonts.weights.bold};
+    font-size: ${theme.fonts.size.P4};
     line-height: 0px;
     letter-spacing: 1.5px;
     text-align: center;
