@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { theme } from "../../../theme";
 import Navbar from './Navbar';
-import Main from './main';
+import Main from './Main';
 import { useParams } from 'react-router-dom';
 
 

@@ -3,9 +3,9 @@ import LogoCrazeeBurger from "/assets/F03 logo.png";
 import styled from "styled-components";
 import { theme } from "../../theme";
 
-export default function Logo({className}: {className?: string}) {
+export default function Logo({ className, onClick }: { className?: string; onClick?: () => void }) {
   return (
-    <LogoStyled className={className}>
+    <LogoStyled className={className} onClick={onClick}>
       <span>CRAZEE</span>
       <img src={LogoCrazeeBurger} alt="Image du Logo de Crazee Burger" />
       <span>BURGER</span>
@@ -16,7 +16,7 @@ export default function Logo({className}: {className?: string}) {
 export const LogoStyled = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 3%;
+  
  
 
   img {

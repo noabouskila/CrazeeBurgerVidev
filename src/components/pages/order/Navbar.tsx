@@ -1,19 +1,17 @@
 import styled from 'styled-components';
-import { Link } from "react-router-dom";
 import NavBarRightSide from './NavBarRightSide';
 import Logo from '../../reusable-ui/Logo';
+import { refreshPage } from '../../../utils/window';
 
 export default function Navbar({username}: {username: string}) {
 
     return (
-        <NavbarStyled>
-        
-            <Link to={`/orderPage/${username}`} className="logo">
-                <Logo />
-            </Link>
-    
-            <NavBarRightSide username={username} />
-
+      <NavbarStyled>
+        <Logo
+        className={"logo-order-page"}
+          onClick={refreshPage}
+        />
+        <NavBarRightSide username={username} />
       </NavbarStyled>
     );
 }
@@ -29,7 +27,7 @@ export const NavbarStyled = styled.nav`
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 
-    .logo{
+    .logo-order-page{
         cursor: pointer;
     }
 `;

@@ -29,5 +29,6 @@ export const LoginPageStyled = styled.div`
 
   .logo-login-page {
     transform: scale(2.5);
+    margin-bottom: 3%;
   }
 `;
