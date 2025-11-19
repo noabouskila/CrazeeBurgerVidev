@@ -35,6 +35,7 @@ export const ProfileStyled = styled.div`
       margin: 0;
       span {
         color: ${theme.colors.primary};
+        font-weight: ${theme.fonts.weights.bold};
       }
     }
     .logout-link {
