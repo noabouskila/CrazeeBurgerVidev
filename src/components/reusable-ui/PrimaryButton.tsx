@@ -13,7 +13,6 @@ export default function PrimaryButton({ label, Icon }: { label: string; Icon?: R
 
 
 export const PrimaryButtonStyled = styled.button`
-  font-family: "Open Sans", sans-serif;
   background-color: ${theme.colors.primary};
   color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};

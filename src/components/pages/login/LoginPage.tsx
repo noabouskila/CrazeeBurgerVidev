@@ -6,7 +6,7 @@ import Logo from "../../reusable-ui/Logo";
 export default function LoginPage() {
   return (
     <LoginPageStyled>
-      <Logo />
+      <Logo className={"logo-login-page"}/>
       <LoginForm />
     </LoginPageStyled>
   );
@@ -19,12 +19,15 @@ export const LoginPageStyled = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   background: url("/assets/F03 burger-background.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-color: rgba(0, 0, 0, 0.7);
   background-blend-mode: darken;
-  
+
+  .logo-login-page {
+    transform: scale(2.5);
+  }
 `;
