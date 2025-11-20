@@ -2,9 +2,9 @@ import styled from "styled-components";
 import { theme } from "../../theme";
 import type { ReactNode } from "react";
 
-export default function PrimaryButton({ label, Icon }: { label: string; Icon?: ReactNode }) {
+export default function PrimaryButton({ label, Icon , className ,onClick }: { label: string; Icon?: ReactNode  ; className?: string; onClick?: () => void   }) {
   return (
-    <PrimaryButtonStyled type="submit">
+    <PrimaryButtonStyled type="submit" className={className} onClick={onClick}>
       <span> {label} </span>
       {Icon}
     </PrimaryButtonStyled>
@@ -18,8 +18,8 @@ export const PrimaryButtonStyled = styled.button`
   border-radius: ${theme.borderRadius.round};
   border: none;
   font-size: ${theme.fonts.size.P0};
-  width: 400px;
-  height: 53px;
+  /* width: 400px;
+  height: 53px; */
   display: flex;
   flex-direction: row;
   align-items: center;
