@@ -1,24 +1,24 @@
 import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
-import { theme } from "../../../theme";
+import { theme } from "../../../../theme";
 
-export default function Profile({username}: {username: string}) {
+export default function Profile({ username }: { username: string }) {
   return (
-    <ProfileStyled >
+    <ProfileStyled>
       <div className="user-info">
-            <h1>
-            Hey, <span> {username}</span>
-            </h1>
-            <Link to="/">
-            <button className="logout-link">Se deconnecter</button>
-            </Link>
+        <h1>
+          Hey, <span> {username}</span>
+        </h1>
+        <Link to="/">
+          <button className="logout-link">Se deconnecter</button>
+        </Link>
       </div>
       <FaRegUserCircle className="picture" />
     </ProfileStyled>
   );
 }
 
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ProfileStyled = styled.div`
   display: flex;
@@ -43,11 +43,10 @@ export const ProfileStyled = styled.div`
       font-size: ${theme.fonts.size.XXS};
       border: none;
       cursor: pointer;
-      
     }
     .logout-link:hover {
       text-decoration: underline;
-      color : ${theme.colors.greyDark};
+      color: ${theme.colors.greyDark};
     }
   }
 
@@ -57,5 +56,3 @@ export const ProfileStyled = styled.div`
     margin-left: 10px;
   }
 `;
-
-
