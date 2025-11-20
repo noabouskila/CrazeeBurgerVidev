@@ -13,15 +13,15 @@ export default function Main() {
 
 export const MainStyled = styled.section`
   flex: 1;
+  background: #f5f5f7;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   background: #f5f5f7;
-  padding: 50px 50px 150px;
-  grid-row-gap: 60px;
 
   display: grid;
   /* grid-template-columns: 25% 75%; */
+  overflow-y: scroll;
 `;
 
 // CSS pour les cartes produit :
