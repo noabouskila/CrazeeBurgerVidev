@@ -23,6 +23,7 @@ import styled from "styled-components";
 export const ProfileStyled = styled.div`
   display: flex;
   align-items: center;
+  padding-left: 50px;
 
   .user-info {
     display: flex;
