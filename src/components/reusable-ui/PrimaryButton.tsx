@@ -18,8 +18,6 @@ export const PrimaryButtonStyled = styled.button`
   border-radius: ${theme.borderRadius.round};
   border: none;
   font-size: ${theme.fonts.size.P0};
-  /* width: 400px;
-  height: 53px; */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -30,6 +28,7 @@ export const PrimaryButtonStyled = styled.button`
     cursor: pointer;
     background-color: ${theme.colors.white};
     color: ${theme.colors.primary};
+    border: solid 1px ${theme.colors.primary};
   }
 
   &:active {

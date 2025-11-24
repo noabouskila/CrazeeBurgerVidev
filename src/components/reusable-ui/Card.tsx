@@ -17,16 +17,17 @@ export default function Card({
       </div>
 
       <div className="info-text">
+
         <h3 className="title">{title}</h3>
         <div className="description">
-          {/* <span className="price">{formatPrice(price)}</span>
-          <PrimaryButton label="Ajouter" className="primary-button-menu" /> */}
 
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
             <PrimaryButton className="primary-button" label={"Ajouter"} />
           </div>
+          
         </div>
+
       </div>
     </ProductStyled>
   );
