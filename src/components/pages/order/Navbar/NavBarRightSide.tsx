@@ -1,14 +1,31 @@
+import React from "react";
 import styled from "styled-components";
 import { theme } from "../../../../theme";
 import Profile from "./Profile";
+import ToggleButton from "../../../reusable-ui/ToggleButton";
 
 export default function NavBarRightSide({ username }: { username: string }) {
+
+  const [isChecked, setIsChecked] =  React.useState(false);
+
+  const onClick = () => {
+    console.log("toggle clicked");
+    setIsChecked(!isChecked);
+  }
+
   return (
+
     <NavBarRightSideStyled>
-      {/* <div className="admin-button">
-            <button>Activer le mode Admin</button>
-        </div> */}
+
+      <ToggleButton 
+        isChecked={isChecked}
+        onToggle={onClick}
+        labelIfChecked={"ACTIVER LE MODE ADMIN"}
+        labelIfUnchecked={"DESACTIVER LE MODE ADMIN"}
+      />
+
       <Profile username={username} />
+
     </NavBarRightSideStyled>
   );
 }
@@ -19,9 +36,6 @@ export const NavBarRightSideStyled = styled.div`
   color: ${theme.colors.greyDark};
   padding-right: 50px;
 
-  /* .admin-button > button {
-        background-color: ${theme.colors.primary};
-        border: none;
-        border-radius: ${theme.borderRadius.round};
-   } */
+ 
 `;
+
