@@ -1,31 +1,33 @@
-import { useState } from 'react';
-import styled from 'styled-components';
+import { useState } from "react";
+import styled from "styled-components";
 import type { MenuItem } from "../../../../types";
-import { fakeMenu2 } from '../../../../data/fakeMenu';
-import Product from './Product';
-
-
+import { fakeMenu2 } from "../../../../data/fakeMenu";
+import Card from "../../../reusable-ui/Card";
+import { formatPrice } from "../../../../utils/maths";
 
 export default function Menu() {
-
-  // on passe par un state car la data peut evoluer 
- const [menu, setMenu] = useState<MenuItem[]>(fakeMenu2);
- console.log(setMenu)
+  // on passe par un state car la data peut evoluer
+  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu2);
+  console.log(setMenu);
 
   return (
     <MenuStyled>
       <div className="cards-container">
         {menu.map((item) => (
-          <Product id={item.id} title={item.title} imageSource={item.imageSource}  price={item.price}/>
+          <Card
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            imageSource={item.imageSource}
+            leftDescription={formatPrice(item.price)}
+          />
         ))}
       </div>
     </MenuStyled>
   );
 }
 
-
 export const MenuStyled = styled.section`
-
   .cards-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -33,7 +35,4 @@ export const MenuStyled = styled.section`
     padding: 50px 50px 150px;
     justify-items: center;
   }
-
-
 `;
-
