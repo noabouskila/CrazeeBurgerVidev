@@ -3,7 +3,7 @@ export interface MenuItem {
   imageSource: string;
   title: string;
   price: number;
-  quantity: number;
-  isAvailable: boolean;
-  isAdvertised: boolean;
+  quantity?: number;
+  isAvailable?: boolean;
+  isAdvertised?: boolean;
 }

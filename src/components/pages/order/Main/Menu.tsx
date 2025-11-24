@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import type { MenuItem } from "../../../../types";
 import { fakeMenu2 } from '../../../../data/fakeMenu';
-import { theme } from '../../../../theme';
 import Product from './Product';
 
 
@@ -17,7 +16,7 @@ export default function Menu() {
     <MenuStyled>
       <div className="cards-container">
         {menu.map((item) => (
-          <Product key={item.id} {...item} />
+          <Product id={item.id} title={item.title} imageSource={item.imageSource}  price={item.price}/>
         ))}
       </div>
     </MenuStyled>
@@ -26,7 +25,6 @@ export default function Menu() {
 
 
 export const MenuStyled = styled.section`
-  /* background-color: blue; */
 
   .cards-container {
     display: grid;
@@ -36,52 +34,6 @@ export const MenuStyled = styled.section`
     justify-items: center;
   }
 
-  .card {
-    width: 240px;
-    height: 330px;
-    border-radius: ${theme.borderRadius.extraRound};
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    box-shadow: -8px 8px 20px 0px #00000033;
 
-    img {
-      width: 200px;
-      height: 145px;
-      object-fit: contain;
-    }
-
-    .info-text {
-      width: 200px;
-      height: 110px;
-
-      h3 {
-        font-family: "Amatic SC", cursive;
-        font-weight: ${theme.fonts.weights.bold};
-        font-size: 36px;
-        margin: 10px 0;
-      }
-
-      .description {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .price {
-          font-size: ${theme.fonts.size.P0};
-          color: ${theme.colors.primary};
-        }
-
-        .primary-button-menu {
-          width: 95px;
-          height: 38px;
-        }
-        .primary-button-menu:hover {
-          border: solid 1px ${theme.colors.primary};
-        }
-      }
-    }
-  }
 `;
 
