@@ -13,13 +13,13 @@ export default function Menu() {
   return (
     <MenuStyled>
       <div className="cards-container">
-        {menu.map((item) => (
+        {menu.map(({title , imageSource , price , id}) => (
           <Card
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            imageSource={item.imageSource}
-            leftDescription={formatPrice(item.price)}
+            key={id}
+            id={id}
+            title={title}
+            imageSource={imageSource}
+            leftDescription={formatPrice(price)}
           />
         ))}
       </div>
