@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import type { MenuItem } from '../../../../types';
+import type { MenuItem } from "../../../../types";
 import { fakeMenu2 } from '../../../../data/fakeMenu';
 import { theme } from '../../../../theme';
-import PrimaryButton from '../../../reusable-ui/PrimaryButton';
-import { formatPrice } from '../../../../utils/maths';
+import Product from './Product';
 
 
 
@@ -12,24 +11,13 @@ export default function Menu() {
 
   // on passe par un state car la data peut evoluer 
  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu2);
+ console.log(setMenu)
 
   return (
     <MenuStyled>
       <div className="cards-container">
         {menu.map((item) => (
-          <div key={item.id} className="card">
-            <img src={item.imageSource} alt={`Menu item ${item.id}`} />
-            <div className="info-text">
-              <h3>{item.title}</h3>
-              <div className="description">
-                <span className="price">{formatPrice(item.price)}</span>
-                <PrimaryButton
-                  label="Ajouter"
-                  className="primary-button-menu"
-                />
-              </div>
-            </div>
-          </div>
+          <Product key={item.id} {...item} />
         ))}
       </div>
     </MenuStyled>
