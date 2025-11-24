@@ -4,6 +4,8 @@ import type { MenuItem } from '../../../../types';
 import { fakeMenu2 } from '../../../../data/fakeMenu';
 import { theme } from '../../../../theme';
 import PrimaryButton from '../../../reusable-ui/PrimaryButton';
+import { formatPrice } from '../../../../utils/maths';
+
 
 
 export default function Menu() {
@@ -15,13 +17,16 @@ export default function Menu() {
     <MenuStyled>
       <div className="cards-container">
         {menu.map((item) => (
-          <div key={item.id} className='card'>
+          <div key={item.id} className="card">
             <img src={item.imageSource} alt={`Menu item ${item.id}`} />
             <div className="info-text">
               <h3>{item.title}</h3>
               <div className="description">
-                <span className='price'>{item.price.toFixed(2)} €</span>
-                <PrimaryButton label="Ajouter"  className='primary-button-menu'/>
+                <span className="price">{formatPrice(item.price)}</span>
+                <PrimaryButton
+                  label="Ajouter"
+                  className="primary-button-menu"
+                />
               </div>
             </div>
           </div>
