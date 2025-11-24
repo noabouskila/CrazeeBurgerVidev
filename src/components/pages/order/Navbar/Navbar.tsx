@@ -2,6 +2,7 @@ import styled from "styled-components";
 import NavBarRightSide from "./NavBarRightSide";
 import Logo from "../../../reusable-ui/Logo";
 import { refreshPage } from "../../../../utils/window";
+import { theme } from "../../../../theme";
 
 export default function Navbar({ username }: { username: string }) {
   return (
@@ -21,6 +22,7 @@ export const NavbarStyled = styled.nav`
   padding: 0 20px;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
+  border-bottom: 1px solid ${theme.colors.greyLight};
 
   .logo-order-page {
     cursor: pointer;
