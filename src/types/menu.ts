@@ -7,3 +7,10 @@ export interface MenuItem {
   isAvailable?: boolean;
   isAdvertised?: boolean;
 }
+
+export interface ProductProps {
+  id: number;
+  imageSource: string;
+  title: string;
+  leftDescription: string; // prix FORMATÉ
+}
