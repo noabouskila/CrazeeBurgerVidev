@@ -35,4 +35,4 @@ alias gpull="git pull"
 alias gst="git stash"
 alias gstl="git stash list"
 alias gsta="git stash apply"
-alias gstal="git stash apply st
+alias gstal="git stash apply stash@{0}"
