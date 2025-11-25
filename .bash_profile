@@ -1,0 +1,38 @@
+alias term="open -a iTerm"
+
+alias ys="yarn start"
+alias nts="npm run ts"
+alias nt="npm run test"
+alias ns="npm run start"
+alias nd="npm run dev"
+alias np="npm run prisma"
+
+alias hero="heroku"
+alias vv="vercel"
+
+alias l="ls"
+alias ll="ls -l"
+alias la="ls -la"
+alias pp="pwd"
+
+
+alias gf="git fetch"
+alias gri="git rebase -i"
+alias grsho="git reset --soft HEAD^1"
+alias gcount="git rev-list --count"
+alias gdb="git log --oneline --graph --decorate --abbrev-commit"
+alias gs="git status"
+alias ga="git add"
+alias gm="git commit"
+alias gma="git commit --amend"
+alias gpush="git push"
+alias gb="git branch"
+alias gc="git checkout"
+alias gl="git log"
+alias glo="git log --oneline"
+alias gr="git remote"
+alias gpull="git pull"
+alias gst="git stash"
+alias gstl="git stash list"
+alias gsta="git stash apply"
+alias gstal="git stash apply st
