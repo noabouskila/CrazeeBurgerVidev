@@ -1,8 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from 'react-router-dom';
 import { FaRegUserCircle } from "react-icons/fa";
 import { theme } from "../../../../theme";
 
-export default function Profile({ username }: { username: string }) {
+export default function Profile() {
+
+  const  {username} = useParams()
+  
   return (
     <ProfileStyled>
       <div className="user-info">
