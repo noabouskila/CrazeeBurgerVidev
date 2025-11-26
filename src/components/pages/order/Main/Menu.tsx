@@ -12,7 +12,6 @@ export default function Menu() {
 
   return (
     <MenuStyled>
-      <div className="cards-container">
         {menu.map(({title , imageSource , price , id}) => (
           <Card
             key={id}
@@ -22,17 +21,17 @@ export default function Menu() {
             leftDescription={formatPrice(price)}
           />
         ))}
-      </div>
     </MenuStyled>
   );
 }
 
 export const MenuStyled = styled.section`
-  .cards-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-row-gap: 60px;
-    padding: 50px 50px 150px;
-    justify-items: center;
-  }
+  /* mettre autant de collonnes tant que ca rentre  tant que ca respecte la condition de minmax*/
+  background-color: yellow;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-row-gap: 60px;
+  padding: 50px 50px 150px;
+  justify-items: center;
+  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 `;
