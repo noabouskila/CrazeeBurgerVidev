@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import AdminPanel from './AdminPanel';
-import { theme } from '../../../../../theme';
-import Tab from '../../../../reusable-ui/Tab';
+import AdminTabs from './AdminTabs';
 
 export default function Admin() {
   return (
     <AdminStyled>
-        <Tab />
+        <AdminTabs />
         <AdminPanel/>
     </AdminStyled>
   )
@@ -15,8 +14,7 @@ export default function Admin() {
 
 
 export const AdminStyled = styled.section`
-  background-color: ${theme.colors.background_white};
-  /* height: 250px; */
+
   position: sticky;
   bottom: 0;
   left: 0;
