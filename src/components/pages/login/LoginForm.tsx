@@ -88,7 +88,7 @@ export const LoginFormStyled = styled.form`
     .iconButton {
       margin-left: 10px;
       margin-top: ${theme.gridUnit / 4}px;
-      font-size: ${theme.fonts.size.P0};
+      font-size: ${theme.fonts.size.SM};
     }
 
     .primary-button-login-form {

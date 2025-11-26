@@ -20,9 +20,7 @@ export const MainStyled = styled.section`
   background: #f5f5f7;
 
   display: grid;
-  /* grid-template-columns: 25% 75%; */
   overflow-y: scroll;
 `;
 
-// CSS pour les cartes produit :
-//  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+
