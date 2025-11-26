@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import Basket from './Basket';
+// import Basket from './Basket';
 import Menu from "./Menu";
-import Admin from "../admin/Admin";
+import Admin from "./Admin/Admin";
 
 export default function Main() {
   return (
     <MainStyled className="main">
-      <Basket />
+      {/* <Basket /> */}
 
       <div className="menu-and-admin">
         <Menu />
@@ -23,7 +23,9 @@ export const MainStyled = styled.section`
   height: calc(95vh -10vh);
 
   display: grid;
-  grid-template-columns: 25% 1fr;
+  /* decommenter cette ligne quand <Basket/> activé */
+  /* grid-template-columns: 25% 1fr; */
+  grid-template-columns: 1fr;
   overflow-y: scroll;
 
   .menu-and-admin {

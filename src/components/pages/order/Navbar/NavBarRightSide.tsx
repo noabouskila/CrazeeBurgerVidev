@@ -40,11 +40,11 @@ export default function NavBarRightSide({ username }: { username: string }) {
       <ToggleButton
         isChecked={isModeAdmin}
         onToggle={onClick}
-        labelIfChecked={"ACTIVER LE MODE ADMIN"}
-        labelIfUnchecked={"DESACTIVER LE MODE ADMIN"}
+        labelIfChecked={"DESACTIVER LE MODE ADMIN"}
+        labelIfUnchecked={"ACTIVER LE MODE ADMIN"}
       />
-      
-      <ToastAdmin/>
+
+      <ToastAdmin />
 
       <Profile username={username} />
     </NavBarRightSideStyled>

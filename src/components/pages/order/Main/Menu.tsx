@@ -27,7 +27,6 @@ export default function Menu() {
 
 export const MenuStyled = styled.section`
   /* mettre autant de collonnes tant que ca rentre  tant que ca respecte la condition de minmax*/
-  background-color: yellow;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-row-gap: 60px;
