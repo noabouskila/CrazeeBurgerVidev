@@ -5,20 +5,33 @@ import Tab from "../../../../reusable-ui/Tab";
 import styled from 'styled-components';
 import { theme } from "../../../../../theme";
 
+interface AdminTabsProps {
+  isCollapse: boolean;
+  setIsCollapse: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export default function AdminTabs() {
+
+export default function AdminTabs({ isCollapse, setIsCollapse }: AdminTabsProps) {
+ 
+
   return (
     <AdminTabsStyled>
-      <Tab Icon={FiChevronDown} className="iconchevron" />
       <Tab
-        Icon={AiOutlinePlus}
-        className="iconplus"
-        text="Ajouter un produit"
+        Icon={isCollapse ? <FiChevronDown/> : <FiChevronUp/>}
+        className={ isCollapse ? "icon-chevron-down"  : "icon-chevron-up"}
+        onClick={() => setIsCollapse(!isCollapse)}
       />
       <Tab
-        Icon={MdModeEditOutline}
+        Icon={<AiOutlinePlus/>}
+        className="iconplus"
+        label="Ajouter un produit"
+        // onClick={}
+      />
+      <Tab
+        Icon={<MdModeEditOutline/>}
         className="iconpencil"
-        text="Modifier un produit"
+        label="Modifier un produit"
+        // onClick={}
       />
     </AdminTabsStyled>
   );
@@ -41,6 +54,19 @@ export const AdminTabsStyled = styled.div`
     background-color: ${theme.colors.background_dark};
   }
 
+  .icon-chevron-down {
+    color: ${theme.colors.greySemiDark};
+  }
+
+  .icon-chevron-up {
+    color: ${theme.colors.white};
+    background-color: ${theme.colors.background_dark};
+    border-color: ${theme.colors.background_dark};
+  }
+
+  button {
+    margin-left: 1px;
+  }
 `;
 
 

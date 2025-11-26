@@ -1,21 +1,23 @@
 import styled from "styled-components";
 import { theme } from "../../theme";
-import type { IconType } from "react-icons";
+// import type { IconType } from "react-icons";
 
 
 export default function Tab({
   Icon,
   className,
-  text,
+  label,
+  onClick,
 }: {
-  Icon: IconType;
+  Icon: React.ReactNode;
   className?: string;
-  text?: string;
+  label?: string;
+  onClick?: () => void;
 }) {
   return (
-    <TabStyled type="button" className={className}>
-      <Icon />
-      {text}
+    <TabStyled type="button" className={className} onClick={onClick}>
+      {Icon}
+     { label && <span> {label} </span>}
     </TabStyled>
   );
 }
@@ -46,6 +48,9 @@ export const TabStyled = styled.button`
     border-bottom: 2px solid ${theme.colors.white};
   }
 
+  span{
+    margin-left : 13px;
+  }
  
   
 `;
