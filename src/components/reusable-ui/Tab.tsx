@@ -29,6 +29,7 @@ export const TabStyled = styled.button`
   padding: 0px 22px;
 
   background-color: ${theme.colors.white};
+  color: ${theme.colors.greySemiDark};
 
   border-width: 1px 1px 2px 1px;
   border-style: solid;
@@ -48,9 +49,16 @@ export const TabStyled = styled.button`
     border-bottom: 2px solid ${theme.colors.white};
   }
 
-  span{
-    margin-left : 13px;
+  span {
+    margin-left: 13px;
   }
- 
-  
+  span:hover::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    transform: translateX(-95%);
+    width: 10%;
+    height: 2px;
+    background-color: ${theme.colors.greyLight};
+  }
 `;
