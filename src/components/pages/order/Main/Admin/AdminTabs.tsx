@@ -20,15 +20,19 @@ export default function AdminTabs() {
     setIsEditTableSelected,
   } = useContext(OrderContext);
 
-  const selectAddTable = () => {
+
+  const selectTab = (tabSelected: "add" | "edit") => {
     setIsCollapse(true);
-    setIsAddTableSelected(true);
-    setIsEditTableSelected(false);
-  };
-  const selectEditTable = () => {
-    setIsCollapse(true);
-    setIsAddTableSelected(false);
-    setIsEditTableSelected(true);
+
+    if (tabSelected === "add") {
+      setIsAddTableSelected(true);
+      setIsEditTableSelected(false);
+    }
+
+    if (tabSelected === "edit") {
+      setIsAddTableSelected(false);
+      setIsEditTableSelected(true);
+    }
   };
 
   return (
@@ -45,7 +49,7 @@ export default function AdminTabs() {
         className={isAddTableSelected ? "isActive" : ""}
         label="Ajouter un produit"
         onClick={() => {
-          selectAddTable();
+          selectTab("add");
         }}
       />
 
@@ -54,8 +58,9 @@ export default function AdminTabs() {
         className={isEditTableSelected ? "isActive" : ""}
         label="Modifier un produit"
         onClick={() => {
-          selectEditTable();
+          selectTab("edit");
         }}
+      
       />
     </AdminTabsStyled>
   );
