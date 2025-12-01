@@ -14,12 +14,6 @@ export default function AdminTabs() {
     isCollapse,
     setIsCollapse,
 
-    // isAddTableSelected,
-    // setIsAddTableSelected,
-
-    // isEditTableSelected,
-    // setIsEditTableSelected,
-
     currentTabSelected,
     setCurrentTabSelected,
 
@@ -29,40 +23,25 @@ export default function AdminTabs() {
   const selectTab = (indexTabSelected: "add" | "edit") => {
 
     setIsCollapse(true);
-
-    // if (tabSelected === "add") {
-    //   setIsAddTableSelected(true);
-    //   setIsEditTableSelected(false);
-    // }
-
-    // if (tabSelected === "edit") {
-    //   setIsAddTableSelected(false);
-    //   setIsEditTableSelected(true);
-    // }
-    
     setCurrentTabSelected(indexTabSelected);
   };
 
-  const tabs = getTabsConfig(currentTabSelected);
-
-
-
-  
+  const tabs = getTabsConfig();
 
   return (
     <AdminTabsStyled>
       <Tab
         Icon={isCollapse ? <FiChevronDown /> : <FiChevronUp />}
-        className={!isCollapse ? "isActive" : ""}
-        label=""
         onClick={() => setIsCollapse((prev) => !prev)}
+        className={!isCollapse ? "isActive" : ""}
       />
+
       {tabs.map((tab) => (
         <Tab
           Icon={tab.Icon}
-          className={tab.className}
           label={tab.label}
           onClick={() => selectTab(tab.index as "add" | "edit")}
+          className={currentTabSelected === tab.index ? "isActive" : ""}
         />
       ))}
     </AdminTabsStyled>
