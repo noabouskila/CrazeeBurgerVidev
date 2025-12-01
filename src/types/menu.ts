@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export interface MenuItem {
   id: number;
   imageSource: string;
@@ -23,3 +25,10 @@ export interface AdminTabsProps {
   isEditTableSelected: boolean;
   setIsEditTableSelected: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+export type getTabsConfigType = {
+  index: string;
+  Icon: ReactNode;
+  label: string;
+  onClick?: () => void;
+};
