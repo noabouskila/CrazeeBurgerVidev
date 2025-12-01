@@ -4,7 +4,6 @@ import type { getTabsConfigType } from "../../../../../types";
 
 
 export const getTabsConfig = (): getTabsConfigType[] => [
-
   {
     index: "add",
     Icon: <AiOutlinePlus />,

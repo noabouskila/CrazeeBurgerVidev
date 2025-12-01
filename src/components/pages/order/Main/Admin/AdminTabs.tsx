@@ -28,12 +28,17 @@ export default function AdminTabs() {
 
   const tabs = getTabsConfig();
 
+
+
+  
+
   return (
     <AdminTabsStyled>
       <Tab
         Icon={isCollapse ? <FiChevronDown /> : <FiChevronUp />}
-        onClick={() => setIsCollapse((prev) => !prev)}
         className={!isCollapse ? "isActive" : ""}
+        label=""
+        onClick={() => setIsCollapse((prev) => !prev)}
       />
 
       {tabs.map((tab) => (
