@@ -35,7 +35,6 @@ export default function AdminTabs() {
         className={!isCollapse ? "isActive" : ""}
       />
 
-
       {tabs.map((tab) => (
         <Tab
           Icon={tab.Icon}
