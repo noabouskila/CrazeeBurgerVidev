@@ -9,19 +9,14 @@ export default function AdminPanel() {
 
   const { currentTabSelected  } = useContext(OrderContext);
 
+  // const tabs = getTabsConfig(currentTabSelected)
+  // const tabIndexSelected =  tabs.find((tab) => tab.index  === currentTabSelected)
+
   const tabs = getTabsConfig();
-
   const tabSelected = getTabSelected(tabs, currentTabSelected);
-
- 
-  if (!tabSelected) {
-    return <AdminPanelStyled />; // éviter crash
-  }
-
-
   return (
     <AdminPanelStyled>
-      {tabSelected.label}
+      {tabSelected?.label}
     </AdminPanelStyled>
   );
 }

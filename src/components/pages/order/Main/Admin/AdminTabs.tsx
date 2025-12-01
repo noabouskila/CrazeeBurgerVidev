@@ -19,7 +19,6 @@ export default function AdminTabs() {
 
   } = useContext(OrderContext);
 
-
   const selectTab = (indexTabSelected: "add" | "edit") => {
 
     setIsCollapse(true);
@@ -35,6 +34,7 @@ export default function AdminTabs() {
         onClick={() => setIsCollapse((prev) => !prev)}
         className={!isCollapse ? "isActive" : ""}
       />
+
 
       {tabs.map((tab) => (
         <Tab
