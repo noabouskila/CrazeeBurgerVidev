@@ -4,15 +4,10 @@ import { theme } from "../../../../theme";
 
 
 export default function ToastAdmin() {
-  return (
-    <ToastAdminStyled>
-      <ToastContainer className="toaster" toastClassName="body-toast" />
-    </ToastAdminStyled>
-  );
+  return <ToastAdminStyled className="toaster" toastClassName="body-toast" />;
 }
 
-
-export const ToastAdminStyled = styled.div`
+export const ToastAdminStyled = styled(ToastContainer)`
 
   .toaster {
     max-width: 300px;

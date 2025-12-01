@@ -17,7 +17,7 @@ export const PrimaryButtonStyled = styled.button`
   color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   border: none;
-  font-size: ${theme.fonts.size.P0};
+  font-size: ${theme.fonts.size.SM};
   display: flex;
   flex-direction: row;
   align-items: center;

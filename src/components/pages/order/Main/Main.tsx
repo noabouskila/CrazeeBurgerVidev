@@ -1,28 +1,42 @@
 import styled from "styled-components";
 // import Basket from './Basket';
 import Menu from "./Menu";
+import Admin from "./Admin/Admin";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
+
 
 export default function Main() {
+
+   const {isModeAdmin}  = useContext(OrderContext)
+   
   return (
     <MainStyled className="main">
-      {/* <Basket/> */}
-      <Menu />
+      {/* <Basket /> */}
+
+      <div className="menu-and-admin">
+        <Menu />
+        { isModeAdmin &&  <Admin /> }
+      </div>
     </MainStyled>
   );
 }
 
 export const MainStyled = styled.section`
-  flex: 1;
-  background: #f5f5f7;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  background: #f5f5f7;
+  height: calc(95vh -10vh);
 
   display: grid;
-  /* grid-template-columns: 25% 75%; */
+  /* decommenter cette ligne quand <Basket/> activé */
+  /* grid-template-columns: 25% 1fr; */
+  grid-template-columns: 1fr;
   overflow-y: scroll;
+
+  .menu-and-admin {
+    position: relative;
+  }
 `;
 
-// CSS pour les cartes produit :
-//  box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
+
