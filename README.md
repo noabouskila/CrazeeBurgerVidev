@@ -1,69 +1,40 @@
-# React + TypeScript + Vite
+# CrazeeBurgerVidev 🍔
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**CrazeeBurgerVidev** est une application web de commande de burgers avec gestion complète pour l'administrateur.  
+Les utilisateurs peuvent parcourir le menu, passer des commandes, et l'administrateur peut gérer les produits, commandes et utilisateurs.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Accéder au site
 
-## Expanding the ESLint configuration
+Visitez le site en ligne ici : [CrazeeBurgerVidev en ligne](https://crazee-burger-videv.vercel.app/)  
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+![Aperçu de l'application](./screenshotAppli.png)  
+*Exemple de visuel de l'application*  
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠 Technologies utilisées
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Frontend :** React + TypeScript + Vite  
+- **Gestion d'état :** Context
+- **Styles :** Styled Components
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📦 Installation
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Clonez le projet :
+
+```bash
+git clone https://github.com/noabouskila/CrazeeBurgerVidev.git
+cd  CrazeeBurgerVidev
+
+installation dependances
+ ```bash
+npm install
+
+Lancement du projet 
+```bash
+npm run dev
+
