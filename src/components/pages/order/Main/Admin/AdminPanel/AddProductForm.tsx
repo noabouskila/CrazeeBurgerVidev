@@ -1,28 +1,82 @@
 import styled from "styled-components";
+import { theme } from "../../../../../../theme";
+import type { MenuItem } from "../../../../../../types";
+import OrderContext from "../../../../../../context/OrderContext";
+import { useContext, useState } from "react";
 
 
+const EMPTY_PRODUCT: MenuItem = {
+  id: 0,
+  imageSource: "",
+  title: "",
+  price: 14,
+  isAvailable: true,
+};
+    
 export default function AddProductForm() {
+
+    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+
+    const { handleAdd } = useContext(OrderContext);
+   
+    const newProducttoAdd: MenuItem = {
+      ...newProduct,
+      id: new Date().getTime(),
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = e.target.value;
+      const name = e.target.name;
+
+      setNewProduct({
+        ...newProduct,
+        [name]: newValue,
+      });
+    };
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { 
+        event.preventDefault();
+        handleAdd(newProducttoAdd);
+        setNewProduct(EMPTY_PRODUCT);
+    };
+
+
   return (
-    <AddProductFormStyled>
+    <AddProductFormStyled onSubmit={handleSubmit}>
       <div className="image-prevew">
         image preview
         {/* <image src="" alt="" /> */}
       </div>
 
-     
-        <div className="input-fields">
-        <input type="text" placeholder="Nom du Produit ( ex: Super Burger)" />
+      <div className="input-fields">
         <input
-            type="text"
-            placeholder="Lien URL d'un image (ex: https://la-photo-de-mon-produit.png)"
+          name="title"
+          value={newProduct.title}
+          onChange={handleChange}
+          type="text"
+          placeholder="Nom du Produit ( ex: Super Burger)"
         />
-        <input type="number" placeholder="Prix" />
-        </div>
 
-        <div className="submit-button">
-            <button type="submit">Ajouter un nouveau produit au menu</button>
-        </div>
-   
+        <input
+          name="imageSource"
+          value={newProduct.imageSource}
+          onChange={handleChange}
+          type="text"
+          placeholder="Lien URL d'un image (ex: https://la-photo-de-mon-produit.png)"
+        />
+
+        <input
+          name="price"
+          value={newProduct.price}
+          onChange={handleChange}
+          type="number"
+          placeholder="Prix"
+        />
+      </div>
+
+      <button className="submit-button" type="submit">
+        Ajouter un nouveau produit au menu
+      </button>
     </AddProductFormStyled>
   );
 }
@@ -48,7 +102,13 @@ export const AddProductFormStyled = styled.form`
   }
 
   .submit-button {
-    background-color: green;
+    background-color: ${theme.colors.success};
+    color: ${theme.colors.white};
     grid-area: 4/-2/-1/-1;
+    width: 50%;
+    border: none;
+    border-radius: ${theme.borderRadius.round};
+    cursor: pointer;
+
   }
 `;

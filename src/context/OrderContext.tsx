@@ -1,4 +1,5 @@
 import { createContext } from "react";
+import type { MenuItem } from "../types";
 
 export interface OrderContextType {
   isModeAdmin: boolean;
@@ -7,14 +8,11 @@ export interface OrderContextType {
   isCollapse: boolean;
   setIsCollapse: React.Dispatch<React.SetStateAction<boolean>>;
 
-  // isAddTableSelected: boolean;
-  // setIsAddTableSelected: React.Dispatch<React.SetStateAction<boolean>>;
-
-  // isEditTableSelected: boolean;
-  // setIsEditTableSelected: React.Dispatch<React.SetStateAction<boolean>>;
-
   currentTabSelected: string;
   setCurrentTabSelected: React.Dispatch<React.SetStateAction<string>>;
+
+  menu: MenuItem[];
+  handleAdd: (newProduct: MenuItem) => void;
 }
 
 const OrderContext = createContext<OrderContextType>({
@@ -24,14 +22,12 @@ const OrderContext = createContext<OrderContextType>({
   isCollapse: true,
   setIsCollapse: () => {},
 
-  // isAddTableSelected: true,
-  // setIsAddTableSelected: () => {},
-
-  // isEditTableSelected: true,
-  // setIsEditTableSelected: () => {},
 
   currentTabSelected : "" ,
   setCurrentTabSelected  :() => {},
+
+  menu: [],
+  handleAdd: () => {}
 });
 
 export default OrderContext;
