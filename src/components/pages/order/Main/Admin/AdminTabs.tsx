@@ -53,15 +53,13 @@ export const AdminTabsStyled = styled.div`
   position: relative;
   left: 5%;
   top: 1px;
-
+  width: 80%;
 
   .isActive {
     color: ${theme.colors.white};
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
   }
-
-
 
   button {
     margin-left: 1px;
