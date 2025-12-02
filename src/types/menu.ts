@@ -29,6 +29,7 @@ export interface AdminTabsProps {
 export type getTabsConfigType = {
   index: string;
   Icon: ReactNode;
-  label: string;
+  label?: string;
+  Content?: ReactNode;
   onClick?: () => void;
 };
