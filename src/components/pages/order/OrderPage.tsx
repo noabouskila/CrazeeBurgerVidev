@@ -11,8 +11,6 @@ export default function OrderPage() {
   // lifting the state up ( remonter letat de 2 composants dans leur parent le plus proche : ici OrderPage)
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapse , setIsCollapse] = useState(true)
-  // const [isAddTableSelected, setIsAddTableSelected] = useState(true);
-  // const [isEditTableSelected, setIsEditTableSelected] = useState(false);
   const [currentTabSelected ,setCurrentTabSelected ]  = useState("add")
 
 
@@ -22,12 +20,6 @@ export default function OrderPage() {
 
     isCollapse,
     setIsCollapse,
-
-    // isAddTableSelected,
-    // setIsAddTableSelected,
-
-    // isEditTableSelected,
-    // setIsEditTableSelected,
 
     currentTabSelected,
     setCurrentTabSelected,

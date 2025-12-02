@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
 import type { MenuItem } from "../../../../types";
-import { fakeMenu2 } from "../../../../data/fakeMenu";
+import { fakeMenu } from "../../../../data/fakeMenu";
 import Card from "../../../reusable-ui/Card";
 import { formatPrice } from "../../../../utils/maths";
 
 export default function Menu() {
   // on passe par un state car la data peut evoluer
-  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu2);
+  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
   console.log(setMenu);
 
   return (
