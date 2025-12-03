@@ -1,24 +1,17 @@
-import  { useContext} from "react";
+import { useContext } from "react";
 import styled from "styled-components";
-import Card from "../../../reusable-ui/Card";
-import { formatPrice } from "../../../../utils/maths";
-import OrderContext from "../../../../context/OrderContext";
-
+import Card from "../../../../reusable-ui/Card";
+import { formatPrice } from "../../../../../utils/maths";
+import OrderContext from "../../../../../context/OrderContext";
+import EmptyMenuAdmin from "./EmptyMenuAdmin";
+import EmptyMenuClient from "./EmptyMenuClient";
 
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
+  const { menu, isModeAdmin, handleDelete } = useContext(OrderContext);
 
-  const { menu , isModeAdmin  , handleDelete , resetMenu} = useContext(OrderContext);
-
-  
   if (menu.length === 0) {
-      return (
-        <MenuStyled>
-          <span>Le menu est vide. Veuillez ajouter des produits.</span>
-          <button className="button-reset-menu" onClick={resetMenu} >Generer de nouveaux produits </button>
-        </MenuStyled>
-      );
-      
+    return  isModeAdmin ? <EmptyMenuAdmin/> : <EmptyMenuClient/>
   }
 
   return (
@@ -31,7 +24,7 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           leftDescription={formatPrice(price)}
           hasDeleteButton={isModeAdmin}
-          onDelete={() =>  handleDelete(id)}
+          onDelete={() => handleDelete(id)}
         />
       ))}
     </MenuStyled>
@@ -46,8 +39,4 @@ export const MenuStyled = styled.section`
   padding: 50px 50px 150px;
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-
-  .button-reset-menu{
-     
-  }
 `;

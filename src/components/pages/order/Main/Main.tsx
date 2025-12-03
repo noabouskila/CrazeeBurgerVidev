@@ -1,22 +1,20 @@
 import styled from "styled-components";
 // import Basket from './Basket';
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
 
-
 export default function Main() {
+  const { isModeAdmin } = useContext(OrderContext);
 
-   const {isModeAdmin}  = useContext(OrderContext)
-   
   return (
     <MainStyled className="main">
       {/* <Basket /> */}
 
       <div className="menu-and-admin">
         <Menu />
-        { isModeAdmin &&  <Admin /> }
+        {isModeAdmin && <Admin />}
       </div>
     </MainStyled>
   );
@@ -38,5 +36,3 @@ export const MainStyled = styled.section`
     position: relative;
   }
 `;
-
-
