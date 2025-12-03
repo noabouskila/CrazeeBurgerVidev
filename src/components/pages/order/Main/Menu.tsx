@@ -8,9 +8,19 @@ import OrderContext from "../../../../context/OrderContext";
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
 
-  const { menu , isModeAdmin  , handleDelete} = useContext(OrderContext);
-   
+  const { menu , isModeAdmin  , handleDelete , resetMenu} = useContext(OrderContext);
+
   
+  if (menu.length === 0) {
+      return (
+        <MenuStyled>
+          <span>Le menu est vide. Veuillez ajouter des produits.</span>
+          <button className="button-reset-menu" onClick={resetMenu} >Generer de nouveaux produits </button>
+        </MenuStyled>
+      );
+      
+  }
+
   return (
     <MenuStyled>
       {menu.map(({ id, title, imageSource, price }) => (
@@ -36,4 +46,8 @@ export const MenuStyled = styled.section`
   padding: 50px 50px 150px;
   justify-items: center;
   box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
+
+  .button-reset-menu{
+     
+  }
 `;

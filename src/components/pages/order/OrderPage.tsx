@@ -13,7 +13,7 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapse, setIsCollapse] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
+  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.SMALL);
 
   
   // comportement pour ajouter un produit au menu
@@ -29,6 +29,10 @@ export default function OrderPage() {
     const updatedMenu = menuCopy.filter((product) => product.id !== productId);
     setMenu(updatedMenu);
   }
+  // comportement pour reinitialiser le menu
+   const resetMenu = () => {
+     setMenu(fakeMenu.LARGE);
+   };
   
 
   const orderContextValue = {
@@ -44,6 +48,7 @@ export default function OrderPage() {
     menu,
     handleAdd,
     handleDelete,
+    resetMenu
   };
 
   return (

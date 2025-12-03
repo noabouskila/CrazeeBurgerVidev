@@ -13,7 +13,8 @@ export interface OrderContextType {
 
   menu: MenuItem[];
   handleAdd: (newProduct: MenuItem) => void;
-  handleDelete : (productId : number ) => void ;
+  handleDelete: (productId: number) => void;
+  resetMenu : () => void;
 }
 
 const OrderContext = createContext<OrderContextType>({
@@ -23,14 +24,13 @@ const OrderContext = createContext<OrderContextType>({
   isCollapse: true,
   setIsCollapse: () => {},
 
-
-  currentTabSelected : "" ,
-  setCurrentTabSelected  :() => {},
+  currentTabSelected: "",
+  setCurrentTabSelected: () => {},
 
   menu: [],
   handleAdd: () => {},
-  handleDelete : () => {} ,
-  
+  handleDelete: () => {},
+  resetMenu: () => {},
 });
 
 export default OrderContext;
