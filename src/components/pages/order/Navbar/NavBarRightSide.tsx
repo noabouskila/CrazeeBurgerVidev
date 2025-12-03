@@ -29,7 +29,6 @@ export default function NavBarRightSide() {
   }
 
   const onClick = () => {
-    console.log("toggle clicked");
     displayToastNotification();
     setIsModeAdmin((prev) => !prev);
   }

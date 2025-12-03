@@ -9,7 +9,7 @@ const EMPTY_PRODUCT: MenuItem = {
   id: 0,
   imageSource: "",
   title: "",
-  price: 14,
+  price: 0,
   isAvailable: true,
 };
     
@@ -18,19 +18,18 @@ export default function AddProductForm() {
     const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
     const { handleAdd } = useContext(OrderContext);
-   
+    
     const newProducttoAdd: MenuItem = {
       ...newProduct,
-      id: new Date().getTime(),
+      id: Date.now(),
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = e.target.value;
-      const name = e.target.name;
 
+        const { name, value } = e.target;
       setNewProduct({
         ...newProduct,
-        [name]: newValue,
+        [name]: value,
       });
     };
 

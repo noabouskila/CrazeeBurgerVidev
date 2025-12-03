@@ -5,11 +5,7 @@ import { formatPrice } from "../../../../utils/maths";
 import OrderContext from "../../../../context/OrderContext";
 
 export default function Menu() {
-  // on passe par un state car la data peut evoluer
-  // const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
-  // console.log("setMenu" , setMenu);
 
-  
   const { menu } = useContext(OrderContext);
    
   
