@@ -15,7 +15,8 @@ export interface ProductProps {
   imageSource: string;
   title: string;
   leftDescription: string; // prix FORMATÉ
-  hasDeleteButton? :boolean;
+  hasDeleteButton?: boolean;
+  onDelete ?: () => void;
 }
 
 // pour le formulaire d'ajout de produit dans l'admin panel

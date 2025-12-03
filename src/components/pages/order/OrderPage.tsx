@@ -22,6 +22,13 @@ export default function OrderPage() {
     const updatedMenu = [newProducttoAdd, ...menuCopy];
     setMenu(updatedMenu);
   };
+
+  // comportement pour supprimer un produit du menu
+  const handleDelete = (productId : number ) => {
+    const menuCopy = [...menu];
+    const updatedMenu = menuCopy.filter((product) => product.id !== productId);
+    setMenu(updatedMenu);
+  }
   
 
   const orderContextValue = {
@@ -35,8 +42,8 @@ export default function OrderPage() {
     setCurrentTabSelected,
 
     menu,
-    handleAdd
-
+    handleAdd,
+    handleDelete,
   };
 
   return (

@@ -11,31 +11,34 @@ export default function Card({
   imageSource,
   leftDescription,
   hasDeleteButton,
+    onDelete,
 }: ProductProps) {
   return (
     <CardStyled key={id}>
-      
       {hasDeleteButton && (
-        <button className="delete-button" type="button" aria-label="delete-button" > <TiDelete className="icon"/> </button>
+        <button
+          onClick={onDelete}
+          className="delete-button"
+          type="button"
+          aria-label="delete-button"
+        >
+          {" "}
+          <TiDelete className="icon" />{" "}
+        </button>
       )}
-
 
       <div className="image">
         <img src={imageSource} alt={`Menu item ${id}`} />
       </div>
 
       <div className="info-text">
-
         <h3 className="title">{title}</h3>
         <div className="description">
-
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
             <PrimaryButton className="primary-button" label={"Ajouter"} />
           </div>
-          
         </div>
-
       </div>
     </CardStyled>
   );

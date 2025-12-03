@@ -13,6 +13,7 @@ export interface OrderContextType {
 
   menu: MenuItem[];
   handleAdd: (newProduct: MenuItem) => void;
+  handleDelete : (productId : number ) => void ;
 }
 
 const OrderContext = createContext<OrderContextType>({
@@ -27,7 +28,9 @@ const OrderContext = createContext<OrderContextType>({
   setCurrentTabSelected  :() => {},
 
   menu: [],
-  handleAdd: () => {}
+  handleAdd: () => {},
+  handleDelete : () => {} ,
+  
 });
 
 export default OrderContext;
