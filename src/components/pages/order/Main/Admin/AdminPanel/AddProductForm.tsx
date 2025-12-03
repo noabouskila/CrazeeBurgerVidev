@@ -39,20 +39,18 @@ export default function AddProductForm() {
     };
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { 
-        event.preventDefault();
+      event.preventDefault();
 
-        const newProducttoAdd: MenuItem = {
-          ...newProduct,
-          id: Date.now(),
-          price: Number(newProduct.price),
-        };
+      const newProducttoAdd: MenuItem = {
+        ...newProduct,
+        id: Date.now(),
+        price: Number(newProduct.price),
+      };
 
-        handleAdd(newProducttoAdd);
-        setNewProduct(EMPTY_PRODUCT);
+      handleAdd(newProducttoAdd);
+      setNewProduct(EMPTY_PRODUCT);
 
-        displaySuccessMsg()
-        console.log("   Produit ajouté :", newProducttoAdd  );
-
+      displaySuccessMsg()
     };
 
 

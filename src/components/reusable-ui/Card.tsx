@@ -3,6 +3,7 @@ import PrimaryButton from "./PrimaryButton";
 import type { ProductProps } from "../../types";
 import { theme } from "../../theme";
 import styled from "styled-components";
+import { TiDelete } from "react-icons/ti";
 
 export default function Card({
   id,
@@ -11,7 +12,8 @@ export default function Card({
   leftDescription,
 }: ProductProps) {
   return (
-    <ProductStyled key={id}>
+    <CardStyled key={id}>
+      <button className="delete-button" type="button" aria-label="delete-button" > <TiDelete className="icon"/> </button>
       <div className="image">
         <img src={imageSource} alt={`Menu item ${id}`} />
       </div>
@@ -29,11 +31,11 @@ export default function Card({
         </div>
 
       </div>
-    </ProductStyled>
+    </CardStyled>
   );
 }
 
-export const ProductStyled = styled.div`
+export const CardStyled = styled.div`
   background: ${theme.colors.white};
   width: 200px;
   height: 300px;
@@ -44,6 +46,34 @@ export const ProductStyled = styled.div`
   grid-template-rows: 65% 1fr;
   padding: 20px;
   padding-bottom: 10px;
+  position: relative;
+
+  .delete-button {
+    width: 30px;
+    height: 30px;
+    color : ${theme.colors.primary};
+    border : 1px solid red;
+    position: absolute;
+    top : 15px ;
+    right : 15px ;
+    cursor: pointer;
+    z-index: 2;
+    border : none;
+    background: none;
+
+    .icon{
+      height: 100%;
+      width: 100%;
+    }
+    :hover{
+      color : ${theme.colors.red};
+    }
+    :active{
+      color : ${theme.colors.primary}
+    }
+    
+    
+  }
 
   .image {
     width: 100%;
@@ -89,7 +119,6 @@ export const ProductStyled = styled.div`
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        font-weight: ${theme.fonts.weights.medium};
         color: ${theme.colors.primary};
       }
 
