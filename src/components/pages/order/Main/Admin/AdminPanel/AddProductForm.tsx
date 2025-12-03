@@ -43,8 +43,11 @@ export default function AddProductForm() {
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
       <div className="image-prevew">
-        image preview
-        {/* <image src="" alt="" /> */}
+        {newProduct.imageSource ? (
+          <img src={newProduct.imageSource} alt={newProduct.title} />
+        ) : (
+          <div> Aucune image</div>
+        )}
       </div>
 
       <div className="input-fields">
@@ -89,15 +92,35 @@ export const AddProductFormStyled = styled.form`
 
   .image-prevew {
     grid-area: 1/1/4/2;
-    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid ${theme.colors.greyLight};
+    border-radius: ${theme.borderRadius.round};
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+    }
   }
 
   .input-fields {
-    background-color: blue;
     grid-area: 1/2/-2/3;
     display: grid;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
     grid-template-rows: repeat(3, 1fr);
+    height: 120px;
+    row-gap: 10px;
+    
+
+    input {
+      border: none;
+      background-color: ${theme.colors.background_white};
+      border-radius: ${theme.borderRadius.round};
+      padding: 8px 16px 8px 24px;
+    }
   }
 
   .submit-button {
@@ -108,6 +131,5 @@ export const AddProductFormStyled = styled.form`
     border: none;
     border-radius: ${theme.borderRadius.round};
     cursor: pointer;
-
   }
 `;
