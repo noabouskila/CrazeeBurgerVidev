@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { theme } from "../../../../../../theme";
-import type { MenuItem } from "../../../../../../types";
+import type { MenuItem, NewProductForm } from "../../../../../../types";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import { FiCheck } from "react-icons/fi";
 
 
-const EMPTY_PRODUCT: MenuItem = {
+const EMPTY_PRODUCT: NewProductForm = {
   id: 0,
   imageSource: "",
   title: "",

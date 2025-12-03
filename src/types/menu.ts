@@ -17,6 +17,15 @@ export interface ProductProps {
   leftDescription: string; // prix FORMATÉ
 }
 
+// pour le formulaire d'ajout de produit dans l'admin panel
+export type NewProductForm = {
+  id: number;
+  imageSource: string;
+  title: string;
+  price: string; // autorisé ici
+  isAvailable: boolean;
+};
+
 export interface AdminTabsProps {
   isCollapse: boolean;
   setIsCollapse: React.Dispatch<React.SetStateAction<boolean>>;
