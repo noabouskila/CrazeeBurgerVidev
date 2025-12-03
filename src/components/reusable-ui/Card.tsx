@@ -10,10 +10,16 @@ export default function Card({
   title,
   imageSource,
   leftDescription,
+  hasDeleteButton,
 }: ProductProps) {
   return (
     <CardStyled key={id}>
-      <button className="delete-button" type="button" aria-label="delete-button" > <TiDelete className="icon"/> </button>
+      
+      {hasDeleteButton && (
+        <button className="delete-button" type="button" aria-label="delete-button" > <TiDelete className="icon"/> </button>
+      )}
+
+
       <div className="image">
         <img src={imageSource} alt={`Menu item ${id}`} />
       </div>
