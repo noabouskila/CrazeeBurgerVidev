@@ -4,6 +4,8 @@ import Card from "../../../reusable-ui/Card";
 import { formatPrice } from "../../../../utils/maths";
 import OrderContext from "../../../../context/OrderContext";
 
+
+const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
 
   const { menu } = useContext(OrderContext);
@@ -11,15 +13,15 @@ export default function Menu() {
   
   return (
     <MenuStyled>
-        {menu.map(({title , imageSource , price , id}) => (
-          <Card
-            key={id}
-            id={id}
-            title={title}
-            imageSource={imageSource}
-            leftDescription={formatPrice(price)}
-          />
-        ))}
+      {menu.map(({ title, imageSource, price, id }) => (
+        <Card
+          key={id}
+          id={id}
+          title={title}
+          imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+          leftDescription={formatPrice(price)}
+        />
+      ))}
     </MenuStyled>
   );
 }
