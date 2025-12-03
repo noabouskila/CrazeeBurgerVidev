@@ -3,13 +3,14 @@ import { theme } from "../../../../../../theme";
 import type { MenuItem } from "../../../../../../types";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
+import { FiCheck } from "react-icons/fi";
 
 
 const EMPTY_PRODUCT: MenuItem = {
   id: 0,
   imageSource: "",
   title: "",
-  price: 0,
+  price: "",
   isAvailable: true,
 };
     
@@ -18,14 +19,18 @@ export default function AddProductForm() {
     const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
     const { handleAdd } = useContext(OrderContext);
-    
-    const newProducttoAdd: MenuItem = {
-      ...newProduct,
-      id: Date.now(),
+
+    const [isSubmitted, setIsSubmitted] = useState(false);
+
+    const displaySuccessMsg = () => {
+      setIsSubmitted(true);
+      setTimeout(() => {
+        setIsSubmitted(false);
+      }, 2000);
     };
+    
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-
         const { name, value } = e.target;
       setNewProduct({
         ...newProduct,
@@ -35,14 +40,25 @@ export default function AddProductForm() {
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { 
         event.preventDefault();
+
+        const newProducttoAdd: MenuItem = {
+          ...newProduct,
+          id: Date.now(),
+          price: Number(newProduct.price),
+        };
+
         handleAdd(newProducttoAdd);
         setNewProduct(EMPTY_PRODUCT);
+
+        displaySuccessMsg()
+        console.log("   Produit ajouté :", newProducttoAdd  );
+
     };
 
 
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
-      <div className="image-prevew">
+      <div className={newProduct.imageSource ? "image-prevew" : "image-prevew image-preview-empty"}>
         {newProduct.imageSource ? (
           <img src={newProduct.imageSource} alt={newProduct.title} />
         ) : (
@@ -76,9 +92,15 @@ export default function AddProductForm() {
         />
       </div>
 
-      <button className="submit-button" type="submit">
-        Ajouter un nouveau produit au menu
-      </button>
+      <div className="submit">
+        <button className="submit-button" type="submit">Ajouter un nouveau produit au menu</button>
+        {isSubmitted && (
+          <div className="submit-message">
+            <FiCheck />
+            <span> Ajouté avec succes !</span>
+          </div>
+        )}
+      </div>
     </AddProductFormStyled>
   );
 }
@@ -95,8 +117,6 @@ export const AddProductFormStyled = styled.form`
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid ${theme.colors.greyLight};
-    border-radius: ${theme.borderRadius.round};
 
     img {
       width: 100%;
@@ -106,6 +126,11 @@ export const AddProductFormStyled = styled.form`
     }
   }
 
+  .image-preview-empty {
+    border: 1px solid ${theme.colors.greyLight};
+    border-radius: ${theme.borderRadius.round};
+  }
+
   .input-fields {
     grid-area: 1/2/-2/3;
     display: grid;
@@ -113,7 +138,7 @@ export const AddProductFormStyled = styled.form`
     grid-template-rows: repeat(3, 1fr);
     height: 120px;
     row-gap: 10px;
-    
+    margin-left: 15px;
 
     input {
       border: none;
@@ -123,13 +148,24 @@ export const AddProductFormStyled = styled.form`
     }
   }
 
-  .submit-button {
-    background-color: ${theme.colors.success};
-    color: ${theme.colors.white};
+  .submit {
     grid-area: 4/-2/-1/-1;
-    width: 50%;
-    border: none;
-    border-radius: ${theme.borderRadius.round};
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+
+    .submit-button {
+      background-color: ${theme.colors.success};
+      color: ${theme.colors.white};
+      width: 50%;
+      border: none;
+      border-radius: ${theme.borderRadius.round};
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .submit-message {
+      color: ${theme.colors.success};
+    }
   }
 `;
