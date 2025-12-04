@@ -13,7 +13,7 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapse, setIsCollapse] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
-  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.SMALL);
+  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
 
   
   // comportement pour ajouter un produit au menu

@@ -25,8 +25,12 @@ export const EmptyMenuClientStyled = styled.section`
   align-items: center;
   justify-content: center;
 
+  p{
+    margin : 21px;
+  }
   .menu-vide {
     font-weight: ${theme.fonts.weights.bold};
+    margin: 0;
   }
 `;
 

@@ -109,6 +109,7 @@ export const AddProductFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   width: 70%;
   height: 100%;
+  
 
   .image-prevew {
     grid-area: 1/1/4/2;
@@ -127,6 +128,7 @@ export const AddProductFormStyled = styled.form`
   .image-preview-empty {
     border: 1px solid ${theme.colors.greyLight};
     border-radius: ${theme.borderRadius.round};
+    color: ${theme.colors.greySemiDark};
   }
 
   .input-fields {
@@ -151,6 +153,7 @@ export const AddProductFormStyled = styled.form`
     display: flex;
     align-items: center;
     margin-left: 15px;
+    margin-top: 10px;
 
     .submit-button {
       background-color: ${theme.colors.success};
@@ -161,9 +164,26 @@ export const AddProductFormStyled = styled.form`
       cursor: pointer;
       padding: 10px;
     }
+    .submit-button:active {
+      background-color: ${theme.colors.white};
+      border: 1px solid ${theme.colors.success};
+      color: ${theme.colors.success};
+    }
 
     .submit-message {
       color: ${theme.colors.success};
+      margin-left: 15px;
+      align-items: center;
+      display: flex;
+
+      svg {
+        border: 1px solid ${theme.colors.success};
+        border-radius: ${theme.borderRadius.circle};
+        padding: 2px;
+      }
+      span{
+        margin-left: 5px;
+      }
     }
   }
 `;

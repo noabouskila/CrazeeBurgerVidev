@@ -4,6 +4,7 @@ import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
 import OrderContext from "../../../../context/OrderContext";
+import { theme } from "../../../../theme";
 
 export default function Main() {
   const { isModeAdmin } = useContext(OrderContext);
@@ -25,6 +26,7 @@ export const MainStyled = styled.section`
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   height: calc(95vh -10vh);
+  background-color: ${theme.colors.background_white};
 
   display: grid;
   /* decommenter cette ligne quand <Basket/> activé */
