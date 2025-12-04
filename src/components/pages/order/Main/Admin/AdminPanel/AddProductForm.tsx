@@ -4,6 +4,10 @@ import type { MenuItem, NewProductForm } from "../../../../../../types";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import { FiCheck } from "react-icons/fi";
+import TextInput from "../../../../../reusable-ui/TextInput";
+import { FaHamburger } from "react-icons/fa";
+import { BsFillCameraFill } from "react-icons/bs";
+import { MdOutlineEuro } from "react-icons/md";
 
 
 const EMPTY_PRODUCT: NewProductForm = {
@@ -56,7 +60,13 @@ export default function AddProductForm() {
 
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
-      <div className={newProduct.imageSource ? "image-prevew" : "image-prevew image-preview-empty"}>
+      <div
+        className={
+          newProduct.imageSource
+            ? "image-prevew"
+            : "image-prevew image-preview-empty"
+        }
+      >
         {newProduct.imageSource ? (
           <img src={newProduct.imageSource} alt={newProduct.title} />
         ) : (
@@ -65,7 +75,7 @@ export default function AddProductForm() {
       </div>
 
       <div className="input-fields">
-        <input
+        {/* <input
           name="title"
           value={newProduct.title}
           onChange={handleChange}
@@ -87,11 +97,43 @@ export default function AddProductForm() {
           onChange={handleChange}
           type="number"
           placeholder="Prix"
+        /> */}
+
+        <TextInput
+          Icon={<FaHamburger />}
+          name="title"
+          value={newProduct.title}
+          onChange={handleChange}
+          type="text"
+          placeholder="Nom du Produit ( ex: Super Burger)"
+          version="minimalist"
+        />
+
+        <TextInput
+          Icon={<BsFillCameraFill />}
+          name="imageSource"
+          value={newProduct.imageSource}
+          onChange={handleChange}
+          type="text"
+          placeholder="Lien URL d'un image (ex: https://la-photo-de-mon-produit.png)"
+          version="minimalist"
+        />
+
+        <TextInput
+          Icon={<MdOutlineEuro />}
+          name="price"
+          value={newProduct.price}
+          onChange={handleChange}
+          type="number"
+          placeholder="Prix"
+          version="minimalist"
         />
       </div>
 
       <div className="submit">
-        <button className="submit-button" type="submit">Ajouter un nouveau produit au menu</button>
+        <button className="submit-button" type="submit">
+          Ajouter un nouveau produit au menu
+        </button>
         {isSubmitted && (
           <div className="submit-message">
             <FiCheck />
@@ -109,7 +151,6 @@ export const AddProductFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   width: 70%;
   height: 100%;
-  
 
   .image-prevew {
     grid-area: 1/1/4/2;
@@ -139,13 +180,6 @@ export const AddProductFormStyled = styled.form`
     height: 120px;
     row-gap: 10px;
     margin-left: 15px;
-
-    input {
-      border: none;
-      background-color: ${theme.colors.background_white};
-      border-radius: ${theme.borderRadius.round};
-      padding: 8px 16px 8px 24px;
-    }
   }
 
   .submit {
@@ -181,7 +215,7 @@ export const AddProductFormStyled = styled.form`
         border-radius: ${theme.borderRadius.circle};
         padding: 2px;
       }
-      span{
+      span {
         margin-left: 5px;
       }
     }

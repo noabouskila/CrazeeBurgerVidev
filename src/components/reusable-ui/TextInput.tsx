@@ -1,40 +1,34 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { theme } from "../../theme";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   Icon?: React.ReactNode;
-  className?: string;
+  version?: string
 };
 
 export default function TextInput({
   value,
   onChange,
   Icon,
-  className,
+  version, 
   ...extraProps
 }: InputProps) {
   return (
-    <InputStyled className={className}>
+    <TextInputStyled version={version}>
       {Icon}
       <input type="text" value={value} onChange={onChange} {...extraProps} />
-    </InputStyled>
+    </TextInputStyled>
   );
 }
 
-export const InputStyled = styled.div`
-  background-color: ${theme.colors.white};
-  padding : 18px 24px ; 
+export const TextInputStyled = styled.div<{ version?: string }>`
   border-radius: ${theme.borderRadius.round};
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
-
-  svg {
-    color: ${theme.colors.greySemiDark};
-  }
 
   input {
     border: none;
@@ -43,7 +37,6 @@ export const InputStyled = styled.div`
     width: 100%;
 
     &::placeholder {
-      background-color: ${theme.colors.white};
       color: ${theme.colors.greyMedium};
     }
   }
@@ -51,6 +44,37 @@ export const InputStyled = styled.div`
   input:focus,
   input:hover,
   input:active {
-    outline: none;
+      outline: none;
   }
+
+
+  /* versions css */
+  ${(props) => props.version === "normal" && ExtraTextInputVersions.normal}
+
+  ${(props) => props.version === "minimalist" && ExtraTextInputVersions.minimaliste};
 `;
+
+
+const ExtraTextInputVersions = {
+
+  normal: css`
+    background-color: ${theme.colors.white};
+    margin: 18px 0;
+    padding: 18px 24px;
+    svg {
+      color: ${theme.colors.greySemiDark};
+    }
+  `,
+
+  minimaliste: css`
+    border: none;
+    background-color: ${theme.colors.background_white};
+    padding: 8px 16px 8px 24px;
+    svg {
+      color: ${theme.colors.greyBlue};
+    }
+    input {
+      background-color: ${theme.colors.background_white};
+    }
+  `,
+};

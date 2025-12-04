@@ -22,8 +22,7 @@ export default function Card({
           type="button"
           aria-label="delete-button"
         >
-          {" "}
-          <TiDelete className="icon" />{" "}
+          <TiDelete className="icon" />
         </button>
       )}
 
@@ -58,30 +57,27 @@ export const CardStyled = styled.div`
   position: relative;
 
   .delete-button {
-    width: 30px;
-    height: 30px;
-    color : ${theme.colors.primary};
-    border : 1px solid red;
+    color: ${theme.colors.primary};
+    border: 1px solid red;
     position: absolute;
-    top : 15px ;
-    right : 15px ;
+    top: 15px;
+    right: 15px;
     cursor: pointer;
     z-index: 2;
-    border : none;
+    border: none;
     background: none;
 
-    .icon{
-      height: 100%;
-      width: 100%;
-    }
-    :hover{
-      color : ${theme.colors.red};
-    }
-    :active{
-      color : ${theme.colors.primary}
+    .icon {
+      width: 30px;
+      height: 30px;
     }
     
-    
+    :hover {
+      color: ${theme.colors.red};
+    }
+    :active {
+      color: ${theme.colors.primary};
+    }
   }
 
   .image {
