@@ -75,29 +75,6 @@ export default function AddProductForm() {
       </div>
 
       <div className="input-fields">
-        {/* <input
-          name="title"
-          value={newProduct.title}
-          onChange={handleChange}
-          type="text"
-          placeholder="Nom du Produit ( ex: Super Burger)"
-        />
-
-        <input
-          name="imageSource"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          type="text"
-          placeholder="Lien URL d'un image (ex: https://la-photo-de-mon-produit.png)"
-        />
-
-        <input
-          name="price"
-          value={newProduct.price}
-          onChange={handleChange}
-          type="number"
-          placeholder="Prix"
-        /> */}
 
         <TextInput
           Icon={<FaHamburger />}

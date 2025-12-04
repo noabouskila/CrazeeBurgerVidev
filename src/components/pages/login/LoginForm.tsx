@@ -39,7 +39,6 @@ export default function LoginForm() {
           placeholder={"Entrez votre prénom"}
           required
           Icon={<FaRegUserCircle />}
-          version="normal"
         />
         <PrimaryButton
           label={"Accéder à mon espace"}
