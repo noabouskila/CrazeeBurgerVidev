@@ -39,6 +39,7 @@ export default function LoginForm() {
           placeholder={"Entrez votre prénom"}
           required
           Icon={<FaRegUserCircle />}
+          className="input-login"
         />
         <PrimaryButton
           label={"Accéder à mon espace"}
@@ -84,6 +85,10 @@ export const LoginFormStyled = styled.form`
     flex-direction: column;
     align-items: stretch;
     margin-top: 20px;
+
+    .input-login {
+      margin: 18px 0;
+    }
 
     .iconButton {
       margin-left: 10px;

@@ -5,16 +5,18 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   Icon?: React.ReactNode;
+  className?: string;
 };
 
 export default function TextInput({
   value,
   onChange,
   Icon,
+  className,
   ...extraProps
 }: InputProps) {
   return (
-    <InputStyled>
+    <InputStyled className={className}>
       {Icon}
       <input type="text" value={value} onChange={onChange} {...extraProps} />
     </InputStyled>
@@ -23,11 +25,7 @@ export default function TextInput({
 
 export const InputStyled = styled.div`
   background-color: ${theme.colors.white};
-  padding-top: 18px;
-  padding-right: 24px;
-  padding-bottom: 18px;
-  padding-left: 24px;
-  margin-bottom: 20px;
+  padding : 18px 24px ; 
   border-radius: ${theme.borderRadius.round};
   display: flex;
   flex-direction: row;
