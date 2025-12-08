@@ -3,12 +3,10 @@ import type { MenuItem, NewProductForm } from "../../../../../../types";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
-import { FaHamburger } from "react-icons/fa";
-import { BsFillCameraFill } from "react-icons/bs";
-import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../../../reusable-ui/Button";
 import ImagePreview from './ImagePreview';
 import SubmitMessage from './SubmitMessage';
+import { getTextInputConfig } from "./getTextInputConfig";
 
 export const EMPTY_PRODUCT: NewProductForm = {
   id: 0,
@@ -22,15 +20,8 @@ export default function AddProductForm() {
  
 
   const { handleAdd, newProduct , setNewProduct } = useContext(OrderContext);
-
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const displaySuccessMsg = () => {
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 2000);
-  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -55,49 +46,38 @@ export default function AddProductForm() {
     displaySuccessMsg();
   };
 
+  const displaySuccessMsg = () => {
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 2000);
+  };
+
+  const TextInputs = getTextInputConfig(newProduct)
+
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
+
       <ImagePreview
         imageSource={newProduct.imageSource}
         title={newProduct.title}
       />
 
       <div className="input-fields">
-        <TextInput
-          Icon={<FaHamburger />}
-          name="title"
-          value={newProduct.title}
-          onChange={handleChange}
-          type="text"
-          placeholder="Nom du Produit ( ex: Super Burger)"
-          version="minimalist"
-        />
-
-        <TextInput
-          Icon={<BsFillCameraFill />}
-          name="imageSource"
-          value={newProduct.imageSource}
-          onChange={handleChange}
-          type="text"
-          placeholder="Lien URL d'un image (ex: https://la-photo-de-mon-produit.png)"
-          version="minimalist"
-        />
-
-        <TextInput
-          Icon={<MdOutlineEuro />}
-          name="price"
-          value={newProduct.price}
-          onChange={handleChange}
-          type="number"
-          placeholder="Prix"
-          version="minimalist"
-        />
+        {TextInputs.map((input) => (
+          <TextInput
+            { ...input}
+            version="minimalist"
+            onChange={handleChange}
+          />
+        ))}
       </div>
 
       <div className="submit">
         <Button label="Ajouter un nouveau produit au menu" version="success" />
-        {isSubmitted &&  <SubmitMessage/> }
+        {isSubmitted && <SubmitMessage />}
       </div>
+
     </AddProductFormStyled>
   );
 }
