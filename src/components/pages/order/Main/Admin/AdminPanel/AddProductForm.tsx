@@ -10,18 +10,18 @@ import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../../../reusable-ui/Button";
 
-const EMPTY_PRODUCT: NewProductForm = {
+export const EMPTY_PRODUCT: NewProductForm = {
   id: 0,
   imageSource: "",
   title: "",
-  price: "",
+    price: "",
   isAvailable: true,
 };
 
 export default function AddProductForm() {
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+ 
 
-  const { handleAdd } = useContext(OrderContext);
+  const { handleAdd, newProduct , setNewProduct } = useContext(OrderContext);
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 

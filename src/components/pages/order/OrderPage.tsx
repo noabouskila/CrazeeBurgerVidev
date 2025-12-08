@@ -7,6 +7,7 @@ import OrderContext from "../../../context/OrderContext";
 
 import type { MenuItem } from "../../../types";
 import { fakeMenu } from "../../../data/fakeMenu";
+import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddProductForm";
 
 export default function OrderPage() {
   // lifting the state up ( remonter letat de 2 composants dans leur parent le plus proche : ici OrderPage)
@@ -14,6 +15,7 @@ export default function OrderPage() {
   const [isCollapse, setIsCollapse] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
+   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
   
   // comportement pour ajouter un produit au menu
@@ -49,6 +51,9 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     resetMenu,
+
+    newProduct,
+    setNewProduct,
   };
 
   return (

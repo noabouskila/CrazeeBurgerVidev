@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import type { MenuItem } from "../types";
+import type { MenuItem, NewProductForm } from "../types";
 
 export interface OrderContextType {
   isModeAdmin: boolean;
@@ -14,7 +14,10 @@ export interface OrderContextType {
   menu: MenuItem[];
   handleAdd: (newProduct: MenuItem) => void;
   handleDelete: (productId: number) => void;
-  resetMenu : () => void;
+  resetMenu: () => void;
+
+  newProduct: NewProductForm;
+  setNewProduct: React.Dispatch<React.SetStateAction<NewProductForm>>;
 }
 
 const OrderContext = createContext<OrderContextType>({
@@ -28,9 +31,20 @@ const OrderContext = createContext<OrderContextType>({
   setCurrentTabSelected: () => {},
 
   menu: [],
+
   handleAdd: () => {},
   handleDelete: () => {},
   resetMenu: () => {},
+
+  newProduct: {
+    id: 0,
+    imageSource: "",
+    title: "",
+    price: "",
+    isAvailable: true,
+  },
+
+  setNewProduct: () => {},
 });
 
 export default OrderContext;
