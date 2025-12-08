@@ -9,7 +9,7 @@ Les utilisateurs peuvent parcourir le menu, passer des commandes, et l'administr
 
 Visitez le site en ligne ici : [CrazeeBurgerVidev en ligne](https://crazee-burger-videv.vercel.app/)  
 
-![Aperçu de l'application](./screenShotAppli.png)  
+![Aperçu de l'application](./public/screenShotAppli.png)  
 *Exemple de visuel de l'application*  
 
 ---
