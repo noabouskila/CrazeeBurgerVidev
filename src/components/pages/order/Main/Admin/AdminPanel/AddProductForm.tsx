@@ -9,6 +9,7 @@ import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../../../reusable-ui/Button";
+import ImagePreview from './ImagePreview';
 
 export const EMPTY_PRODUCT: NewProductForm = {
   id: 0,
@@ -57,19 +58,8 @@ export default function AddProductForm() {
 
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
-      <div
-        className={
-          newProduct.imageSource
-            ? "image-prevew"
-            : "image-prevew image-preview-empty"
-        }
-      >
-        {newProduct.imageSource ? (
-          <img src={newProduct.imageSource} alt={newProduct.title} />
-        ) : (
-          <div> Aucune image</div>
-        )}
-      </div>
+
+      <ImagePreview  imageSource={newProduct.imageSource} title={newProduct.title}/>
 
       <div className="input-fields">
         <TextInput
@@ -123,25 +113,7 @@ export const AddProductFormStyled = styled.form`
   width: 70%;
   height: 100%;
 
-  .image-prevew {
-    grid-area: 1/1/4/2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
-
-  .image-preview-empty {
-    border: 1px solid ${theme.colors.greyLight};
-    border-radius: ${theme.borderRadius.round};
-    color: ${theme.colors.greySemiDark};
-  }
+ 
 
   .input-fields {
     grid-area: 1/2/-2/3;
