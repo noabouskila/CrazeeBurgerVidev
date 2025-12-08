@@ -15,7 +15,18 @@ export interface ProductProps {
   imageSource: string;
   title: string;
   leftDescription: string; // prix FORMATÉ
+  hasDeleteButton?: boolean;
+  onDelete ?: () => void;
 }
+
+// pour le formulaire d'ajout de produit dans l'admin panel
+export type NewProductForm = {
+  id: number;
+  imageSource: string;
+  title: string;
+  price: string; // autorisé ici
+  isAvailable: boolean;
+};
 
 export interface AdminTabsProps {
   isCollapse: boolean;
@@ -29,6 +40,7 @@ export interface AdminTabsProps {
 export type getTabsConfigType = {
   index: string;
   Icon: ReactNode;
-  label: string;
+  label?: string;
+  Content?: ReactNode;
   onClick?: () => void;
 };

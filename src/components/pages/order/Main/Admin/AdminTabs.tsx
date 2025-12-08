@@ -19,7 +19,6 @@ export default function AdminTabs() {
 
   } = useContext(OrderContext);
 
-
   const selectTab = (indexTabSelected: "add" | "edit") => {
 
     setIsCollapse(true);
@@ -28,21 +27,17 @@ export default function AdminTabs() {
 
   const tabs = getTabsConfig();
 
-
-
-  
-
   return (
     <AdminTabsStyled>
       <Tab
         Icon={isCollapse ? <FiChevronDown /> : <FiChevronUp />}
-        // label=""
         onClick={() => setIsCollapse((prev) => !prev)}
         className={!isCollapse ? "isActive" : ""}
       />
 
       {tabs.map((tab) => (
         <Tab
+          key={tab.index}
           Icon={tab.Icon}
           label={tab.label}
           onClick={() => selectTab(tab.index as "add" | "edit")}
@@ -59,15 +54,13 @@ export const AdminTabsStyled = styled.div`
   position: relative;
   left: 5%;
   top: 1px;
-
+  width: 80%;
 
   .isActive {
     color: ${theme.colors.white};
     background-color: ${theme.colors.background_dark};
     border-color: ${theme.colors.background_dark};
   }
-
-
 
   button {
     margin-left: 1px;
