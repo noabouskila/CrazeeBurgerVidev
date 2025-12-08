@@ -38,5 +38,4 @@ export const MenuStyled = styled.section`
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
 `;
