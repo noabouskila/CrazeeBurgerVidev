@@ -1,15 +1,14 @@
 import styled from "styled-components";
-import { theme } from "../../../../../../theme";
 import type { MenuItem, NewProductForm } from "../../../../../../types";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
-import { FiCheck } from "react-icons/fi";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
 import Button from "../../../../../reusable-ui/Button";
 import ImagePreview from './ImagePreview';
+import SubmitMessage from './SubmitMessage';
 
 export const EMPTY_PRODUCT: NewProductForm = {
   id: 0,
@@ -58,8 +57,10 @@ export default function AddProductForm() {
 
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
-
-      <ImagePreview  imageSource={newProduct.imageSource} title={newProduct.title}/>
+      <ImagePreview
+        imageSource={newProduct.imageSource}
+        title={newProduct.title}
+      />
 
       <div className="input-fields">
         <TextInput
@@ -95,12 +96,7 @@ export default function AddProductForm() {
 
       <div className="submit">
         <Button label="Ajouter un nouveau produit au menu" version="success" />
-        {isSubmitted && (
-          <div className="submit-message">
-            <FiCheck />
-            <span> Ajouté avec succes !</span>
-          </div>
-        )}
+        {isSubmitted &&  <SubmitMessage/> }
       </div>
     </AddProductFormStyled>
   );
@@ -112,8 +108,6 @@ export const AddProductFormStyled = styled.form`
   grid-template-rows: repeat(4, 1fr);
   width: 70%;
   height: 100%;
-
- 
 
   .input-fields {
     grid-area: 1/2/-2/3;
@@ -131,21 +125,5 @@ export const AddProductFormStyled = styled.form`
     align-items: center;
     margin-left: 15px;
     margin-top: 10px;
-
-    .submit-message {
-      color: ${theme.colors.success};
-      margin-left: 15px;
-      align-items: center;
-      display: flex;
-
-      svg {
-        border: 1px solid ${theme.colors.success};
-        border-radius: ${theme.borderRadius.circle};
-        padding: 2px;
-      }
-      span {
-        margin-left: 5px;
-      }
-    }
   }
 `;
