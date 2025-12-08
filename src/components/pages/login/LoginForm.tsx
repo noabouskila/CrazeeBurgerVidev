@@ -5,7 +5,7 @@ import { theme } from "../../../theme";
 import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import { FaRegUserCircle } from "react-icons/fa";
-import PrimaryButton from "../../reusable-ui/PrimaryButton";
+import Button from "../../reusable-ui/Button";
 
 export default function LoginForm() {
   //state
@@ -40,10 +40,10 @@ export default function LoginForm() {
           required
           Icon={<FaRegUserCircle />}
         />
-        <PrimaryButton
+        <Button
           label={"Accéder à mon espace"}
           Icon={<IoChevronForward className="iconButton" />}
-          className="primary-button-login-form"
+          version="primary"
         />
       </div>
     </LoginFormStyled>
@@ -89,11 +89,6 @@ export const LoginFormStyled = styled.form`
       margin-left: 10px;
       margin-top: ${theme.gridUnit / 4}px;
       font-size: ${theme.fonts.size.SM};
-    }
-
-    .primary-button-login-form {
-      width: 400px;
-      height: 53px;
     }
   }
 `;

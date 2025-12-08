@@ -8,7 +8,7 @@ import TextInput from "../../../../../reusable-ui/TextInput";
 import { FaHamburger } from "react-icons/fa";
 import { BsFillCameraFill } from "react-icons/bs";
 import { MdOutlineEuro } from "react-icons/md";
-
+import Button from "../../../../../reusable-ui/Button";
 
 const EMPTY_PRODUCT: NewProductForm = {
   id: 0,
@@ -17,46 +17,43 @@ const EMPTY_PRODUCT: NewProductForm = {
   price: "",
   isAvailable: true,
 };
-    
+
 export default function AddProductForm() {
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
 
-    const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const { handleAdd } = useContext(OrderContext);
 
-    const { handleAdd } = useContext(OrderContext);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
+  const displaySuccessMsg = () => {
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setIsSubmitted(false);
+    }, 2000);
+  };
 
-    const displaySuccessMsg = () => {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 2000);
-    };
-    
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setNewProduct({
+      ...newProduct,
+      [name]: value,
+    });
+  };
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-      setNewProduct({
-        ...newProduct,
-        [name]: value,
-      });
-    };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { 
-      event.preventDefault();
-
-      const newProducttoAdd: MenuItem = {
-        ...newProduct,
-        id: Date.now(),
-        price: Number(newProduct.price),
-      };
-
-      handleAdd(newProducttoAdd);
-      setNewProduct(EMPTY_PRODUCT);
-
-      displaySuccessMsg()
+    const newProducttoAdd: MenuItem = {
+      ...newProduct,
+      id: Date.now(),
+      price: Number(newProduct.price),
     };
 
+    handleAdd(newProducttoAdd);
+    setNewProduct(EMPTY_PRODUCT);
+
+    displaySuccessMsg();
+  };
 
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
@@ -75,7 +72,6 @@ export default function AddProductForm() {
       </div>
 
       <div className="input-fields">
-
         <TextInput
           Icon={<FaHamburger />}
           name="title"
@@ -108,9 +104,7 @@ export default function AddProductForm() {
       </div>
 
       <div className="submit">
-        <button className="submit-button" type="submit">
-          Ajouter un nouveau produit au menu
-        </button>
+        <Button label="Ajouter un nouveau produit au menu" version="success" />
         {isSubmitted && (
           <div className="submit-message">
             <FiCheck />
@@ -165,21 +159,6 @@ export const AddProductFormStyled = styled.form`
     align-items: center;
     margin-left: 15px;
     margin-top: 10px;
-
-    .submit-button {
-      background-color: ${theme.colors.success};
-      color: ${theme.colors.white};
-      width: 50%;
-      border: none;
-      border-radius: ${theme.borderRadius.round};
-      cursor: pointer;
-      padding: 10px;
-    }
-    .submit-button:active {
-      background-color: ${theme.colors.white};
-      border: 1px solid ${theme.colors.success};
-      color: ${theme.colors.success};
-    }
 
     .submit-message {
       color: ${theme.colors.success};

@@ -1,4 +1,4 @@
-import PrimaryButton from "./PrimaryButton";
+import PrimaryButton from "./Button";
 
 import type { ProductProps } from "../../types";
 import { theme } from "../../theme";
@@ -11,7 +11,7 @@ export default function Card({
   imageSource,
   leftDescription,
   hasDeleteButton,
-    onDelete,
+  onDelete,
 }: ProductProps) {
   return (
     <CardStyled key={id}>
@@ -35,7 +35,7 @@ export default function Card({
         <div className="description">
           <div className="left-description">{leftDescription}</div>
           <div className="right-description">
-            <PrimaryButton className="primary-button" label={"Ajouter"} />
+            <PrimaryButton label={"Ajouter"} version="littlePrimary" />
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ export const CardStyled = styled.div`
       width: 30px;
       height: 30px;
     }
-    
+
     :hover {
       color: ${theme.colors.red};
     }
@@ -132,12 +132,6 @@ export const CardStyled = styled.div`
         justify-content: flex-end;
         align-items: center;
         font-size: ${theme.fonts.size.P1};
-
-        .primary-button {
-          font-size: ${theme.fonts.size.XS};
-          cursor: pointer;
-          padding: 12px;
-        }
       }
     }
   }
