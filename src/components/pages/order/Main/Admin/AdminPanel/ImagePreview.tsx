@@ -6,7 +6,7 @@ export default function ImagePreview({ imageSource , title }: { imageSource :str
     const hasImage = Boolean(imageSource);
 
   return (
-    <ImagePreviewStyled hasImage={hasImage} >
+    <ImagePreviewStyled $hasImage={hasImage} >
       {imageSource ? (
         <img src={imageSource} alt={title} />
       ) : (
@@ -18,13 +18,13 @@ export default function ImagePreview({ imageSource , title }: { imageSource :str
 
 
 
-export const ImagePreviewStyled = styled.div<{ hasImage: boolean }>`
+export const ImagePreviewStyled = styled.div<{ $hasImage: boolean }>`
   grid-area: 1/1/4/2;
   display: flex;
   justify-content: center;
   align-items: center;
 
-  ${(props) => (props.hasImage ? withImageStyles : withoutImageStyles)}
+  ${(props) => (props.$hasImage ? withImageStyles : withoutImageStyles)}
 `;
 
 const withImageStyles = css`
