@@ -1,27 +1,18 @@
 import styled from "styled-components";
-import type { MenuItem, NewProductForm } from "../../../../../../types";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import Button from "../../../../../reusable-ui/Button";
-import ImagePreview from './ImagePreview';
-import SubmitMessage from './SubmitMessage';
+import ImagePreview from "./ImagePreview";
+import SubmitMessage from "./SubmitMessage";
 import { getTextInputConfig } from "./getTextInputConfig";
+import { EMPTY_PRODUCT } from "../../../../../../enums/products";
 
-export const EMPTY_PRODUCT: NewProductForm = {
-  id: 0,
-  imageSource: "",
-  title: "",
-    price: "",
-  isAvailable: true,
-};
+
 
 export default function AddProductForm() {
- 
-
-  const { handleAdd, newProduct , setNewProduct } = useContext(OrderContext);
+  const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -34,10 +25,9 @@ export default function AddProductForm() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const newProducttoAdd: MenuItem = {
+    const newProducttoAdd = {
       ...newProduct,
-      id: Date.now(),
-      price: Number(newProduct.price),
+      id: crypto.randomUUID(),
     };
 
     handleAdd(newProducttoAdd);
@@ -53,11 +43,10 @@ export default function AddProductForm() {
     }, 2000);
   };
 
-  const TextInputs = getTextInputConfig(newProduct)
+  const TextInputs = getTextInputConfig(newProduct);
 
   return (
     <AddProductFormStyled onSubmit={handleSubmit}>
-
       <ImagePreview
         imageSource={newProduct.imageSource}
         title={newProduct.title}
@@ -66,7 +55,8 @@ export default function AddProductForm() {
       <div className="input-fields">
         {TextInputs.map((input) => (
           <TextInput
-            { ...input}
+            key={input.id}
+            {...input}
             version="minimalist"
             onChange={handleChange}
           />
@@ -77,7 +67,6 @@ export default function AddProductForm() {
         <Button label="Ajouter un nouveau produit au menu" version="success" />
         {isSubmitted && <SubmitMessage />}
       </div>
-
     </AddProductFormStyled>
   );
 }

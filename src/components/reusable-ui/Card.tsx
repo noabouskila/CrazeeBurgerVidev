@@ -1,6 +1,6 @@
 import PrimaryButton from "./Button";
 
-import type { ProductProps } from "../../types";
+import type { ProductProps } from "../../types/types";
 import { theme } from "../../theme";
 import styled from "styled-components";
 import { TiDelete } from "react-icons/ti";
@@ -12,9 +12,10 @@ export default function Card({
   leftDescription,
   hasDeleteButton,
   onDelete,
+  onClick,
 }: ProductProps) {
   return (
-    <CardStyled key={id}>
+    <CardStyled key={id} onClick={onClick}>
       {hasDeleteButton && (
         <button
           onClick={onDelete}

@@ -1,11 +1,10 @@
-import type { MenuItem } from "../types";
+import type { MenuItem } from "../types/types";
 
+const EMPTY: MenuItem[] = [];
 
-const EMPTY  : MenuItem[] = [];
-
-const SMALL :  MenuItem[] = [
+const SMALL: MenuItem[] = [
   {
-    id: 1,
+    id: "1",
     imageSource: "/assets/burger1.png",
     title: "Burger 1",
     price: 5.297,
@@ -14,7 +13,7 @@ const SMALL :  MenuItem[] = [
     isAdvertised: false,
   },
   {
-    id: 2,
+    id: "2",
     imageSource: "/assets/burger2.png",
     title: "Burger 2",
     price: 7.556,
@@ -26,7 +25,7 @@ const SMALL :  MenuItem[] = [
 
 const MEDIUM: MenuItem[] = [
   {
-    id: 1,
+    id: "1",
     imageSource: "/assets/burger-bacon-egg.png",
     title: "Burger Smoke BBQ",
     price: 5.598,
@@ -35,7 +34,7 @@ const MEDIUM: MenuItem[] = [
     isAdvertised: false,
   },
   {
-    id: 2,
+    id: "2",
     imageSource: "/assets/burger-vegan.png",
     title: "Vegan Burger",
     price: 5.4985,
@@ -44,7 +43,7 @@ const MEDIUM: MenuItem[] = [
     isAdvertised: false,
   },
   {
-    id: 3,
+    id: "3",
     imageSource: "/assets/burger3.png",
     title: "Burger poulet",
     price: 5.367,
@@ -53,7 +52,7 @@ const MEDIUM: MenuItem[] = [
     isAdvertised: false,
   },
   {
-    id: 4,
+    id: "4",
     imageSource: "/assets/drink1.png",
     title: "Coke 25cl",
     price: 3.568,
@@ -62,7 +61,7 @@ const MEDIUM: MenuItem[] = [
     isAdvertised: false,
   },
   {
-    id: 5,
+    id: "5",
     imageSource: "/assets/drink2.png",
     title: "Pepsi 25cl",
     price: 3.487,
@@ -72,9 +71,9 @@ const MEDIUM: MenuItem[] = [
   },
 ];
 
-const LARGE: MenuItem[]  = [
+const LARGE: MenuItem[] = [
   {
-    id: 1,
+    id: "1",
     imageSource: "/assets/burger-bacon-egg.png",
     title: "Burger Smoke BBQ",
     price: 5.598,
@@ -83,7 +82,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 2,
+    id: "2",
     imageSource: "/assets/burger-vegan.png",
     title: "Vegan Burger",
     price: 5.4985,
@@ -92,7 +91,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 3,
+    id: "3",
     imageSource: "/assets/burger3.png",
     title: "Burger poulet",
     price: 5.367,
@@ -101,7 +100,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 4,
+    id: "4",
     imageSource: "/assets/drink1.png",
     title: "Coke 25cl",
     price: 3.568,
@@ -110,7 +109,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 5,
+    id: "5",
     imageSource: "/assets/drink2.png",
     title: "Pepsi 25cl",
     price: 3.487,
@@ -119,7 +118,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 6,
+    id: "6",
     imageSource: "/assets/drink3.png",
     title: "Iced Tea 25cl",
     price: 3.356,
@@ -128,7 +127,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 7,
+    id: "7",
     imageSource: "/assets/frites1.png",
     title: "Frites Paprika",
     price: 2.567,
@@ -137,7 +136,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 8,
+    id: "8",
     imageSource: "/assets/fries3.png",
     title: "New York Fries",
     price: 3.1678,
@@ -146,7 +145,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 9,
+    id: "9",
     imageSource: "/assets/wedges1.png",
     title: "Crispy Potatoes",
     price: 3.7,
@@ -155,7 +154,7 @@ const LARGE: MenuItem[]  = [
     isAdvertised: false,
   },
   {
-    id: 10,
+    id: "10",
     imageSource: "/assets/ice-cream.png",
     title: "Glaces artisanales",
     price: 4.678,
@@ -171,7 +170,3 @@ export const fakeMenu = {
   MEDIUM,
   LARGE,
 };
-
-
-
-

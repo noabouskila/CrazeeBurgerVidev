@@ -4,10 +4,10 @@ import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
 import Main from "./Main/Main";
 import OrderContext from "../../../context/OrderContext";
-
-import type { MenuItem } from "../../../types";
+import type { MenuItem, ProductForm } from "../../../types/types";
 import { fakeMenu } from "../../../data/fakeMenu";
-import { EMPTY_PRODUCT } from "./Main/Admin/AdminPanel/AddProductForm";
+import { convertProductFormToMenuItem } from "../../../utils/productUtils";
+import { EMPTY_PRODUCT } from "../../../enums/products";
 
 export default function OrderPage() {
   // lifting the state up ( remonter letat de 2 composants dans leur parent le plus proche : ici OrderPage)
@@ -15,27 +15,29 @@ export default function OrderPage() {
   const [isCollapse, setIsCollapse] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
-   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] =useState<ProductForm>(EMPTY_PRODUCT);
   
+
   // comportement pour ajouter un produit au menu
-  const handleAdd = (newProducttoAdd: MenuItem) => {
+  const handleAdd = (newProducttoAdd: ProductForm) => {
+    const menuProduct: MenuItem = convertProductFormToMenuItem(newProducttoAdd);
+    
     const menuCopy = [...menu];
-    const updatedMenu = [newProducttoAdd, ...menuCopy];
+    const updatedMenu = [menuProduct, ...menuCopy];
     setMenu(updatedMenu);
   };
 
   // comportement pour supprimer un produit du menu
-  const handleDelete = (productId : number ) => {
+  const handleDelete = (productId: string) => {
     const menuCopy = [...menu];
     const updatedMenu = menuCopy.filter((product) => product.id !== productId);
     setMenu(updatedMenu);
-  }
+  };
   // comportement pour reinitialiser le menu
-   const resetMenu = () => {
-     setMenu(fakeMenu.LARGE);
-   };
-  
+  const resetMenu = () => {
+    setMenu(fakeMenu.LARGE);
+  };
 
   const orderContextValue = {
     isModeAdmin,
@@ -54,6 +56,9 @@ export default function OrderPage() {
 
     newProduct,
     setNewProduct,
+
+    productSelected,
+    setProductSelected,
   };
 
   return (

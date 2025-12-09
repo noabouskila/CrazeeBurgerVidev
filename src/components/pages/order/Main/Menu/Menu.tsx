@@ -5,14 +5,30 @@ import { formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
+import { convertMenuItemToProductForm } from "../../../../../utils/productUtils";
 
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
-  const { menu, isModeAdmin, handleDelete , resetMenu } = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu , setProductSelected } = useContext(OrderContext);
 
   if (menu.length === 0) {
-    return  isModeAdmin ? <EmptyMenuAdmin onResetMenu={resetMenu}/> : <EmptyMenuClient/>
+    return isModeAdmin ? (
+      <EmptyMenuAdmin onResetMenu={resetMenu} />
+    ) : (
+      <EmptyMenuClient />
+    );
   }
+
+  // comportement pour modifier le menu
+  const handleUpdate = (productId: string) => {
+    
+    const productSelected = menu.find((item) => item.id === productId);
+    if (!productSelected) return;
+
+    setProductSelected(convertMenuItemToProductForm(productSelected));
+    
+  };
+
 
   return (
     <MenuStyled>
@@ -25,6 +41,7 @@ export default function Menu() {
           leftDescription={formatPrice(price)}
           hasDeleteButton={isModeAdmin}
           onDelete={() => handleDelete(id)}
+          onClick={() => handleUpdate(id)}
         />
       ))}
     </MenuStyled>
