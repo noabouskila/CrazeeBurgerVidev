@@ -3,6 +3,7 @@ import { MdModeEditOutline } from "react-icons/md";
 import type { getTabsConfigType } from "../../../../../types";
 import AddProductForm from "./AdminPanel/AddProductForm";
 import EditProductForm from "./AdminPanel/EditProductForm";
+import HintMessage from "./AdminPanel/HintMessage";
 
 
 export const getTabsConfig = (): getTabsConfigType[] => [
