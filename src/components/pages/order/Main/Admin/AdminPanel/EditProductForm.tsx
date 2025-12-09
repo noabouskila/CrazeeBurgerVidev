@@ -8,15 +8,21 @@ import { getTextInputConfig } from "./getTextInputConfig";
 
 export default function EditProductForm() {
 
-  const { productSelected, setProductSelected } = useContext(OrderContext);
+  const { productSelected, setProductSelected  , handleEdit} = useContext(OrderContext);
   const TextInputs = getTextInputConfig(productSelected);
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setProductSelected({
+
+    const updatedProduct = {
       ...productSelected,
       [name]: value,
-    });
+    }; 
+    // mise a jour de la modification dans le state interne de linput 
+    setProductSelected(updatedProduct);
+
+    // pour que la modification soit mis a jour et transferer dans le menu
+    handleEdit(updatedProduct);
   };
 
   if (!productSelected.id) {

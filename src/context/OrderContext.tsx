@@ -22,6 +22,7 @@ const OrderContext = createContext<OrderContextType>({
 
   handleAdd: throwError("handleAdd"),
   handleDelete: throwError("handleDelete"),
+  handleEdit: throwError("handleEdit"),
   resetMenu: throwError("resetMenu"),
 
   newProduct: EMPTY_PRODUCT,
