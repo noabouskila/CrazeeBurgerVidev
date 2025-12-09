@@ -13,13 +13,12 @@ export interface OrderContextType {
   menu: MenuItem[];
   handleAdd: (newProduct: ProductForm) => void;
   handleDelete: (productId: string) => void;
+  handleEdit: (productBeingEdited: ProductForm) => void;
   resetMenu: () => void;
 
   newProduct: ProductForm;
   setNewProduct: React.Dispatch<React.SetStateAction<ProductForm>>;
 
-
-  productSelected: ProductForm ;
-  setProductSelected: React.Dispatch<React.SetStateAction<ProductForm>
-  >;
+  productSelected: ProductForm;
+  setProductSelected: React.Dispatch<React.SetStateAction<ProductForm>>;
 }

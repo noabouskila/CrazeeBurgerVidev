@@ -16,24 +16,40 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] =useState<ProductForm>(EMPTY_PRODUCT);
-  
+  const [productSelected, setProductSelected] =
+    useState<ProductForm>(EMPTY_PRODUCT);
 
   // comportement pour ajouter un produit au menu
   const handleAdd = (newProducttoAdd: ProductForm) => {
     const menuProduct: MenuItem = convertProductFormToMenuItem(newProducttoAdd);
-    
-    const menuCopy = [...menu];
+    const menuCopy = JSON.parse(JSON.stringify(menu));
     const updatedMenu = [menuProduct, ...menuCopy];
     setMenu(updatedMenu);
   };
 
   // comportement pour supprimer un produit du menu
   const handleDelete = (productId: string) => {
-    const menuCopy = [...menu];
+   
+    const menuCopy = [...menu];// shalow copy suffit
     const updatedMenu = menuCopy.filter((product) => product.id !== productId);
     setMenu(updatedMenu);
   };
+
+  // comportement pour mettre a  jour modifier un produit au menu
+  const handleEdit = (productBeingEdited: ProductForm) => {
+
+    const menuCopy = JSON.parse(JSON.stringify(menu));
+    // trouver le produit qui a lid le meme que celui qui est en train detre modifie
+    const indexOfProductToEdit = menu.findIndex(
+      (product) => product.id === productBeingEdited.id
+    );
+    
+    if (indexOfProductToEdit !== -1) {
+       menuCopy[indexOfProductToEdit] = productBeingEdited; // remplacer le produit
+      setMenu(menuCopy)
+    }
+  };
+
   // comportement pour reinitialiser le menu
   const resetMenu = () => {
     setMenu(fakeMenu.LARGE);
@@ -52,6 +68,7 @@ export default function OrderPage() {
     menu,
     handleAdd,
     handleDelete,
+    handleEdit,
     resetMenu,
 
     newProduct,
