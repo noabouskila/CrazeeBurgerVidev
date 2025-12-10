@@ -8,6 +8,7 @@ import type { MenuItem, ProductForm } from "../../../types/types";
 import { fakeMenu } from "../../../data/fakeMenu";
 import { convertProductFormToMenuItem } from "../../../utils/productUtils";
 import { EMPTY_PRODUCT } from "../../../enums/products";
+import { deepClone } from "../../../utils/array";
 
 export default function OrderPage() {
   // lifting the state up ( remonter letat de 2 composants dans leur parent le plus proche : ici OrderPage)
@@ -22,15 +23,15 @@ export default function OrderPage() {
   // comportement pour ajouter un produit au menu
   const handleAdd = (newProducttoAdd: ProductForm) => {
     const menuProduct: MenuItem = convertProductFormToMenuItem(newProducttoAdd);
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy: MenuItem[] = deepClone(menu);
     const updatedMenu = [menuProduct, ...menuCopy];
     setMenu(updatedMenu);
   };
 
   // comportement pour supprimer un produit du menu
   const handleDelete = (productId: string) => {
-   
-    const menuCopy = [...menu];// shalow copy suffit
+   const menuCopy: MenuItem[] = deepClone(menu)
+    // const menuCopy = [...menu];// shalow copy suffit
     const updatedMenu = menuCopy.filter((product) => product.id !== productId);
     setMenu(updatedMenu);
   };
@@ -38,14 +39,15 @@ export default function OrderPage() {
   // comportement pour mettre a  jour modifier un produit au menu
   const handleEdit = (productBeingEdited: ProductForm) => {
 
-    const menuCopy = JSON.parse(JSON.stringify(menu));
+    const menuCopy: MenuItem[] = deepClone(menu);
     // trouver le produit qui a lid le meme que celui qui est en train detre modifie
     const indexOfProductToEdit = menu.findIndex(
       (product) => product.id === productBeingEdited.id
     );
     
     if (indexOfProductToEdit !== -1) {
-       menuCopy[indexOfProductToEdit] = productBeingEdited; // remplacer le produit
+      const editedProduct: MenuItem =convertProductFormToMenuItem(productBeingEdited);
+      menuCopy[indexOfProductToEdit] = editedProduct; // remplacer le produit
       setMenu(menuCopy)
     }
   };
