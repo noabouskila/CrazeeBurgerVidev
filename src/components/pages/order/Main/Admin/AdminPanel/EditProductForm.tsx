@@ -11,6 +11,7 @@ export default function EditProductForm() {
   const { productSelected, setProductSelected  , handleEdit} = useContext(OrderContext);
   const TextInputs = getTextInputConfig(productSelected);
   
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
