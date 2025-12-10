@@ -10,17 +10,6 @@ export interface MenuItem {
   isAvailable?: boolean;
   isAdvertised?: boolean;
 }
-
-export interface ProductProps {
-  id: string;
-  imageSource: string;
-  title: string;
-  leftDescription: string; // prix FORMATÉ
-  hasDeleteButton?: boolean;
-  onDelete: () => void;
-  onClick:()=> void;
-}
-
 // pour le formulaire d'ajout  et de modif de produit dans l'admin panel
 export type ProductForm = {
   id: string;
@@ -29,6 +18,19 @@ export type ProductForm = {
   price: string; // autorisé ici
   isAvailable: boolean;
 };
+
+export interface ProductProps {
+  id: string;
+  imageSource: string;
+  title: string;
+  leftDescription: string; // prix FORMATÉ
+  hasDeleteButton?: boolean;
+  onDelete: () => void;
+  onClick: () => void;
+  isHoverable: boolean;
+  isSelected: boolean;
+}
+
 
 export interface AdminTabsProps {
   isCollapse: boolean;

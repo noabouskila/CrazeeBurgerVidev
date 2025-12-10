@@ -10,7 +10,7 @@ import { convertMenuItemToProductForm } from "../../../../../utils/productUtils"
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
   // state
-  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected } = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected  , productSelected} = useContext(OrderContext);
 
 
   // comportement pour modifier le menu
@@ -43,6 +43,8 @@ export default function Menu() {
           hasDeleteButton={isModeAdmin}
           onDelete={() => handleDelete(id)}
           onClick={() => handleUpdate(id)}
+          isHoverable={isModeAdmin}
+          isSelected={id ===  productSelected.id}
         />
       ))}
     </MenuStyled>
