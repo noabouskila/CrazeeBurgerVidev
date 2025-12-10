@@ -69,6 +69,7 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     handleEdit,
+  
     resetMenu,
 
     newProduct,
