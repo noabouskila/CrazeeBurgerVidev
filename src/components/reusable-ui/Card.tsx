@@ -46,8 +46,9 @@ export default function Card({
 
 export const CardStyled = styled.div`
   background: ${theme.colors.white};
-  width: 200px;
-  height: 300px;
+  width: 240px;
+  height: 330px;
+  box-sizing: border-box;
   border-radius: ${theme.borderRadius.extraRound};
   box-shadow: -8px 8px 20px 0px #00000033;
 
