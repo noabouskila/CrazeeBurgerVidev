@@ -18,7 +18,7 @@ export default function Card({
 }: ProductProps) {
   return (
     <CardStyled key={id} onClick={onClick} isHoverable={isHoverable}>
-      <div className="card" style={isSelected ? { background: "green" } : {}}>
+      <div className="card" style={isSelected ? { background: "orange" } : {}}>
         {hasDeleteButton && (
           <button
             onClick={onDelete}

@@ -17,8 +17,7 @@ export default function OrderPage() {
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
   const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] =
-    useState<ProductForm>(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] = useState<ProductForm>(EMPTY_PRODUCT);
 
   // comportement pour ajouter un produit au menu
   const handleAdd = (newProducttoAdd: ProductForm) => {

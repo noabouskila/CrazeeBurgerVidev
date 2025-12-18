@@ -6,6 +6,7 @@ import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { convertMenuItemToProductForm } from "../../../../../utils/productUtils";
+import { checkIsProductSelected } from "./helper";
 
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
@@ -20,6 +21,8 @@ export default function Menu() {
 
     setProductSelected(convertMenuItemToProductForm(productSelectedOnClick));
   };
+
+
 
 
   // affichage
@@ -44,7 +47,7 @@ export default function Menu() {
           onDelete={() => handleDelete(id)}
           onClick={() => handleUpdate(id)}
           isHoverable={isModeAdmin}
-          isSelected={id ===  productSelected.id}
+          isSelected={checkIsProductSelected(id ,productSelected.id )}
         />
       ))}
     </MenuStyled>
