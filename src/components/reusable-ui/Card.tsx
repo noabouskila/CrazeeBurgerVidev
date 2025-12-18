@@ -1,4 +1,4 @@
-import PrimaryButton from "./Button";
+import Button from "./Button";
 
 import type { ProductProps } from "../../types/types";
 import { theme } from "../../theme";
@@ -13,12 +13,17 @@ export default function Card({
   hasDeleteButton,
   onDelete,
   onClick,
-  isHoverable ,
-  isSelected
+  isHoverable,
+  isSelected,
 }: ProductProps) {
   return (
-    <CardStyled key={id} onClick={onClick} isHoverable={isHoverable} isSelected ={isSelected}> 
-      <div className="card" >
+    <CardStyled
+      key={id}
+      onClick={onClick}
+      isHoverable={isHoverable}
+      isSelected={isSelected}
+    >
+      <div className="card">
         {hasDeleteButton && (
           <button
             onClick={onDelete}
@@ -39,7 +44,7 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <PrimaryButton label={"Ajouter"} version="littlePrimary" />
+              <Button label={"Ajouter"} version="littlePrimary" onClick={(event)=> event.stopPropagation()}/>
             </div>
           </div>
         </div>

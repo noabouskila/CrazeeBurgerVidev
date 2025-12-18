@@ -23,6 +23,10 @@ export default function Menu() {
   };
 
 
+  const handleCardOnDelete = (event: React.MouseEvent<HTMLElement>  , id: string ) => {
+    event.stopPropagation()
+    handleDelete(id)
+  };
 
 
   // affichage
@@ -44,10 +48,10 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           leftDescription={formatPrice(price)}
           hasDeleteButton={isModeAdmin}
-          onDelete={() => handleDelete(id)}
+          onDelete={(event) => handleCardOnDelete(event , id)}
           onClick={() => handleUpdate(id)}
           isHoverable={isModeAdmin}
-          isSelected={checkIsProductSelected(id ,productSelected.id )}
+          isSelected={checkIsProductSelected(id, productSelected.id)}
         />
       ))}
     </MenuStyled>

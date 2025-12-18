@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 
 export interface MenuItem {
@@ -25,7 +25,7 @@ export interface ProductProps {
   title: string;
   leftDescription: string; // prix FORMATÉ
   hasDeleteButton?: boolean;
-  onDelete: () => void;
+  onDelete: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onClick: () => void;
   isHoverable: boolean;
   isSelected: boolean;
@@ -49,5 +49,12 @@ export type getTabsConfigType = {
   onClick?: () => void;
 };
 
+
+export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  label: string;
+  Icon?: ReactNode;
+  version: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
 
 
