@@ -21,4 +21,6 @@ export interface OrderContextType {
 
   productSelected: ProductForm;
   setProductSelected: React.Dispatch<React.SetStateAction<ProductForm>>;
+
+  titleEditRef: React.RefObject<HTMLInputElement | null>;
 }

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import Card from "../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../utils/maths";
@@ -7,33 +7,61 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { convertMenuItemToProductForm } from "../../../../../utils/productUtils";
 import { checkIsProductSelected } from "./helper";
+import { EMPTY_PRODUCT } from "../../../../../enums/products";
 
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
   // state
-  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected  , productSelected , setIsCollapse , setCurrentTabSelected} = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected  , productSelected ,isCollapse, setIsCollapse ,currentTabSelected,  setCurrentTabSelected , titleEditRef} = useContext(OrderContext);
+
+  const [shouldFocusInput, setShouldFocusInput] = useState(false);
 
 
   // comportement pour modifier le menu
-  const handleUpdate = (productId: string) => {
+  const handleUpdate =   (productId: string) => {
     // ne rien faire si on n'est pas en mode admin
     if (!isModeAdmin) return;
 
     // ouvrir le menu
     setIsCollapse(true);
-    // sélectionner l'onglet "edit"
-    setCurrentTabSelected("edit");
 
+    // trouver le produit cliqué dans le menu
     const productSelectedOnClick = menu.find((item) => item.id === productId);
     if (!productSelectedOnClick) return;
 
     setProductSelected(convertMenuItemToProductForm(productSelectedOnClick));
+
+    // sélectionner l'onglet "edit"
+    setCurrentTabSelected("edit");
+
+    // signaler que le focus doit se faire
+    setShouldFocusInput(true);
   };
+
+  useEffect(() => {
+    if (shouldFocusInput && isCollapse && currentTabSelected === "edit")
+      // focus sur linput du titre
+      titleEditRef.current?.focus();
+
+    // reset le flag pour ne pas refocus à chaque render
+    setShouldFocusInput(false);
+  }, [shouldFocusInput , isCollapse, setCurrentTabSelected]);
+
 
 
   const handleCardOnDelete = (event: React.MouseEvent<HTMLElement>  , id: string ) => {
-    event.stopPropagation()
-    handleDelete(id)
+    event.stopPropagation();
+    handleDelete(id);
+
+
+
+    // Si le produit supprimé est celui qui est sélectionné, réinitialiser productSelected
+    if (productSelected?.id === id) {
+      setProductSelected(EMPTY_PRODUCT); 
+     
+    }
+    // persister le focus de la card  du titre après suppression dune autre card
+    setShouldFocusInput(true);
   };
 
 

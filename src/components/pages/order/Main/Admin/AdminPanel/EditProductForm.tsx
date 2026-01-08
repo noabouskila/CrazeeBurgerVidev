@@ -8,9 +8,10 @@ import { getTextInputConfig } from "./getTextInputConfig";
 
 export default function EditProductForm() {
 
-  const { productSelected, setProductSelected  , handleEdit} = useContext(OrderContext);
+  const { productSelected, setProductSelected, handleEdit, titleEditRef } =
+    useContext(OrderContext);
   const TextInputs = getTextInputConfig(productSelected);
-  
+ 
   
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,7 +27,7 @@ export default function EditProductForm() {
     handleEdit(updatedProduct);
   };
 
-  if (!productSelected.id) {
+  if (!productSelected.id ) {
     return <HintMessage />
   }
   
@@ -44,6 +45,7 @@ export default function EditProductForm() {
             {...input}
             version="minimalist"
             onChange={handleChange}
+            ref={input.name === "title" ? titleEditRef : undefined}
           />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
@@ -18,6 +18,7 @@ export default function OrderPage() {
   const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
   const [productSelected, setProductSelected] = useState<ProductForm>(EMPTY_PRODUCT);
+  const titleEditRef = useRef<HTMLInputElement | null>(null);
 
   // comportement pour ajouter un produit au menu
   const handleAdd = (newProducttoAdd: ProductForm) => {
@@ -70,7 +71,7 @@ export default function OrderPage() {
     handleAdd,
     handleDelete,
     handleEdit,
-  
+
     resetMenu,
 
     newProduct,
@@ -78,6 +79,8 @@ export default function OrderPage() {
 
     productSelected,
     setProductSelected,
+
+    titleEditRef,
   };
 
   return (

@@ -30,6 +30,7 @@ const OrderContext = createContext<OrderContextType>({
 
   productSelected: EMPTY_PRODUCT,
   setProductSelected: throwError("setProductSelected"),
+  titleEditRef: { current: null }
 });
 
 export default OrderContext;
