@@ -11,12 +11,19 @@ import { checkIsProductSelected } from "./helper";
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
   // state
-  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected  , productSelected} = useContext(OrderContext);
+  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected  , productSelected , setIsCollapse , setCurrentTabSelected} = useContext(OrderContext);
 
 
   // comportement pour modifier le menu
   const handleUpdate = (productId: string) => {
-    if(!isModeAdmin) return;
+    // ne rien faire si on n'est pas en mode admin
+    if (!isModeAdmin) return;
+
+    // ouvrir le menu
+    setIsCollapse(true);
+    // sélectionner l'onglet "edit"
+    setCurrentTabSelected("edit");
+
     const productSelectedOnClick = menu.find((item) => item.id === productId);
     if (!productSelectedOnClick) return;
 
