@@ -1,5 +1,6 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
+import React from "react";
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   value: string;
@@ -8,20 +9,24 @@ type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   version?: string
 };
 
-export default function TextInput({
-  value,
-  onChange,
-  Icon,
-  version = "normal", 
-  ...extraProps
-}: InputProps) {
+ const TextInput = React.forwardRef<HTMLInputElement, InputProps>((
+  { 
+    value,
+    onChange,
+    Icon,
+    version = "normal", 
+    ...extraProps
+  }: InputProps,
+  ref
+) => {
   return (
     <TextInputStyled version={version}>
       {Icon}
-      <input type="text" value={value} onChange={onChange} {...extraProps} />
+      <input ref={ref} type="text" value={value} onChange={onChange} {...extraProps} />
     </TextInputStyled>
   );
-}
+});
+export default TextInput;
 
 export const TextInputStyled = styled.div<{ version?: string }>`
   border-radius: ${theme.borderRadius.round};
