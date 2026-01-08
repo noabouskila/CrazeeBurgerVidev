@@ -16,6 +16,7 @@ export default function Menu() {
 
   // comportement pour modifier le menu
   const handleUpdate = (productId: string) => {
+    if(!isModeAdmin) return;
     const productSelectedOnClick = menu.find((item) => item.id === productId);
     if (!productSelectedOnClick) return;
 
