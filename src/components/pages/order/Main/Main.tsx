@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Basket from './Basket';
+import Basket from "./Basket/Basket";
 import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
@@ -34,6 +34,5 @@ export const MainStyled = styled.section`
 
   .menu-and-admin {
     position: relative;
-  
   }
 `;
