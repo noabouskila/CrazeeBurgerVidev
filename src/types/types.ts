@@ -57,4 +57,12 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
+export type FormType = {
+  product: ProductForm;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onSubmit?: React.FormEventHandler<HTMLFormElement>;
+  children?: ReactNode;
+};
+
+
 

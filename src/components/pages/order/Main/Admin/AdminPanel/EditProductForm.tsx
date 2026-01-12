@@ -1,19 +1,13 @@
-import styled from "styled-components";
 import HintMessage from "./HintMessage";
 import { useContext } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
-import ImagePreview from "./ImagePreview";
-import TextInput from "../../../../../reusable-ui/TextInput";
-import { getTextInputConfig } from "./getTextInputConfig";
 import EditInfoMessage from "./EditInfoMessage";
+import Form from "./Form";
 
 export default function EditProductForm() {
 
-  const { productSelected, setProductSelected, handleEdit, titleEditRef } =
-    useContext(OrderContext);
-  const TextInputs = getTextInputConfig(productSelected);
+  const { productSelected, setProductSelected, handleEdit, titleEditRef } = useContext(OrderContext);
  
-  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -33,46 +27,9 @@ export default function EditProductForm() {
   }
   
   return (
-    <EditProductFormStyled>
-      <ImagePreview
-        imageSource={productSelected.imageSource}
-        title={productSelected.title}
-      />
-
-      <div className="input-fields">
-        {TextInputs.map((input) => (
-          <TextInput
-            key={input.id}
-            {...input}
-            version="minimalist"
-            onChange={handleChange}
-            ref={input.name === "title" ? titleEditRef : undefined}
-          />
-        ))}
-        <div className="submit"></div>
-        <EditInfoMessage />
-      </div>
-    </EditProductFormStyled>
+    <Form product={productSelected} onChange={handleChange} ref={titleEditRef}>
+      <EditInfoMessage />
+    </Form>
   );
  
 }
-
-
-export const EditProductFormStyled = styled.form`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-template-rows: repeat(4, 1fr);
-  width: 70%;
-  height: 100%;
-
-  .input-fields {
-    grid-area: 1/2/-2/3;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(3, 1fr);
-    height: 120px;
-    row-gap: 10px;
-    margin-left: 15px;
-  }
-  
-`;
