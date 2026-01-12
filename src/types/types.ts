@@ -54,7 +54,7 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   label: string;
   Icon?: ReactNode;
   version: string;
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 

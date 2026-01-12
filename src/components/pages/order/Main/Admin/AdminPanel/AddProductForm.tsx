@@ -2,11 +2,10 @@ import styled from "styled-components";
 import OrderContext from "../../../../../../context/OrderContext";
 import { useContext, useState } from "react";
 import TextInput from "../../../../../reusable-ui/TextInput";
-import Button from "../../../../../reusable-ui/Button";
 import ImagePreview from "./ImagePreview";
-import SubmitMessage from "./SubmitMessage";
 import { getTextInputConfig } from "./getTextInputConfig";
 import { EMPTY_PRODUCT } from "../../../../../../enums/products";
+import SubmitButton from './SubmitButton';
 
 
 
@@ -64,8 +63,7 @@ export default function AddProductForm() {
       </div>
 
       <div className="submit">
-        <Button label="Ajouter un nouveau produit au menu" version="success" />
-        {isSubmitted && <SubmitMessage />}
+        <SubmitButton isSubmitted={isSubmitted} />
       </div>
     </AddProductFormStyled>
   );
