@@ -1,9 +1,9 @@
 import { BsFillCameraFill } from "react-icons/bs";
 import { FaHamburger } from "react-icons/fa";
 import { MdOutlineEuro } from "react-icons/md";
-import type { NewProductForm } from "../../../../../../types/types";
+import type { ProductForm } from "../../../../../../types/types";
 
-export const getTextInputConfig = (newProduct: NewProductForm) => [
+export const getTextInputConfig = (newProduct: ProductForm) => [
   {
     id: "01",
     Icon: <FaHamburger />,
