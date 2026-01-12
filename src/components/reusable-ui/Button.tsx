@@ -1,24 +1,17 @@
 import styled, { css } from "styled-components";
 import { theme } from "../../theme";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import type { ButtonProps } from "../../types/types";
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  label: string;
-  Icon?: ReactNode;
-  version: string;
-  onClick?: () => void;
-};
+
 export default function Button({
   label,
   Icon,
-  className,
   version = "primary",
   onClick,
 }: ButtonProps) {
   return (
     <ButtonStyled
       type="submit"
-      className={className}
       onClick={onClick}
       $version={version}
     >

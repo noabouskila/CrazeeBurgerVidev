@@ -20,7 +20,7 @@ export const LoginPageStyled = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: url("/assets/F03 burger-background.jpg");
+  background: url("/assets/F03-burger-background.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

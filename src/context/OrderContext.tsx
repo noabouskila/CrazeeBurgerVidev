@@ -1,50 +1,36 @@
 import { createContext } from "react";
-import type { MenuItem, NewProductForm } from "../types";
+import type { OrderContextType } from "../types/OrderContext.types";
+import { EMPTY_PRODUCT } from "../enums/products";
 
-export interface OrderContextType {
-  isModeAdmin: boolean;
-  setIsModeAdmin: React.Dispatch<React.SetStateAction<boolean>>;
 
-  isCollapse: boolean;
-  setIsCollapse: React.Dispatch<React.SetStateAction<boolean>>;
-
-  currentTabSelected: string;
-  setCurrentTabSelected: React.Dispatch<React.SetStateAction<string>>;
-
-  menu: MenuItem[];
-  handleAdd: (newProduct: MenuItem) => void;
-  handleDelete: (productId: number) => void;
-  resetMenu: () => void;
-
-  newProduct: NewProductForm;
-  setNewProduct: React.Dispatch<React.SetStateAction<NewProductForm>>;
-}
+// détecter les usages hors provider
+const throwError = (name: string) => () => {
+  throw new Error(`${name} called outside OrderContext Provider`);
+};
 
 const OrderContext = createContext<OrderContextType>({
   isModeAdmin: false,
-  setIsModeAdmin: () => {},
+  setIsModeAdmin: throwError("setIsModeAdmin"),
 
   isCollapse: true,
-  setIsCollapse: () => {},
+  setIsCollapse: throwError("setIsCollapse"),
 
   currentTabSelected: "",
-  setCurrentTabSelected: () => {},
+  setCurrentTabSelected: throwError("setCurrentTabSelected"),
 
   menu: [],
 
-  handleAdd: () => {},
-  handleDelete: () => {},
-  resetMenu: () => {},
+  handleAdd: throwError("handleAdd"),
+  handleDelete: throwError("handleDelete"),
+  handleEdit: throwError("handleEdit"),
+  resetMenu: throwError("resetMenu"),
 
-  newProduct: {
-    id: 0,
-    imageSource: "",
-    title: "",
-    price: "",
-    isAvailable: true,
-  },
+  newProduct: EMPTY_PRODUCT,
+  setNewProduct: throwError("setNewProduct"),
 
-  setNewProduct: () => {},
+  productSelected: EMPTY_PRODUCT,
+  setProductSelected: throwError("setProductSelected"),
+  titleEditRef: { current: null }
 });
 
 export default OrderContext;
