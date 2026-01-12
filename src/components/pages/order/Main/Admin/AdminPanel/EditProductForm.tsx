@@ -5,6 +5,7 @@ import OrderContext from "../../../../../../context/OrderContext";
 import ImagePreview from "./ImagePreview";
 import TextInput from "../../../../../reusable-ui/TextInput";
 import { getTextInputConfig } from "./getTextInputConfig";
+import { theme } from "../../../../../../theme";
 
 export default function EditProductForm() {
 
@@ -48,9 +49,11 @@ export default function EditProductForm() {
             ref={input.name === "title" ? titleEditRef : undefined}
           />
         ))}
+        <div className="submit"></div>
+        <p className="sentence">
+          Cliquer sur le produit du menu pour le modifier <span className="live-update">en tant réèl</span>
+        </p>
       </div>
-
-    
     </EditProductFormStyled>
   );
  
@@ -72,5 +75,15 @@ export const EditProductFormStyled = styled.form`
     height: 120px;
     row-gap: 10px;
     margin-left: 15px;
+  }
+  .sentence {
+    font-family: ${theme.fonts.family.openSans};
+    color: ${theme.colors.primary};
+    font-weight: ${theme.fonts.weights.regular};
+    font-size: ${theme.fonts.size.SM};
+
+    .live-update {
+      text-decoration: underline;
+    }
   }
 `;
