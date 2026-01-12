@@ -1,12 +1,14 @@
 import OrderContext from "../../../../../../context/OrderContext";
-import { useContext, useState } from "react";
+import {  useContext } from "react";
 import { EMPTY_PRODUCT } from "../../../../../../enums/products";
 import SubmitButton from "./SubmitButton";
 import Form from "./Form";
+import { useDisplaySuccessMsg } from "../../../../../../hooks/useDisplaySuccessMessage";
 
 export default function AddProductForm() {
   const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+ 
+  const { isSubmitted, DisplaySuccessMsg } = useDisplaySuccessMsg();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,15 +30,9 @@ export default function AddProductForm() {
     handleAdd(newProducttoAdd);
     setNewProduct(EMPTY_PRODUCT);
 
-    displaySuccessMsg();
+    DisplaySuccessMsg();
   };
 
-  const displaySuccessMsg = () => {
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-    }, 2000);
-  };
 
   return (
     <Form product={newProduct} onSubmit={handleSubmit} onChange={handleChange}>
