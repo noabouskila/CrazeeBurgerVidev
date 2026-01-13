@@ -8,6 +8,7 @@ import type { ProductForm } from "../../../types/types";
 import { EMPTY_PRODUCT } from "../../../enums/products";
 
 import { useMenuProducts } from "../../../hooks/useMenuProducts";
+import { useBasket } from "../../../hooks/useBasket";
 
 export default function OrderPage() {
   // lifting the state up ( remonter letat de 2 composants dans leur parent le plus proche : ici OrderPage)
@@ -20,8 +21,10 @@ export default function OrderPage() {
   const titleEditRef = useRef<HTMLInputElement | null>(null);
 
  
-  const { menu, handleAdd, handleDelete, handleEdit, resetMenu } =
-    useMenuProducts();
+  // customs hooks
+  const { menu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
+  const {basket} = useBasket();
+
 
   const orderContextValue = {
     isModeAdmin,
@@ -47,6 +50,8 @@ export default function OrderPage() {
     setProductSelected,
 
     titleEditRef,
+
+    basket
   };
 
   return (

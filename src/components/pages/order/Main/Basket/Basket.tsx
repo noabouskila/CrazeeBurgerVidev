@@ -5,8 +5,14 @@ import Total from "./Total";
 import { formatPrice } from '../../../../../utils/maths';
 import BasketContent from "./BasketContent";
 import BasketFooter from "./BasketFooter";
+import { useContext } from "react";
+import OrderContext from "../../../../../context/OrderContext";
+
 
 export default function Basket() {
+
+   const { basket } = useContext(OrderContext);
+   
   return (
     <BasketStyled>
 
@@ -15,7 +21,7 @@ export default function Basket() {
       </BasketSection>
 
       
-      <BasketContent/>
+      <BasketContent basket={basket} />
 
       <BasketSection>
         <BasketFooter/>
@@ -35,4 +41,6 @@ export const BasketStyled = styled.section`
   justify-content: space-between;
   position: sticky;
   top: 0;
+
+  
 `;

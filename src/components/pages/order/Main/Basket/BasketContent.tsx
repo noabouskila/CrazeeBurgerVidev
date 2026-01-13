@@ -1,25 +1,37 @@
+import styled from "styled-components";
+import type { BasketItem } from "../../../../../types/types";
+import EmptyBasket from './EmptyBasket';
+import BasketCard from "./BasketCard";
 
-export default function BasketContent() {
+
+
+export default function BasketContent({ basket }: { basket: BasketItem[] }) {
+
+  const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
+
+  {
+    if (basket.length === 0) return <EmptyBasket />;
+  }
+
   return (
-   
-    <BasketContentStyled >
-    <span>Votre commande est vide.</span>
+    <BasketContentStyled>
+      {basket.map(({ id, title, imageSource, price, quantity }) => (
+        <BasketCard
+          key={id}
+          id={id}
+          title={title}
+          imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
+          price={price}
+          quantity={quantity}
+        />
+      ))}
     </BasketContentStyled>
-   
   );
 }
 
-import styled from 'styled-components';
-import { theme } from '../../../../../theme';
-
 export const BasketContentStyled = styled.div`
-  
-    display: flex;
-    flex: 1;
-    align-items: center;
-    justify-content: center;
-    font-size: ${theme.fonts.size.P4};
-    color: ${theme.colors.greyBlue};
-  
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
 `;
-
