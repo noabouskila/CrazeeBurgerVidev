@@ -7,10 +7,16 @@ import type { BasketItem } from "../../../../../types/types";
 export default function BasketCard({
     id, title, imageSource, price, quantity } 
     : BasketItem) {
+
+    const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
+
   return (
     <BasketCardStyled key={id}>
       <div className="product-image">
-        <img src={imageSource} alt="image produit panier" />
+        <img
+          src={imageSource ? imageSource : DEFAULT_IMAGE}
+          alt="image produit panier"
+        />
       </div>
       <div className="product-info">
         <span className="title">{title}</span>
@@ -29,12 +35,11 @@ import styled from 'styled-components';
 import { formatPrice } from "../../../../../utils/maths";
 
 export const BasketCardStyled = styled.div`
-  margin: 16px 20px;
   padding: 16px 8px;
   background-color: ${theme.colors.white};
   border-radius: ${theme.borderRadius.round};
   box-shadow: ${theme.shadows.basket};
-  height: 86px;
+  height: calc(86px - 32px);
 
   display: flex;
   justify-content: space-evenly;

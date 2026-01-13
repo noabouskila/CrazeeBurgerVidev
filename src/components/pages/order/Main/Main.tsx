@@ -22,7 +22,6 @@ export default function Main() {
 }
 
 export const MainStyled = styled.section`
-  box-shadow: ${theme.shadows.strong};
   border-bottom-left-radius: ${theme.borderRadius.extraRound};
   border-bottom-right-radius: ${theme.borderRadius.extraRound};
   height: calc(95vh -10vh);

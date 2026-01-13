@@ -3,15 +3,17 @@ import { theme } from "../../../../../theme";
 import BasketSection from "../../../../reusable-ui/BasketSections";
 import Total from "./Total";
 import { formatPrice } from '../../../../../utils/maths';
-import BasketContent from "./BasketContent";
 import BasketFooter from "./BasketFooter";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import EmptyBasket from "./EmptyBasket";
+import BasketProducts from "./BasketProducts";
 
 
 export default function Basket() {
 
    const { basket } = useContext(OrderContext);
+   const isBasketEmpty = basket.length === 0;
    
   return (
     <BasketStyled>
@@ -21,7 +23,7 @@ export default function Basket() {
       </BasketSection>
 
       
-      <BasketContent basket={basket} />
+      { isBasketEmpty ?  <EmptyBasket/> : <BasketProducts basket={basket} />}
 
       <BasketSection>
         <BasketFooter/>

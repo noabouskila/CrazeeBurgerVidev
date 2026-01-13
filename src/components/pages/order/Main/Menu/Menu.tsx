@@ -9,6 +9,7 @@ import EmptyMenuClient from "./EmptyMenuClient";
 import { convertMenuItemToProductForm } from "../../../../../utils/productUtils";
 import { checkIsProductSelected } from "./helper";
 import { EMPTY_PRODUCT } from "../../../../../enums/products";
+import { theme } from "../../../../../theme";
 
 const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
 export default function Menu() {
@@ -103,4 +104,5 @@ export const MenuStyled = styled.section`
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
+  box-shadow: ${theme.shadows.strong};
 `;
