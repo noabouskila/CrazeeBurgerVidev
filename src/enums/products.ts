@@ -6,5 +6,7 @@ export const EMPTY_PRODUCT: Readonly<ProductForm> = {
   title: "",
   price: "",
   isAvailable: true,
+  quantity : 0
 };
    
+export const DEFAULT_IMAGE = "/public/assets/coming-soon.png";

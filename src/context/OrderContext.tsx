@@ -32,7 +32,8 @@ const OrderContext = createContext<OrderContextType>({
   setProductSelected: throwError("setProductSelected"),
   titleEditRef: { current: null },
 
-  basket: []
+  basket: [],
+  handleAddToBasket: throwError("handleAddToBasket"),
 });
 
 export default OrderContext;

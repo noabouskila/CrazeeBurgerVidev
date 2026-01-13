@@ -8,13 +8,27 @@ import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
 import { convertMenuItemToProductForm } from "../../../../../utils/productUtils";
 import { checkIsProductSelected } from "./helper";
-import { EMPTY_PRODUCT } from "../../../../../enums/products";
+import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/products";
 import { theme } from "../../../../../theme";
+import { findInArray } from "../../../../../utils/array";
 
-const DEFAULT_IMAGE = "/public/assets/coming-soon.png";
+
 export default function Menu() {
   // state
-  const { menu, isModeAdmin, handleDelete, resetMenu, setProductSelected  , productSelected ,isCollapse, setIsCollapse ,currentTabSelected,  setCurrentTabSelected , titleEditRef} = useContext(OrderContext);
+  const {
+    menu,
+    isModeAdmin,
+    handleDelete,
+    resetMenu,
+    setProductSelected,
+    productSelected,
+    isCollapse,
+    setIsCollapse,
+    currentTabSelected,
+    setCurrentTabSelected,
+    titleEditRef,
+    handleAddToBasket,
+  } = useContext(OrderContext);
 
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
 
@@ -28,7 +42,7 @@ export default function Menu() {
     setIsCollapse(true);
 
     // trouver le produit cliqué dans le menu
-    const productSelectedOnClick = menu.find((item) => item.id === productId);
+    const productSelectedOnClick = findInArray(menu , productId)
     if (!productSelectedOnClick) return;
 
     setProductSelected(convertMenuItemToProductForm(productSelectedOnClick));
@@ -56,11 +70,9 @@ export default function Menu() {
     handleDelete(id);
 
 
-
     // Si le produit supprimé est celui qui est sélectionné, réinitialiser productSelected
     if (productSelected?.id === id) {
       setProductSelected(EMPTY_PRODUCT); 
-     
     }
     // persister le focus de la card  du titre après suppression dune autre card
     setShouldFocusInput(true);
@@ -76,6 +88,17 @@ export default function Menu() {
     );
   }
 
+  const handleAddButton = (event: React.MouseEvent<HTMLElement>  , id: string) => {
+    event.stopPropagation();
+    const productToAdd = findInArray(menu , id);
+    if (!productToAdd) return;
+    console.log("productToAdd", productToAdd);
+
+    handleAddToBasket(productToAdd);
+  };
+
+
+
   return (
     <MenuStyled>
       {menu.map(({ id, title, imageSource, price }) => (
@@ -86,10 +109,11 @@ export default function Menu() {
           imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
           leftDescription={formatPrice(price)}
           hasDeleteButton={isModeAdmin}
-          onDelete={(event) => handleCardOnDelete(event , id)}
+          onDelete={(event) => handleCardOnDelete(event, id)}
           onClick={() => handleUpdate(id)}
           isHoverable={isModeAdmin}
           isSelected={checkIsProductSelected(id, productSelected.id)}
+          onAdd={(event) => handleAddButton(event, id)}
         />
       ))}
     </MenuStyled>

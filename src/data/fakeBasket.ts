@@ -1,18 +1,19 @@
-import type { BasketItem } from "../types/types";
+import type { MenuItem } from "../types/types";
 
 
-export const EMPTY: BasketItem[] = [];
+export const EMPTY: MenuItem[] = [];
 
-export const SMALL: BasketItem[] = [
+export const SMALL: MenuItem[] = [
   {
     id: "1",
     title: "Burger Meal",
     imageSource: "/assets/burger1.png",
     quantity: 1,
+    price : 1
   },
 ];
 
-export const MEDIUM: BasketItem[] = [
+export const MEDIUM: MenuItem[] = [
   {
     id: "1",
     imageSource: "/assets/burger1.png",
@@ -44,7 +45,7 @@ export const MEDIUM: BasketItem[] = [
   },
 ];
 
-export const LARGE: BasketItem[] = [
+export const LARGE: MenuItem[] = [
   {
     id: "1",
     imageSource: "/assets/fries3.png",
@@ -137,10 +138,11 @@ export const LARGE: BasketItem[] = [
   },
 ];
 
-export const LARGE_WEIRD: BasketItem[] = [
+export const LARGE_WEIRD: MenuItem[] = [
   {
     id: "1",
-    imageSource: "/assets/fries3.png",
+    imageSource: "",
+    // /assets/fries3.png
     title: "New York Fries",
     price: 3.1678,
     quantity: 13,
@@ -238,7 +240,7 @@ export type BasketDataset =
   | "LARGE"
   | "LARGE_WEIRD";
 
-export const fakeBasket: Record<BasketDataset, BasketItem[]> = {
+export const fakeBasket: Record<BasketDataset, MenuItem[]> = {
   EMPTY,
   SMALL,
   MEDIUM,

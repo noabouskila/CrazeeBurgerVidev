@@ -1,23 +1,23 @@
 import styled from "styled-components";
-import type { BasketItem } from "../../../../../types/types";
+import type {  MenuItem } from "../../../../../types/types";
 import BasketCard from "./BasketCard";
+import { DEFAULT_IMAGE } from "../../../../../enums/products";
 
 
 
-export default function BasketProducts({ basket }: { basket: BasketItem[] }) {
+export default function BasketProducts({ basket }: { basket: MenuItem[] }) {
 
  
 
   return (
     <BasketProductsStyled>
       {basket.map(({ id, title, imageSource, price, quantity }) => (
-
         <div className="basket-card">
           <BasketCard
             key={id}
             id={id}
             title={title}
-            imageSource={imageSource}
+            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             price={price}
             quantity={quantity}
           />

@@ -16,7 +16,9 @@ export type ProductForm = {
   imageSource: string;
   title: string;
   price: string; // autorisé ici
+  quantity?: number;
   isAvailable: boolean;
+  isAdvertised?: boolean;
 };
 
 export interface ProductProps {
@@ -29,6 +31,7 @@ export interface ProductProps {
   onClick: () => void;
   isHoverable: boolean;
   isSelected: boolean;
+  onAdd?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 
@@ -66,15 +69,15 @@ export type FormType = {
 
 
 
-export type BasketItem = {
-  id: string;
-  title: string;
-  imageSource: string;
-  quantity: number;
-  price?: number;
-  isAvailable?: boolean;
-  isAdvertised?: boolean;
-};
+// export type BasketItem = {
+//   id: string;
+//   title: string;
+//   imageSource: string;
+//   quantity: number;
+//   price?: number;
+//   isAvailable?: boolean;
+//   isAdvertised?: boolean;
+// };
 
 
 

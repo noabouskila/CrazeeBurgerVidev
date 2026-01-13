@@ -15,6 +15,7 @@ export default function Card({
   onClick,
   isHoverable,
   isSelected,
+  onAdd
 }: ProductProps) {
   return (
     <CardStyled
@@ -44,7 +45,8 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button label={"Ajouter"} version="littlePrimary" onClick={(event)=> event.stopPropagation()}/>
+              <Button label={"Ajouter"} version="littlePrimary" 
+              onClick={onAdd}/>
             </div>
           </div>
         </div>
