@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import Basket from './Basket';
+import Basket from "./Basket/Basket";
 import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
 import { useContext } from "react";
@@ -11,7 +11,7 @@ export default function Main() {
 
   return (
     <MainStyled className="main">
-      {/* <Basket /> */}
+      <Basket />
 
       <div className="menu-and-admin">
         <Menu />
@@ -22,16 +22,14 @@ export default function Main() {
 }
 
 export const MainStyled = styled.section`
-  box-shadow: 0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  box-shadow: ${theme.shadows.strong};
+  border-bottom-left-radius: ${theme.borderRadius.extraRound};
+  border-bottom-right-radius: ${theme.borderRadius.extraRound};
   height: calc(95vh -10vh);
   background-color: ${theme.colors.background_white};
 
   display: grid;
-  /* decommenter cette ligne quand <Basket/> activé */
-  /* grid-template-columns: 25% 1fr; */
-  grid-template-columns: 1fr;
+  grid-template-columns: 25% 1fr;
   overflow-y: scroll;
 
   .menu-and-admin {

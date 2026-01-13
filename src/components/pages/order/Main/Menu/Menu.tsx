@@ -96,9 +96,10 @@ export default function Menu() {
 }
 
 export const MenuStyled = styled.section`
-  /* mettre autant de collonnes tant que ca rentre  tant que ca respecte la condition de minmax*/
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
+  /* mettre autant de collonnes tant que ca rentre  tant que ca respecte la condition de minmax*/
+  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
