@@ -66,6 +66,16 @@ export type FormType = {
 
 
 
+export type BasketItem = {
+  id: string;
+  title: string;
+  imageSource: string;
+  quantity: number;
+  price?: number;
+  isAvailable?: boolean;
+  isAdvertised?: boolean;
+};
+
 
 
 
