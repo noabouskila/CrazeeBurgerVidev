@@ -15,15 +15,15 @@ export default function Basket() {
   const { basket } = useContext(OrderContext);
   const isBasketEmpty = basket.length === 0;
   
-  const sumToPay = useMemo(
-    () =>
-      basket.reduce(
-        (total, basketProduct) =>
-          total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
-        0
-      ),
-    [basket]
-  );
+ const sumToPay = useMemo(
+   () =>
+     basket.reduce(
+       (total, basketProduct) =>
+         total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
+       0
+     ),
+   [basket]
+ );
    
   return (
     <BasketStyled>
