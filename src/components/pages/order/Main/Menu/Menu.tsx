@@ -92,7 +92,6 @@ export default function Menu() {
     event.stopPropagation();
     const productToAdd = findInArray(menu , id);
     if (!productToAdd) return;
-    console.log("productToAdd", productToAdd);
 
     handleAddToBasket(productToAdd);
   };

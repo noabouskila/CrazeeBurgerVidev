@@ -1,25 +1,35 @@
 import styled from "styled-components";
-import type {  MenuItem } from "../../../../../types/types";
+import type {  BasketItem } from "../../../../../types/types";
 import BasketCard from "./BasketCard";
 import { DEFAULT_IMAGE } from "../../../../../enums/products";
 
 
 
-export default function BasketProducts({ basket }: { basket: MenuItem[] }) {
-
- 
+export default function BasketProducts({
+  basket,
+  isModeAdmin,
+  handleDeleteBasketProduct,
+}: {
+  basket: BasketItem[];
+  isModeAdmin : boolean;
+  handleDeleteBasketProduct : (id: string) => void;  
+}) {
+  const handleOnDelete = (id: string) => {
+    handleDeleteBasketProduct(id);
+  };
 
   return (
     <BasketProductsStyled>
       {basket.map(({ id, title, imageSource, price, quantity }) => (
-        <div className="basket-card">
+        <div className="basket-card" key={id}>
           <BasketCard
-            key={id}
             id={id}
             title={title}
             imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
             price={price}
             quantity={quantity}
+            onDelete={() => handleOnDelete(id)}
+            isModeAdmin={isModeAdmin}
           />
         </div>
       ))}

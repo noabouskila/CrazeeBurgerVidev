@@ -34,6 +34,8 @@ const OrderContext = createContext<OrderContextType>({
 
   basket: [],
   handleAddToBasket: throwError("handleAddToBasket"),
+
+  handleDeleteBasketProduct: throwError("handleDeleteToBasket"),
 });
 
 export default OrderContext;

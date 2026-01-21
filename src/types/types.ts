@@ -10,6 +10,12 @@ export interface MenuItem {
   isAvailable?: boolean;
   isAdvertised?: boolean;
 }
+export interface BasketItem extends MenuItem {
+  isModeAdmin?: boolean;
+  onDelete?: () => void;
+}
+
+
 // pour le formulaire d'ajout  et de modif de produit dans l'admin panel
 export type ProductForm = {
   id: string;

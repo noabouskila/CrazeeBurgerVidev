@@ -23,7 +23,7 @@ export default function OrderPage() {
  
   // customs hooks
   const { menu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
-  const {basket , handleAddToBasket} = useBasket();
+  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
 
 
   const orderContextValue = {
@@ -53,6 +53,7 @@ export default function OrderPage() {
 
     basket,
     handleAddToBasket,
+    handleDeleteBasketProduct
   };
 
   return (

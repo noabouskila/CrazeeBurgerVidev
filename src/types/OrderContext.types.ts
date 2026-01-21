@@ -1,4 +1,4 @@
-import type {  MenuItem, ProductForm } from "./types";
+import type {  BasketItem, MenuItem, ProductForm } from "./types";
 
 
 export interface OrderContextType {
@@ -25,6 +25,7 @@ export interface OrderContextType {
 
   titleEditRef: React.RefObject<HTMLInputElement | null>;
 
-  basket: MenuItem[];
+  basket: BasketItem[];
   handleAddToBasket: (productToAdd: MenuItem) => void;
+  handleDeleteBasketProduct: (productId: string) => void;
 }

@@ -12,7 +12,7 @@ import BasketProducts from './BasketProducts';
 
 export default function Basket() {
 
-  const { basket } = useContext(OrderContext);
+  const { basket  , isModeAdmin, handleDeleteBasketProduct} = useContext(OrderContext);
   const isBasketEmpty = basket.length === 0;
   
  const sumToPay = useMemo(
@@ -31,7 +31,15 @@ export default function Basket() {
         <Total amountToPay={formatPrice(sumToPay)} />
       </BasketSection>
 
-      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} />}
+      {isBasketEmpty ? (
+        <EmptyBasket />
+      ) : (
+        <BasketProducts
+          basket={basket}
+          isModeAdmin={isModeAdmin}
+          handleDeleteBasketProduct={handleDeleteBasketProduct}
+        />
+      )}
 
       <BasketSection>
         <BasketFooter />
