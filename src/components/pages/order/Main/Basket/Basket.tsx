@@ -4,29 +4,37 @@ import BasketSection from "../../../../reusable-ui/BasketSections";
 import Total from "./Total";
 import { formatPrice } from '../../../../../utils/maths';
 import BasketFooter from "./BasketFooter";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyBasket from "./EmptyBasket";
-import BasketProducts from "./BasketProducts";
+import BasketProducts from './BasketProducts';
 
 
 export default function Basket() {
 
-   const { basket } = useContext(OrderContext);
-   const isBasketEmpty = basket.length === 0;
+  const { basket } = useContext(OrderContext);
+  const isBasketEmpty = basket.length === 0;
+  
+  const sumToPay = useMemo(
+    () =>
+      basket.reduce(
+        (total, basketProduct) =>
+          total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
+        0
+      ),
+    [basket]
+  );
    
   return (
     <BasketStyled>
-
       <BasketSection>
-        <Total amountToPay={formatPrice(0)} />
+        <Total amountToPay={formatPrice(sumToPay)} />
       </BasketSection>
 
-      
-      { isBasketEmpty ?  <EmptyBasket/> : <BasketProducts basket={basket} />}
+      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts basket={basket} />}
 
       <BasketSection>
-        <BasketFooter/>
+        <BasketFooter />
       </BasketSection>
     </BasketStyled>
   );
