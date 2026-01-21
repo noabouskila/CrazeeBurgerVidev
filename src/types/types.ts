@@ -6,17 +6,25 @@ export interface MenuItem {
   imageSource: string;
   title: string;
   price: number;
-  quantity?: number;
+  quantity: number;
   isAvailable?: boolean;
   isAdvertised?: boolean;
 }
+export interface BasketItem extends MenuItem {
+  isModeAdmin?: boolean;
+  onDelete?: () => void;
+}
+
+
 // pour le formulaire d'ajout  et de modif de produit dans l'admin panel
 export type ProductForm = {
   id: string;
   imageSource: string;
   title: string;
   price: string; // autorisé ici
+  quantity?: number;
   isAvailable: boolean;
+  isAdvertised?: boolean;
 };
 
 export interface ProductProps {
@@ -29,6 +37,7 @@ export interface ProductProps {
   onClick: () => void;
   isHoverable: boolean;
   isSelected: boolean;
+  onAdd?: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 
@@ -65,6 +74,16 @@ export type FormType = {
 };
 
 
+
+// export type BasketItem = {
+//   id: string;
+//   title: string;
+//   imageSource: string;
+//   quantity: number;
+//   price?: number;
+//   isAvailable?: boolean;
+//   isAdvertised?: boolean;
+// };
 
 
 

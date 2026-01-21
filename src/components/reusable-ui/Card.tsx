@@ -15,13 +15,14 @@ export default function Card({
   onClick,
   isHoverable,
   isSelected,
+  onAdd
 }: ProductProps) {
   return (
     <CardStyled
       key={id}
       onClick={onClick}
-      isHoverable={isHoverable}
-      isSelected={isSelected}
+      $isHoverable={isHoverable}
+      $isSelected={isSelected}
     >
       <div className="card">
         {hasDeleteButton && (
@@ -44,7 +45,8 @@ export default function Card({
           <div className="description">
             <div className="left-description">{leftDescription}</div>
             <div className="right-description">
-              <Button label={"Ajouter"} version="littlePrimary" onClick={(event)=> event.stopPropagation()}/>
+              <Button label={"Ajouter"} version="littlePrimary" 
+              onClick={onAdd}/>
             </div>
           </div>
         </div>
@@ -53,7 +55,7 @@ export default function Card({
   );
 }
 
-export const CardStyled = styled.div<{ isHoverable?: boolean; isSelected?: boolean }>`
+export const CardStyled = styled.div<{ $isHoverable?: boolean; $isSelected?: boolean }>`
   border-radius: ${theme.borderRadius.extraRound};
 
   .card {
@@ -150,8 +152,8 @@ export const CardStyled = styled.div<{ isHoverable?: boolean; isSelected?: boole
     }
   }
 
-  ${({ isHoverable }) => isHoverable && hoverableStyle}
-  ${({ isHoverable, isSelected }) => isHoverable && isSelected && selectedStyle}
+  ${({ $isHoverable }) => $isHoverable && hoverableStyle}
+  ${({ $isHoverable, $isSelected }) => $isHoverable && $isSelected && selectedStyle}
 `;
 
 

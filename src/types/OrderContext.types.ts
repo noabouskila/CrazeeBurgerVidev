@@ -1,4 +1,5 @@
-import type { MenuItem, ProductForm } from "./types";
+import type {  BasketItem, MenuItem, ProductForm } from "./types";
+
 
 export interface OrderContextType {
   isModeAdmin: boolean;
@@ -23,4 +24,8 @@ export interface OrderContextType {
   setProductSelected: React.Dispatch<React.SetStateAction<ProductForm>>;
 
   titleEditRef: React.RefObject<HTMLInputElement | null>;
+
+  basket: BasketItem[];
+  handleAddToBasket: (productToAdd: MenuItem) => void;
+  handleDeleteBasketProduct: (productId: string) => void;
 }

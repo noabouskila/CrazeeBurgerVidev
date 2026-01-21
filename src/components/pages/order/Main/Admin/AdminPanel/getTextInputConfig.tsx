@@ -23,6 +23,7 @@ export const getTextInputConfig = (newProduct: ProductForm) => [
     id: "03",
     Icon: <MdOutlineEuro />,
     name: "price",
+    type : "number",
     value: newProduct.price,
     placeholder: "Prix",
   },

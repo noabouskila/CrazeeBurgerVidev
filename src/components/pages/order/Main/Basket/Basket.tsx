@@ -3,22 +3,46 @@ import { theme } from "../../../../../theme";
 import BasketSection from "../../../../reusable-ui/BasketSections";
 import Total from "./Total";
 import { formatPrice } from '../../../../../utils/maths';
-import BasketContent from "./BasketContent";
 import BasketFooter from "./BasketFooter";
+import { useContext, useMemo } from "react";
+import OrderContext from "../../../../../context/OrderContext";
+import EmptyBasket from "./EmptyBasket";
+import BasketProducts from './BasketProducts';
+
 
 export default function Basket() {
+
+  const { basket  , isModeAdmin, handleDeleteBasketProduct} = useContext(OrderContext);
+  const isBasketEmpty = basket.length === 0;
+  
+ const sumToPay = useMemo(
+   () =>
+     basket.reduce(
+       (total, basketProduct) =>
+         total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
+       0
+     ),
+   [basket]
+ );
+   
   return (
     <BasketStyled>
-
       <BasketSection>
-        <Total amountToPay={formatPrice(0)} />
+        <Total amountToPay={formatPrice(sumToPay)} />
       </BasketSection>
 
-      
-      <BasketContent/>
+      {isBasketEmpty ? (
+        <EmptyBasket />
+      ) : (
+        <BasketProducts
+          basket={basket}
+          isModeAdmin={isModeAdmin}
+          handleDeleteBasketProduct={handleDeleteBasketProduct}
+        />
+      )}
 
       <BasketSection>
-        <BasketFooter/>
+        <BasketFooter />
       </BasketSection>
     </BasketStyled>
   );
@@ -35,4 +59,6 @@ export const BasketStyled = styled.section`
   justify-content: space-between;
   position: sticky;
   top: 0;
+
+  
 `;

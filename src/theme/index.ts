@@ -67,7 +67,9 @@ const shadows = {
   subtle: "0px -6px 8px -2px rgba(0, 0, 0, 0.1)",
   medium: "-8px 8px 20px 0px rgb(0 0 0 / 20%)",
   strong: "0px 8px 20px 8px rgba(0, 0, 0, 0.2) inset",
-  orangeHighlight: " 0px 0px 8px 0px #FF9A23"
+  orangeHighlight: " 0px 0px 8px 0px #FF9A23" ,
+  basket: "-4px 4px 15px 0px #00000033"
+
 
 };
 
