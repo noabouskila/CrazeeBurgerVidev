@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { fakeBasket } from "../data/fakeBasket"
 import type { MenuItem } from "../types/types";
-import {  deepClone, filter, findInArray } from "../utils/array";
+import { deepClone, removeObjectById, findObjectById } from "../utils/array";
 
 export const useBasket = () => { 
 
@@ -9,8 +9,8 @@ export const useBasket = () => {
 
     const handleAddToBasket = (productToAdd: MenuItem) => {
         setBasket((prevBasket) => {
-            const productAlreadyInBasket = findInArray(prevBasket, productToAdd.id);
-
+             const productAlreadyInBasket = findObjectById(prevBasket, productToAdd.id);
+          
             if (!productAlreadyInBasket) {
             return [{ ...productToAdd, quantity: 1 }, ...prevBasket];
             }
@@ -29,7 +29,7 @@ export const useBasket = () => {
     
         //2. manip de la copie state
         //const basketUpdated = basketCopy.filter((product) => product.id !== idBasketProduct)
-        const basketUpdated = filter(idBasketProduct, basketCopy)
+        const basketUpdated = removeObjectById(idBasketProduct, basketCopy);
     
         //3. update du state
         setBasket(basketUpdated)
@@ -40,25 +40,3 @@ export const useBasket = () => {
     return { basket, handleAddToBasket, handleDeleteBasketProduct };
 
 }
-
-//     const handleAddToBasket = (productToAdd: MenuItem) => {
-
-//         const basketCopy = deepClone(basket);
-
-//         const productAlreadyInBasket = findInArray(basketCopy, productToAdd.id);
-
-//         if (!productAlreadyInBasket) {
-//         const newBasketProduct = {
-//             ...productToAdd,
-//             quantity: 1,
-//         };
-
-//         setBasket([newBasketProduct, ...basketCopy]);
-//         return;
-//         }
-
-//         productAlreadyInBasket.quantity =
-//         (productAlreadyInBasket.quantity ?? 0) + 1;
-
-//         setBasket(basketCopy);
-//    };

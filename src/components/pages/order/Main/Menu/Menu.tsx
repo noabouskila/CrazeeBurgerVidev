@@ -10,7 +10,7 @@ import { convertMenuItemToProductForm } from "../../../../../utils/productUtils"
 import { checkIsProductSelected } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/products";
 import { theme } from "../../../../../theme";
-import { findInArray } from "../../../../../utils/array";
+import { findObjectById, isEmpty } from "../../../../../utils/array";
 
 
 export default function Menu() {
@@ -42,7 +42,7 @@ export default function Menu() {
     setIsCollapse(true);
 
     // trouver le produit cliqué dans le menu
-    const productSelectedOnClick = findInArray(menu , productId)
+    const productSelectedOnClick = findObjectById(menu , productId)
     if (!productSelectedOnClick) return;
 
     setProductSelected(convertMenuItemToProductForm(productSelectedOnClick));
@@ -80,17 +80,17 @@ export default function Menu() {
 
 
   // affichage
-  if (menu.length === 0) {
-    return isModeAdmin ? (
-      <EmptyMenuAdmin onResetMenu={resetMenu} />
-    ) : (
-      <EmptyMenuClient />
-    );
-  }
+    if (isEmpty(menu)) {
+      return isModeAdmin ? (
+        <EmptyMenuAdmin onResetMenu={resetMenu} />
+      ) : (
+        <EmptyMenuClient />
+      );
+    }
 
   const handleAddButton = (event: React.MouseEvent<HTMLElement>  , id: string) => {
     event.stopPropagation();
-    const productToAdd = findInArray(menu , id);
+    const productToAdd = findObjectById(menu , id);
     if (!productToAdd) return;
 
     handleAddToBasket(productToAdd);
