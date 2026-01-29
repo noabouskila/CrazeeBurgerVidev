@@ -36,7 +36,9 @@ const OrderContext = createContext<OrderContextType>({
   handleAddToBasket: throwError("handleAddToBasket"),
 
   handleDeleteBasketProduct: throwError("handleDeleteToBasket"),
-  updateBasketProductPrice  :  throwError("handleUpdateToBasket"),
+  updateBasketProductPrice: throwError("handleUpdatePriceToBasket"),
+  selectProductForEdit: throwError("handleUpdateToBasket"),
+  setShouldFocusInput: throwError("setShouldFocusInput"),
 });
 
 export default OrderContext;

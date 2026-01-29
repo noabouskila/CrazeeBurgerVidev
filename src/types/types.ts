@@ -12,7 +12,8 @@ export interface MenuItem {
 }
 export interface BasketItem extends MenuItem {
   isModeAdmin?: boolean;
-  onDelete?: () => void;
+  onDelete?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: () => void;
 }
 
 

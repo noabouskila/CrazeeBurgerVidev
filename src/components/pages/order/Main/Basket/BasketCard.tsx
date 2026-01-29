@@ -15,9 +15,10 @@ export default function BasketCard({
   quantity,
   isModeAdmin,
   onDelete,
+  onClick
 }: BasketItem) {
   return (
-    <BasketCardStyled key={id} $isModeAdmin={isModeAdmin}>
+    <BasketCardStyled key={id} $isModeAdmin={isModeAdmin} onClick={onClick}>
       <div className="product-image">
         <img src={imageSource} alt="image produit panier" />
       </div>

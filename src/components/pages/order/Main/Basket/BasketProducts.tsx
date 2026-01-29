@@ -7,12 +7,21 @@ import OrderContext from "../../../../../context/OrderContext";
 
 
 
+
 export default function BasketProducts() {
 
-  const {menu , basket,isModeAdmin, handleDeleteBasketProduct} = useContext(OrderContext)
+  const {
+    menu,
+    basket,
+    isModeAdmin,
+    handleDeleteBasketProduct,
+    selectProductForEdit,
+  } = useContext(OrderContext);
 
 
-  const handleOnDelete = (id: string) => {
+
+  const handleOnDelete = (e: React.MouseEvent<HTMLDivElement> , id: string) => {
+    e.stopPropagation()
     handleDeleteBasketProduct(id);
   };
 
@@ -38,8 +47,9 @@ export default function BasketProducts() {
               }
               price={menuProduct.price}
               quantity={basketProduct.quantity}
-              onDelete={() => handleOnDelete(basketProduct.id)}
+              onDelete={(e) => handleOnDelete(e, basketProduct.id)}
               isModeAdmin={isModeAdmin}
+              onClick={() => selectProductForEdit(basketProduct.id)}
             />
           </div>
         );
