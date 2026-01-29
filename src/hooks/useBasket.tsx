@@ -6,23 +6,6 @@ import { deepClone, removeObjectById, findObjectById } from "../utils/array";
 export const useBasket = () => {
   const [basket, setBasket] = useState(fakeBasket.EMPTY);
 
-  // const handleAddToBasket = (productToAdd: MenuItem) => {
-  //     setBasket((prevBasket) => {
-  //          const productAlreadyInBasket = findObjectById(prevBasket, productToAdd.id);
-
-  //         if (!productAlreadyInBasket) {
-  //         return [{ ...productToAdd, quantity: 1 }, ...prevBasket];
-  //         }
-
-  //         return prevBasket.map((item) =>
-  //         item.id === productToAdd.id
-  //             ? { ...item, quantity: (item.quantity ?? 0) + 1 }
-  //             : item
-  //         );
-  //     });
-  // };
-  
-  // Fonction pour incrémenter un produit existant
   const incrementProductAlreadyInBasket = (
     productId: string,
     basketCopy: MenuItem[]
@@ -44,6 +27,7 @@ export const useBasket = () => {
     const newProduct = { ...productToAdd, quantity: 1 };
     basketCopy.push(newProduct);
   };
+
 
   const handleAddToBasket = (productToAdd: MenuItem) => {
     setBasket((prevBasket) => {
@@ -75,7 +59,23 @@ export const useBasket = () => {
 
     //3. update du state
     setBasket(basketUpdated);
+
+    
   };
 
-  return { basket, handleAddToBasket, handleDeleteBasketProduct };
+  // met a jour le total du panier si on change le prix 
+  const updateBasketProductPrice = (id: string, newPrice: number) => {
+    setBasket((prevBasket) =>
+      prevBasket.map((product) =>
+        product.id === id ? { ...product, price: newPrice } : product
+      )
+    );
+  };
+
+  return {
+    basket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    updateBasketProductPrice,
+  };
 }

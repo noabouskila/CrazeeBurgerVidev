@@ -36,6 +36,7 @@ const OrderContext = createContext<OrderContextType>({
   handleAddToBasket: throwError("handleAddToBasket"),
 
   handleDeleteBasketProduct: throwError("handleDeleteToBasket"),
+  updateBasketProductPrice  :  throwError("handleUpdateToBasket"),
 });
 
 export default OrderContext;

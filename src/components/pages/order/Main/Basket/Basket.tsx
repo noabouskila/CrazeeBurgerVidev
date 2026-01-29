@@ -12,7 +12,7 @@ import { isEmpty } from "../../../../../utils/array";
 
 
 export default function Basket() {
-  const { basket, isModeAdmin, handleDeleteBasketProduct } =
+  const { basket } =
     useContext(OrderContext);
 
   const isBasketEmpty = isEmpty(basket)
@@ -36,11 +36,7 @@ export default function Basket() {
       {isBasketEmpty ? (
         <EmptyBasket />
       ) : (
-        <BasketProducts
-          basket={basket}
-          isModeAdmin={isModeAdmin}
-          handleDeleteBasketProduct={handleDeleteBasketProduct}
-        />
+        <BasketProducts/>
       )}
 
       <BasketSection>

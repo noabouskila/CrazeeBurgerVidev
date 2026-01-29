@@ -6,7 +6,7 @@ import Form from "./Form";
 
 export default function EditProductForm() {
 
-  const { productSelected, setProductSelected, handleEdit, titleEditRef } = useContext(OrderContext);
+  const { productSelected, setProductSelected, handleEdit, titleEditRef , updateBasketProductPrice } = useContext(OrderContext);
  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -14,12 +14,17 @@ export default function EditProductForm() {
     const updatedProduct = {
       ...productSelected,
       [name]: value,
-    }; 
-    // mise a jour de la modification dans le state interne de linput 
+    };
+    // mise a jour de la modification dans le state interne de linput
     setProductSelected(updatedProduct);
 
-    // pour que la modification soit mis a jour et transferer dans le menu
+    // pour que la modification soit mis a jour et transferée dans le menu
     handleEdit(updatedProduct);
+
+    // puis metre à jour le panier en même temps
+    if (name === "price") {
+      updateBasketProductPrice(updatedProduct.id, Number(value));
+    }
   };
 
   if (!productSelected.id ) {

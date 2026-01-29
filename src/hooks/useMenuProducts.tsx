@@ -34,13 +34,13 @@ export const useMenuProducts = () => {
     const indexOfProductToEdit = menu.findIndex(
       (product) => product.id === productBeingEdited.id
     );
-    
 
     if (indexOfProductToEdit !== -1) {
       const editedProduct: MenuItem =
         convertProductFormToMenuItem(productBeingEdited);
       menuCopy[indexOfProductToEdit] = editedProduct; // remplacer le produit
       setMenu(menuCopy);
+
     }
   };
 
