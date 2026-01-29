@@ -20,11 +20,11 @@ export const LoginPageStyled = styled.div`
   justify-content: center;
   align-items: center;
 
-  background: url("/assets/F03-burger-background.webp");
+  background: url("/assets/F03-BURGER-BACKGROUND.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.5);
   background-blend-mode: darken;
 
   .logo-login-page {

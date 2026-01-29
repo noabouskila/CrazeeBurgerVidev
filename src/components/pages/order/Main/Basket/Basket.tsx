@@ -8,23 +8,25 @@ import { useContext, useMemo } from "react";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyBasket from "./EmptyBasket";
 import BasketProducts from './BasketProducts';
+import { isEmpty } from "../../../../../utils/array";
 
 
 export default function Basket() {
+  const { basket } =
+    useContext(OrderContext);
 
-  const { basket  , isModeAdmin, handleDeleteBasketProduct} = useContext(OrderContext);
-  const isBasketEmpty = basket.length === 0;
-  
- const sumToPay = useMemo(
-   () =>
-     basket.reduce(
-       (total, basketProduct) =>
-         total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
-       0
-     ),
-   [basket]
- );
-   
+  const isBasketEmpty = isEmpty(basket)
+
+  const sumToPay = useMemo(
+    () =>
+      basket.reduce(
+        (total, basketProduct) =>
+          total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
+        0
+      ),
+    [basket]
+  );
+
   return (
     <BasketStyled>
       <BasketSection>
@@ -34,11 +36,7 @@ export default function Basket() {
       {isBasketEmpty ? (
         <EmptyBasket />
       ) : (
-        <BasketProducts
-          basket={basket}
-          isModeAdmin={isModeAdmin}
-          handleDeleteBasketProduct={handleDeleteBasketProduct}
-        />
+        <BasketProducts/>
       )}
 
       <BasketSection>

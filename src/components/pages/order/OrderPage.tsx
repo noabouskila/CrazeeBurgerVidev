@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../../theme";
 import Navbar from "./Navbar/Navbar";
@@ -6,9 +6,10 @@ import Main from "./Main/Main";
 import OrderContext from "../../../context/OrderContext";
 import type { ProductForm } from "../../../types/types";
 import { EMPTY_PRODUCT } from "../../../enums/products";
-
 import { useMenuProducts } from "../../../hooks/useMenuProducts";
 import { useBasket } from "../../../hooks/useBasket";
+import { convertMenuItemToProductForm } from "../../../utils/productUtils";
+
 
 export default function OrderPage() {
   // lifting the state up ( remonter letat de 2 composants dans leur parent le plus proche : ici OrderPage)
@@ -23,7 +24,40 @@ export default function OrderPage() {
  
   // customs hooks
   const { menu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
-  const { basket, handleAddToBasket, handleDeleteBasketProduct } = useBasket();
+  const {basket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice, } = useBasket();
+
+  const [shouldFocusInput, setShouldFocusInput] = useState(false);
+
+
+
+  const selectProductForEdit = (productId: string) => {
+    if (!isModeAdmin) return;
+
+    // ouvrir le panneau
+    setIsCollapse(true);
+
+    // trouver le produit
+    const product = menu.find((p) => p.id === productId);
+    if (!product) return;
+
+    // mettre à jour productSelected
+    setProductSelected(convertMenuItemToProductForm(product));
+
+    // sélectionner l'onglet "edit"
+    setCurrentTabSelected("edit");
+
+    // signaler le focus
+    setShouldFocusInput(true);
+  };
+   useEffect(() => {
+     if (shouldFocusInput && isCollapse && currentTabSelected === "edit")
+       // focus sur linput du titre
+       titleEditRef.current?.focus();
+
+     // reset le flag pour ne pas refocus à chaque render
+     setShouldFocusInput(false);
+   }, [shouldFocusInput, isCollapse, setCurrentTabSelected]);
+
 
 
   const orderContextValue = {
@@ -53,7 +87,10 @@ export default function OrderPage() {
 
     basket,
     handleAddToBasket,
-    handleDeleteBasketProduct
+    handleDeleteBasketProduct,
+    updateBasketProductPrice,
+    selectProductForEdit,
+    setShouldFocusInput,
   };
 
   return (

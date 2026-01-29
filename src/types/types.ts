@@ -9,10 +9,13 @@ export interface MenuItem {
   quantity: number;
   isAvailable?: boolean;
   isAdvertised?: boolean;
+  isSelected?: boolean;
 }
 export interface BasketItem extends MenuItem {
   isModeAdmin?: boolean;
-  onDelete?: () => void;
+  onDelete?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onClick?: () => void;
+
 }
 
 

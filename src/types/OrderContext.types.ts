@@ -28,4 +28,7 @@ export interface OrderContextType {
   basket: BasketItem[];
   handleAddToBasket: (productToAdd: MenuItem) => void;
   handleDeleteBasketProduct: (productId: string) => void;
+  updateBasketProductPrice: (id: string, newPrice: number) => void;
+  selectProductForEdit: (productId: string) => void;
+  setShouldFocusInput: React.Dispatch<React.SetStateAction<boolean>>;
 }

@@ -40,6 +40,7 @@ export const useMenuProducts = () => {
         convertProductFormToMenuItem(productBeingEdited);
       menuCopy[indexOfProductToEdit] = editedProduct; // remplacer le produit
       setMenu(menuCopy);
+
     }
   };
 

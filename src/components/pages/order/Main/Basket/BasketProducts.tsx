@@ -1,38 +1,63 @@
 import styled from "styled-components";
-import type {  BasketItem } from "../../../../../types/types";
 import BasketCard from "./BasketCard";
 import { DEFAULT_IMAGE } from "../../../../../enums/products";
+import { findObjectById } from "../../../../../utils/array";
+import { useContext } from "react";
+import OrderContext from "../../../../../context/OrderContext";
+import { checkIsProductSelected } from "../Menu/helper";
 
 
 
-export default function BasketProducts({
-  basket,
-  isModeAdmin,
-  handleDeleteBasketProduct,
-}: {
-  basket: BasketItem[];
-  isModeAdmin : boolean;
-  handleDeleteBasketProduct : (id: string) => void;  
-}) {
-  const handleOnDelete = (id: string) => {
+
+export default function BasketProducts() {
+
+  const {
+    menu,
+    basket,
+    isModeAdmin,
+    handleDeleteBasketProduct,
+    selectProductForEdit,
+    productSelected,
+  } = useContext(OrderContext);
+
+
+
+  const handleOnDelete = (e: React.MouseEvent<HTMLDivElement> , id: string) => {
+    e.stopPropagation()
     handleDeleteBasketProduct(id);
   };
 
   return (
     <BasketProductsStyled>
-      {basket.map(({ id, title, imageSource, price, quantity }) => (
-        <div className="basket-card" key={id}>
-          <BasketCard
-            id={id}
-            title={title}
-            imageSource={imageSource ? imageSource : DEFAULT_IMAGE}
-            price={price}
-            quantity={quantity}
-            onDelete={() => handleOnDelete(id)}
-            isModeAdmin={isModeAdmin}
-          />
-        </div>
-      ))}
+      {basket.map((basketProduct) => {
+        const menuProduct = findObjectById(menu, basketProduct.id);
+       
+        if (!menuProduct) {
+          // If the menu item can't be found, skip rendering this basket entry
+          return null;
+        }
+
+        return (
+          <div className="basket-card" key={basketProduct.id}>
+            <BasketCard
+              id={menuProduct.id}
+              title={menuProduct.title}
+              imageSource={
+                menuProduct.imageSource
+                  ? menuProduct.imageSource
+                  : DEFAULT_IMAGE
+              }
+              price={menuProduct.price}
+              quantity={basketProduct.quantity}
+              onDelete={(e) => handleOnDelete(e, basketProduct.id)}
+              isModeAdmin={isModeAdmin}
+              onClick={() => selectProductForEdit(basketProduct.id)}
+              isSelected={checkIsProductSelected(basketProduct.id,productSelected.id
+              )}
+            />
+          </div>
+        );
+      })}
     </BasketProductsStyled>
   );
 }

@@ -1,16 +1,16 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import styled from "styled-components";
 import Card from "../../../../reusable-ui/Card";
 import { formatPrice } from "../../../../../utils/maths";
 import OrderContext from "../../../../../context/OrderContext";
 import EmptyMenuAdmin from "./EmptyMenuAdmin";
 import EmptyMenuClient from "./EmptyMenuClient";
-import { convertMenuItemToProductForm } from "../../../../../utils/productUtils";
+
 import { checkIsProductSelected } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/products";
 import { theme } from "../../../../../theme";
-import { findInArray } from "../../../../../utils/array";
+import { findObjectById, isEmpty } from "../../../../../utils/array";
 
 
 export default function Menu() {
@@ -22,46 +22,11 @@ export default function Menu() {
     resetMenu,
     setProductSelected,
     productSelected,
-    isCollapse,
-    setIsCollapse,
-    currentTabSelected,
-    setCurrentTabSelected,
-    titleEditRef,
     handleAddToBasket,
+    selectProductForEdit,
+    setShouldFocusInput,
   } = useContext(OrderContext);
 
-  const [shouldFocusInput, setShouldFocusInput] = useState(false);
-
-
-  // comportement pour modifier le menu
-  const handleUpdate =   (productId: string) => {
-    // ne rien faire si on n'est pas en mode admin
-    if (!isModeAdmin) return;
-
-    // ouvrir le menu
-    setIsCollapse(true);
-
-    // trouver le produit cliqué dans le menu
-    const productSelectedOnClick = findInArray(menu , productId)
-    if (!productSelectedOnClick) return;
-
-    setProductSelected(convertMenuItemToProductForm(productSelectedOnClick));
-
-    // sélectionner l'onglet "edit"
-    setCurrentTabSelected("edit");
-
-    // signaler que le focus doit se faire
-    setShouldFocusInput(true);
-  };
-
-  useEffect(() => {
-    if (shouldFocusInput && isCollapse && currentTabSelected === "edit")
-      // focus sur linput du titre
-      titleEditRef.current?.focus();
-
-    // reset le flag pour ne pas refocus à chaque render
-    setShouldFocusInput(false);
-  }, [shouldFocusInput , isCollapse, setCurrentTabSelected]);
 
 
 
@@ -80,17 +45,17 @@ export default function Menu() {
 
 
   // affichage
-  if (menu.length === 0) {
-    return isModeAdmin ? (
-      <EmptyMenuAdmin onResetMenu={resetMenu} />
-    ) : (
-      <EmptyMenuClient />
-    );
-  }
+    if (isEmpty(menu)) {
+      return isModeAdmin ? (
+        <EmptyMenuAdmin onResetMenu={resetMenu} />
+      ) : (
+        <EmptyMenuClient />
+      );
+    }
 
   const handleAddButton = (event: React.MouseEvent<HTMLElement>  , id: string) => {
     event.stopPropagation();
-    const productToAdd = findInArray(menu , id);
+    const productToAdd = findObjectById(menu , id);
     if (!productToAdd) return;
 
     handleAddToBasket(productToAdd);
@@ -109,7 +74,7 @@ export default function Menu() {
           leftDescription={formatPrice(price)}
           hasDeleteButton={isModeAdmin}
           onDelete={(event) => handleCardOnDelete(event, id)}
-          onClick={() => handleUpdate(id)}
+          onClick={() => selectProductForEdit(id)}
           isHoverable={isModeAdmin}
           isSelected={checkIsProductSelected(id, productSelected.id)}
           onAdd={(event) => handleAddButton(event, id)}
