@@ -15,10 +15,16 @@ export default function BasketCard({
   quantity,
   isModeAdmin,
   onDelete,
-  onClick
+  onClick ,
+  isSelected
 }: BasketItem) {
   return (
-    <BasketCardStyled key={id} $isModeAdmin={isModeAdmin} onClick={onClick}>
+    <BasketCardStyled
+      key={id}
+      $isModeAdmin={isModeAdmin}
+      onClick={onClick}
+      $isSelected={isSelected}
+    >
       <div className="product-image">
         <img src={imageSource} alt="image produit panier" />
       </div>
@@ -43,6 +49,7 @@ export default function BasketCard({
 
 interface BasketCardStyledProps {
   $isModeAdmin?: boolean;
+  $isSelected?: boolean;
 }
 export const BasketCardStyled = styled.div<BasketCardStyledProps>`
   cursor: ${({ $isModeAdmin }) => ($isModeAdmin ? "pointer" : "auto")};
@@ -98,6 +105,15 @@ export const BasketCardStyled = styled.div<BasketCardStyledProps>`
   }
 
   ${({ $isModeAdmin }) => $isModeAdmin && hoverableStyle}
+  ${({ $isModeAdmin , $isSelected }) => $isSelected && $isModeAdmin && selectedStyle}
+`;
+
+const selectedStyle = css`
+  background-color: ${theme.colors.primary};
+  .price,
+  .quantity {
+    color: ${theme.colors.white};
+  }
 `;
 
 const hoverableStyle = css`
@@ -138,4 +154,6 @@ const hoverableStyle = css`
       }
     }
   }
+
+ 
 `;

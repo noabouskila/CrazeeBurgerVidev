@@ -4,6 +4,7 @@ import { DEFAULT_IMAGE } from "../../../../../enums/products";
 import { findObjectById } from "../../../../../utils/array";
 import { useContext } from "react";
 import OrderContext from "../../../../../context/OrderContext";
+import { checkIsProductSelected } from "../Menu/helper";
 
 
 
@@ -16,6 +17,7 @@ export default function BasketProducts() {
     isModeAdmin,
     handleDeleteBasketProduct,
     selectProductForEdit,
+    productSelected,
   } = useContext(OrderContext);
 
 
@@ -50,6 +52,8 @@ export default function BasketProducts() {
               onDelete={(e) => handleOnDelete(e, basketProduct.id)}
               isModeAdmin={isModeAdmin}
               onClick={() => selectProductForEdit(basketProduct.id)}
+              isSelected={checkIsProductSelected(basketProduct.id,productSelected.id
+              )}
             />
           </div>
         );
