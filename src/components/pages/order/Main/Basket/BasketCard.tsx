@@ -110,7 +110,12 @@ export const BasketCardStyled = styled.div<BasketCardStyledProps>`
 
 const selectedStyle = css`
   background-color: ${theme.colors.primary};
-  .price,
+  .product-info {
+    .price {
+      color: ${theme.colors.white};
+    }
+  }
+
   .quantity {
     color: ${theme.colors.white};
   }
