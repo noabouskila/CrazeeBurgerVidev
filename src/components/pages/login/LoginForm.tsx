@@ -6,6 +6,8 @@ import { IoChevronForward } from "react-icons/io5";
 import TextInput from "../../reusable-ui/TextInput";
 import { FaRegUserCircle } from "react-icons/fa";
 import Button from "../../reusable-ui/Button";
+import { authenticatUser } from "../../../api/user";
+
 
 export default function LoginForm() {
   //state
@@ -13,10 +15,17 @@ export default function LoginForm() {
   const navigate = useNavigate();
 
   // logic
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setPrenom("");
-    navigate(`/orderPage/${prenom}`);
+
+    try {
+      const result = await authenticatUser(prenom);
+      setPrenom("");
+      navigate(`/orderPage/${result?.username}`);
+    } catch (error) {
+      console.error(error);
+      alert("Erreur lors de l'authentification de l'utilisateur");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

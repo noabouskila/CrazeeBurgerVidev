@@ -9,6 +9,7 @@ import { EMPTY_PRODUCT } from "../../../enums/products";
 import { useMenuProducts } from "../../../hooks/useMenuProducts";
 import { useBasket } from "../../../hooks/useBasket";
 import { convertMenuItemToProductForm } from "../../../utils/productUtils";
+import { getUser } from "../../../api/user";
 
 
 export default function OrderPage() {
@@ -92,6 +93,9 @@ export default function OrderPage() {
     selectProductForEdit,
     setShouldFocusInput,
   };
+
+  // appel api firestore pour récupérer les produits
+  getUser("Alex")
 
   return (
     <OrderContext.Provider value={orderContextValue}>
