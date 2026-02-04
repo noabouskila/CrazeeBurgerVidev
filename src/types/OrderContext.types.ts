@@ -13,7 +13,7 @@ export interface OrderContextType {
 
   menu: MenuItem[];
   handleAdd: (newProduct: ProductForm , username : string) => void;
-  handleDelete: (productId: string) => void;
+  handleDelete: (productId: string , username : string) => void;
   handleEdit: (productBeingEdited: ProductForm) => void;
   resetMenu: () => void;
 

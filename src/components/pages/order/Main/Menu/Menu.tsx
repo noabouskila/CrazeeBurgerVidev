@@ -25,6 +25,7 @@ export default function Menu() {
     handleAddToBasket,
     selectProductForEdit,
     setShouldFocusInput,
+    username
   } = useContext(OrderContext);
 
 
@@ -32,7 +33,7 @@ export default function Menu() {
 
   const handleCardOnDelete = (event: React.MouseEvent<HTMLElement>  , id: string ) => {
     event.stopPropagation();
-    handleDelete(id);
+    handleDelete(id , username);
 
 
     // Si le produit supprimé est celui qui est sélectionné, réinitialiser productSelected

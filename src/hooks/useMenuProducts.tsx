@@ -22,11 +22,12 @@ export const useMenuProducts = () => {
   };
 
   // comportement pour supprimer un produit du menu
-  const handleDelete = (productId: string) => {
+  const handleDelete = (productId: string, username : string) => {
     const menuCopy: MenuItem[] = deepClone(menu);
     // const menuCopy = [...menu];// shalow copy suffit
     const updatedMenu = menuCopy.filter((product) => product.id !== productId);
     setMenu(updatedMenu);
+    syncBothMenus(username, updatedMenu);
   };
 
   // comportement pour mettre a  jour modifier un produit au menu
