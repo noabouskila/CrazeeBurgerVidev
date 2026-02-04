@@ -163,6 +163,7 @@ const hoverableStyle = css`
     transition: ease-in-out 0.4s;
     box-shadow: ${theme.shadows.orangeHighlight};
     cursor: pointer;
+    background-color: red;
   }
 `;
 

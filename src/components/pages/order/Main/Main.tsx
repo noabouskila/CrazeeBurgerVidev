@@ -14,7 +14,9 @@ export default function Main() {
       <Basket />
 
       <div className="menu-and-admin">
-        <Menu />
+        <div className="menu">
+          <Menu />
+        </div>
         {isModeAdmin && <Admin />}
       </div>
     </MainStyled>
@@ -42,5 +44,9 @@ export const MainStyled = styled.section`
 
   .menu-and-admin {
     position: relative;
+    box-shadow: ${theme.shadows.strong};
+    .menu {
+      /* min-height: 100%; */
+    }
   }
 `;

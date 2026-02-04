@@ -9,7 +9,6 @@ import EmptyMenuClient from "./EmptyMenuClient";
 
 import { checkIsProductSelected } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/products";
-import { theme } from "../../../../../theme";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
 import Spinner from "../../../../reusable-ui/Spinner";
 
@@ -100,6 +99,4 @@ export const MenuStyled = styled.section`
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
-  box-shadow: ${theme.shadows.strong};
-  height : 100%;
 `;

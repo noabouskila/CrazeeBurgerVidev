@@ -50,7 +50,7 @@ export const BasketStyled = styled.section`
   font-family: ${theme.fonts.family.stylish};
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
-  height: 89vh;
+  min-height: 85vh;
   /* width : 350px; */
   display: flex;
   flex-direction: column;
