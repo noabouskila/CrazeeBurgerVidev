@@ -30,7 +30,7 @@ export const useMenuProducts = () => {
   };
 
   // comportement pour mettre a  jour modifier un produit au menu
-  const handleEdit = (productBeingEdited: ProductForm) => {
+  const handleEdit = (productBeingEdited: ProductForm , username : string) => {
     const menuCopy: MenuItem[] = deepClone(menu);
     // trouver le produit qui a lid le meme que celui qui est en train detre modifie
     const indexOfProductToEdit = menu.findIndex(
@@ -42,6 +42,7 @@ export const useMenuProducts = () => {
         convertProductFormToMenuItem(productBeingEdited);
       menuCopy[indexOfProductToEdit] = editedProduct; // remplacer le produit
       setMenu(menuCopy);
+      syncBothMenus(username , menuCopy);
 
     }
   };
