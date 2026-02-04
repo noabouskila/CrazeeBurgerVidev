@@ -15,7 +15,7 @@ export interface OrderContextType {
   handleAdd: (newProduct: ProductForm, username: string) => void;
   handleDelete: (productId: string, username: string) => void;
   handleEdit: (productBeingEdited: ProductForm) => void;
-  resetMenu: () => void;
+  resetMenu: (username : string) => void;
 
   newProduct: ProductForm;
   setNewProduct: React.Dispatch<React.SetStateAction<ProductForm>>;

@@ -114,7 +114,7 @@ export default function OrderPage() {
     selectProductForEdit,
     setShouldFocusInput,
     username,
-    isLoading
+    isLoading 
   };
 
   // appel api firestore pour récupérer les produits

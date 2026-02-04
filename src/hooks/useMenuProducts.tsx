@@ -8,7 +8,7 @@ import { deepClone } from "../utils/array";
 import {  syncBothMenus } from "../api/product";
 
 export const useMenuProducts = () => {
-  
+
   const [menu, setMenu] = useState<MenuItem[]>([]);
 
   // comportement pour ajouter un produit au menu
@@ -47,8 +47,9 @@ export const useMenuProducts = () => {
   };
 
   // comportement pour reinitialiser le menu
-  const resetMenu = () => {
+  const resetMenu = (username: string  ) => {
     setMenu(fakeMenu.LARGE);
+    syncBothMenus(username , fakeMenu.LARGE);
   };
 
 
