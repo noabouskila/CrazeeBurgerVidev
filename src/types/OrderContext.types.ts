@@ -12,8 +12,8 @@ export interface OrderContextType {
   setCurrentTabSelected: React.Dispatch<React.SetStateAction<string>>;
 
   menu: MenuItem[];
-  handleAdd: (newProduct: ProductForm , username : string) => void;
-  handleDelete: (productId: string , username : string) => void;
+  handleAdd: (newProduct: ProductForm, username: string) => void;
+  handleDelete: (productId: string, username: string) => void;
   handleEdit: (productBeingEdited: ProductForm) => void;
   resetMenu: () => void;
 
@@ -31,5 +31,6 @@ export interface OrderContextType {
   updateBasketProductPrice: (id: string, newPrice: number) => void;
   selectProductForEdit: (productId: string) => void;
   setShouldFocusInput: React.Dispatch<React.SetStateAction<boolean>>;
-  username:string ;
+  username: string;
+  isLoading : boolean;
 }

@@ -11,6 +11,7 @@ import { checkIsProductSelected } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/products";
 import { theme } from "../../../../../theme";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
+import Spinner from "../../../../reusable-ui/Spinner";
 
 
 export default function Menu() {
@@ -25,7 +26,8 @@ export default function Menu() {
     handleAddToBasket,
     selectProductForEdit,
     setShouldFocusInput,
-    username
+    username ,
+    isLoading
   } = useContext(OrderContext);
 
 
@@ -45,7 +47,12 @@ export default function Menu() {
   };
 
 
+
   // affichage
+  if (isLoading) {
+    return <Spinner label="Chargement du menu..." color="#ff6600"  />;
+  }
+
     if (isEmpty(menu)) {
       return isModeAdmin ? (
         <EmptyMenuAdmin onResetMenu={resetMenu} />
@@ -94,4 +101,5 @@ export const MenuStyled = styled.section`
   padding: 50px 50px 150px;
   justify-items: center;
   box-shadow: ${theme.shadows.strong};
+  height : 100%;
 `;

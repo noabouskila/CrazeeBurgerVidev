@@ -30,6 +30,7 @@ export default function OrderPage() {
   const {basket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice, } = useBasket();
 
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { username } = useParams<{ username: string }>();
   if (!username) {
@@ -68,9 +69,12 @@ export default function OrderPage() {
 
   // charger le menu de chaque user au chargement du composant
   useEffect(() => {
-   const fetchMenu = async () => {
-     const menuReceived = await getMenu(username);
-     setMenu(menuReceived);
+    const fetchMenu = async () => {
+      setIsLoading(true);
+      const menuReceived = await getMenu(username);
+      setMenu(menuReceived);
+      setIsLoading(false);
+
    };
 
    fetchMenu();
@@ -110,6 +114,7 @@ export default function OrderPage() {
     selectProductForEdit,
     setShouldFocusInput,
     username,
+    isLoading
   };
 
   // appel api firestore pour récupérer les produits
