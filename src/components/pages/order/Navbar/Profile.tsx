@@ -1,11 +1,10 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { FaRegUserCircle } from "react-icons/fa";
 import { theme } from "../../../../theme";
 
 export default function Profile() {
+  const { username } = useContext(OrderContext);
 
-  const  {username} = useParams()
-  
   return (
     <ProfileStyled>
       <div className="user-info">
@@ -22,6 +21,8 @@ export default function Profile() {
 }
 
 import styled from "styled-components";
+import { useContext } from "react";
+import OrderContext from "../../../../context/OrderContext";
 
 export const ProfileStyled = styled.div`
   display: flex;

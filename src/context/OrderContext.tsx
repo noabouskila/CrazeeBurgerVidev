@@ -39,6 +39,7 @@ const OrderContext = createContext<OrderContextType>({
   updateBasketProductPrice: throwError("handleUpdatePriceToBasket"),
   selectProductForEdit: throwError("handleUpdateToBasket"),
   setShouldFocusInput: throwError("setShouldFocusInput"),
+  username: ""
 });
 
 export default OrderContext;

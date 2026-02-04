@@ -5,18 +5,20 @@ import type { MenuItem, ProductForm } from "../types/types";
 import { fakeMenu } from "../data/fakeMenu";
 import { convertProductFormToMenuItem } from "../utils/productUtils";
 import { deepClone } from "../utils/array";
+import { syncBothMenus } from "../api/product";
 
 export const useMenuProducts = () => {
 
 
-    const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
+  const [menu, setMenu] = useState<MenuItem[]>(fakeMenu.LARGE);
 
   // comportement pour ajouter un produit au menu
-  const handleAdd = (newProducttoAdd: ProductForm) => {
+  const handleAdd = (newProducttoAdd: ProductForm  , username : string) => {
     const menuProduct: MenuItem = convertProductFormToMenuItem(newProducttoAdd);
     const menuCopy: MenuItem[] = deepClone(menu);
     const updatedMenu = [menuProduct, ...menuCopy];
     setMenu(updatedMenu);
+    syncBothMenus(username , updatedMenu);
   };
 
   // comportement pour supprimer un produit du menu

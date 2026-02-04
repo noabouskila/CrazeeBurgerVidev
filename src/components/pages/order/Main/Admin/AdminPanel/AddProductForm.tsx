@@ -6,7 +6,7 @@ import Form from "./Form";
 import { useDisplaySuccessMsg } from "../../../../../../hooks/useDisplaySuccessMessage";
 
 export default function AddProductForm() {
-  const { handleAdd, newProduct, setNewProduct } = useContext(OrderContext);
+  const { handleAdd, newProduct, setNewProduct , username } = useContext(OrderContext);
  
   const { isSubmitted, DisplaySuccessMsg } = useDisplaySuccessMsg();
 
@@ -27,7 +27,7 @@ export default function AddProductForm() {
       id: crypto.randomUUID(),
     };
 
-    handleAdd(newProducttoAdd);
+    handleAdd(newProducttoAdd , username);
     setNewProduct(EMPTY_PRODUCT);
 
     DisplaySuccessMsg();

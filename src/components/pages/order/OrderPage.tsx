@@ -10,6 +10,7 @@ import { useMenuProducts } from "../../../hooks/useMenuProducts";
 import { useBasket } from "../../../hooks/useBasket";
 import { convertMenuItemToProductForm } from "../../../utils/productUtils";
 import { getUser } from "../../../api/user";
+import { useParams } from "react-router-dom";
 
 
 export default function OrderPage() {
@@ -29,6 +30,10 @@ export default function OrderPage() {
 
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
 
+  const { username } = useParams<{ username: string }>();
+  if (!username) {
+    throw new Error("Username manquant dans l’URL");
+  }
 
 
   const selectProductForEdit = (productId: string) => {
@@ -92,6 +97,7 @@ export default function OrderPage() {
     updateBasketProductPrice,
     selectProductForEdit,
     setShouldFocusInput,
+    username,
   };
 
   // appel api firestore pour récupérer les produits
