@@ -7,7 +7,7 @@ import { forwardRef } from "react";
 
 
 const Form = forwardRef<HTMLInputElement, FormType>(
-  ({ product, onChange, onSubmit, children }, ref) => {
+  ({ product, onChange, onSubmit, onFocus , onBlur , children }, ref) => {
     const TextInputs = getTextInputConfig(product);
 
     return (
@@ -21,6 +21,8 @@ const Form = forwardRef<HTMLInputElement, FormType>(
               {...input}
               version="minimalist"
               onChange={onChange}
+              onFocus={onFocus}
+              onBlur={onBlur}
               ref={ref && input.name === "title" ? ref : null}
             />
           ))}
