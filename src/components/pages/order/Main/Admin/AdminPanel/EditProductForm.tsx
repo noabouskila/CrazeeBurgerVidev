@@ -3,12 +3,14 @@ import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage";
 import Form from "./Form";
-import { syncBothMenus } from "../../../../../../api/product";
+import SavingMessage from "./SavingMessage";
+import { useDisplaySuccessMsg } from "../../../../../../hooks/useDisplaySuccessMessage";
 
 export default function EditProductForm() {
 
   const [valueOnFocus, setValueOnFocus] = useState<string>("");
   const { username , productSelected, setProductSelected, handleEdit, titleEditRef , updateBasketProductPrice } = useContext(OrderContext);
+  const { isSubmitted : isSaving , DisplaySuccessMsg } = useDisplaySuccessMsg();
  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,8 +39,7 @@ export default function EditProductForm() {
   const handleOnBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
     const valueOnBlur = e.target.value;
     if (valueOnFocus !== valueOnBlur.trim()) {
-      console.log("ca a changé  : " , valueOnBlur)
-      // A FINIR VIDEO 12 MIN 50 F13 PARTIE 09 POUR SINCHRONISER LE CHANGEMENT AVEC LA BASE DE DONNEES
+      DisplaySuccessMsg()
     }
  
   };
@@ -50,8 +51,14 @@ export default function EditProductForm() {
 
   
   return (
-    <Form product={productSelected} onChange={handleChange} onFocus={handleOnFocus} onBlur={handleOnBlur} ref={titleEditRef}>
-      <EditInfoMessage />
+    <Form
+      product={productSelected}
+      onChange={handleChange}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      ref={titleEditRef}
+    >
+      {isSaving ? <SavingMessage /> :<EditInfoMessage />  }
     </Form>
   );
  
