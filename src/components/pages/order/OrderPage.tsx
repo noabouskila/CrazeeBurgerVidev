@@ -27,7 +27,7 @@ export default function OrderPage() {
  
   // customs hooks
   const { menu, setMenu , handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
-  const {basket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice, } = useBasket();
+  const {basket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice } = useBasket();
 
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

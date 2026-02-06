@@ -65,7 +65,7 @@ export default function Menu() {
     const productToAdd = findObjectById(menu , id);
     if (!productToAdd) return;
 
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(productToAdd , username);
   };
 
 

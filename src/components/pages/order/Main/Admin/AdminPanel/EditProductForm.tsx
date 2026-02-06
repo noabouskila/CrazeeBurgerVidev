@@ -27,7 +27,7 @@ export default function EditProductForm() {
 
     // puis metre à jour le panier en même temps
     if (name === "price") {
-      updateBasketProductPrice(updatedProduct.id, Number(value));
+      updateBasketProductPrice(updatedProduct.id, Number(value) , username);
     }
   };
 
