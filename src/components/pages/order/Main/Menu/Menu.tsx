@@ -52,13 +52,13 @@ export default function Menu() {
     return <Spinner label="Chargement du menu..." color="#ff6600"  />;
   }
 
-  if (isEmpty(menu)) {
-    return isModeAdmin ? (
-      <EmptyMenuAdmin onResetMenu={()=>resetMenu(username)} />
-    ) : (
-      <EmptyMenuClient />
-    );
-  }
+    if (isEmpty(menu)) {
+      return isModeAdmin ? (
+        <EmptyMenuAdmin onResetMenu={()=>resetMenu(username)} />
+      ) : (
+        <EmptyMenuClient />
+      );
+    }
 
   const handleAddButton = (event: React.MouseEvent<HTMLElement>  , id: string) => {
     event.stopPropagation();

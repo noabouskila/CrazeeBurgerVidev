@@ -9,7 +9,6 @@ import { EMPTY_PRODUCT } from "../../../enums/products";
 import { useMenuProducts } from "../../../hooks/useMenuProducts";
 import { useBasket } from "../../../hooks/useBasket";
 import { convertMenuItemToProductForm } from "../../../utils/productUtils";
-import { getUser } from "../../../api/user";
 import { useParams } from "react-router-dom";
 
 import { initializeUserSession } from "./helpers/initializeUserSession";
@@ -20,28 +19,35 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapse, setIsCollapse] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
- 
-  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] = useState<ProductForm>(EMPTY_PRODUCT);
-  const titleEditRef = useRef<HTMLInputElement | null>(null);
 
- 
-  // customs hooks
-  const { menu, setMenu , handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
-  const {basket ,  setBasket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice } = useBasket();
+  const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] =
+    useState<ProductForm>(EMPTY_PRODUCT);
+  const titleEditRef = useRef<HTMLInputElement | null>(null);
 
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
   const [isLoadingMenu, setIsLoadingMenu] = useState(true);
   const [isLoadingBasket, setIsLoadingBasket] = useState(true);
 
+  // récupérer le username dans l'url
   const { username } = useParams<{ username: string }>();
   if (!username) {
     throw new Error("Username manquant dans l’URL");
   }
 
+  // customs hooks
+  const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu } =
+    useMenuProducts();
+  const {
+    basket,
+    setBasket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    updateBasketProductPrice,
+  } = useBasket();
+
   const selectProductForEdit = (productId: string) => {
     if (!isModeAdmin) return;
-
     // ouvrir le panneau
     setIsCollapse(true);
 
@@ -69,7 +75,6 @@ export default function OrderPage() {
     setShouldFocusInput(false);
   }, [shouldFocusInput, isCollapse, setCurrentTabSelected]);
 
- 
   useEffect(() => {
     initializeUserSession(
       username,
@@ -80,7 +85,6 @@ export default function OrderPage() {
     );
   }, []);
 
-  
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -108,19 +112,16 @@ export default function OrderPage() {
     titleEditRef,
 
     basket,
-    setBasket , 
+    setBasket,
     handleAddToBasket,
     handleDeleteBasketProduct,
     updateBasketProductPrice,
     selectProductForEdit,
     setShouldFocusInput,
     username,
-    isLoadingMenu , 
-    isLoadingBasket
+    isLoadingMenu,
+    isLoadingBasket,
   };
-
-  // appel api firestore pour récupérer les produits
-  getUser("Alex")
 
   return (
     <OrderContext.Provider value={orderContextValue}>
