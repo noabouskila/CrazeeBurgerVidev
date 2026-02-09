@@ -36,5 +36,6 @@ export interface OrderContextType {
   selectProductForEdit: (productId: string) => void;
   setShouldFocusInput: React.Dispatch<React.SetStateAction<boolean>>;
   username: string;
-  isLoading: boolean;
+  isLoadingMenu: boolean;
+  isLoadingBasket: boolean;
 }

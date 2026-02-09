@@ -40,7 +40,8 @@ const OrderContext = createContext<OrderContextType>({
   selectProductForEdit: throwError("handleUpdateToBasket"),
   setShouldFocusInput: throwError("setShouldFocusInput"),
   username: "",
-  isLoading : false,
+  isLoadingMenu : false,
+  isLoadingBasket : false
 });
 
 export default OrderContext;

@@ -26,7 +26,7 @@ export default function Menu() {
     selectProductForEdit,
     setShouldFocusInput,
     username ,
-    isLoading
+    isLoadingMenu
   } = useContext(OrderContext);
 
 
@@ -48,17 +48,17 @@ export default function Menu() {
 
 
   // affichage
-  if (isLoading) {
+  if (isLoadingMenu) {
     return <Spinner label="Chargement du menu..." color="#ff6600"  />;
   }
 
-    if (isEmpty(menu)) {
-      return isModeAdmin ? (
-        <EmptyMenuAdmin onResetMenu={()=>resetMenu(username)} />
-      ) : (
-        <EmptyMenuClient />
-      );
-    }
+  if (isEmpty(menu)) {
+    return isModeAdmin ? (
+      <EmptyMenuAdmin onResetMenu={()=>resetMenu(username)} />
+    ) : (
+      <EmptyMenuClient />
+    );
+  }
 
   const handleAddButton = (event: React.MouseEvent<HTMLElement>  , id: string) => {
     event.stopPropagation();

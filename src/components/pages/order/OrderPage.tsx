@@ -12,6 +12,7 @@ import { convertMenuItemToProductForm } from "../../../utils/productUtils";
 import { getUser } from "../../../api/user";
 import { useParams } from "react-router-dom";
 import { getMenu } from "../../../api/product";
+import { getLocalStorage } from "../../../utils/window";
 
 
 export default function OrderPage() {
@@ -27,10 +28,11 @@ export default function OrderPage() {
  
   // customs hooks
   const { menu, setMenu , handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
-  const {basket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice } = useBasket();
+  const {basket ,  setBasket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice } = useBasket();
 
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMenu, setIsLoadingMenu] = useState(true);
+  const [isLoadingBasket, setIsLoadingBasket] = useState(true);
 
   const { username } = useParams<{ username: string }>();
   if (!username) {
@@ -58,6 +60,7 @@ export default function OrderPage() {
     setShouldFocusInput(true);
   };
 
+  // gérer le focus de linput du titre après suppression d'une card
   useEffect(() => {
     if (shouldFocusInput && isCollapse && currentTabSelected === "edit")
       // focus sur linput du titre
@@ -70,15 +73,28 @@ export default function OrderPage() {
   // charger le menu de chaque user au chargement du composant
   useEffect(() => {
     const fetchMenu = async () => {
-      setIsLoading(true);
+      setIsLoadingMenu(true);
       const menuReceived = await getMenu(username);
       setMenu(menuReceived);
-      setIsLoading(false);
+      setIsLoadingMenu(false);
 
    };
 
    fetchMenu();
  }, []);
+
+  //  charger le panier de chaque user au chargement du composant
+  // le localstorage est synchrone pas besoin de faire du async await
+  useEffect(() => {
+    
+    const initializeBasket = () => {
+      const basketFromStorage = getLocalStorage(username);
+      setBasket(basketFromStorage ?? []); // si pas de panier en storage, initialiser avec un tableau vide
+      setIsLoadingBasket(false);
+   };
+
+    initializeBasket();
+  }, []);
 
 
 
@@ -108,13 +124,15 @@ export default function OrderPage() {
     titleEditRef,
 
     basket,
+    setBasket , 
     handleAddToBasket,
     handleDeleteBasketProduct,
     updateBasketProductPrice,
     selectProductForEdit,
     setShouldFocusInput,
     username,
-    isLoading 
+    isLoadingMenu , 
+    isLoadingBasket
   };
 
   // appel api firestore pour récupérer les produits
