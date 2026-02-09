@@ -11,8 +11,8 @@ import { useBasket } from "../../../hooks/useBasket";
 import { convertMenuItemToProductForm } from "../../../utils/productUtils";
 import { getUser } from "../../../api/user";
 import { useParams } from "react-router-dom";
-import { getMenu } from "../../../api/product";
-import { getLocalStorage } from "../../../utils/window";
+
+import { initializeUserSession } from "./helpers/initializeUserSession";
 
 
 export default function OrderPage() {
@@ -38,7 +38,6 @@ export default function OrderPage() {
   if (!username) {
     throw new Error("Username manquant dans l’URL");
   }
-
 
   const selectProductForEdit = (productId: string) => {
     if (!isModeAdmin) return;
@@ -70,34 +69,18 @@ export default function OrderPage() {
     setShouldFocusInput(false);
   }, [shouldFocusInput, isCollapse, setCurrentTabSelected]);
 
-  // charger le menu de chaque user au chargement du composant
+ 
   useEffect(() => {
-    const fetchMenu = async () => {
-      setIsLoadingMenu(true);
-      const menuReceived = await getMenu(username);
-      setMenu(menuReceived);
-      setIsLoadingMenu(false);
-
-   };
-
-   fetchMenu();
- }, []);
-
-  //  charger le panier de chaque user au chargement du composant
-  // le localstorage est synchrone pas besoin de faire du async await
-  useEffect(() => {
-    
-    const initializeBasket = () => {
-      const basketFromStorage = getLocalStorage(username);
-      setBasket(basketFromStorage ?? []); // si pas de panier en storage, initialiser avec un tableau vide
-      setIsLoadingBasket(false);
-   };
-
-    initializeBasket();
+    initializeUserSession(
+      username,
+      setMenu,
+      setBasket,
+      setIsLoadingMenu,
+      setIsLoadingBasket,
+    );
   }, []);
 
-
-
+  
   const orderContextValue = {
     isModeAdmin,
     setIsModeAdmin,
@@ -109,6 +92,7 @@ export default function OrderPage() {
     setCurrentTabSelected,
 
     menu,
+    setMenu,
     handleAdd,
     handleDelete,
     handleEdit,

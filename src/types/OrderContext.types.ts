@@ -12,6 +12,7 @@ export interface OrderContextType {
   setCurrentTabSelected: React.Dispatch<React.SetStateAction<string>>;
 
   menu: MenuItem[];
+  setMenu: React.Dispatch<React.SetStateAction<MenuItem[]>>;
   handleAdd: (newProduct: ProductForm, username: string) => void;
   handleDelete: (productId: string, username: string) => void;
   handleEdit: (productBeingEdited: ProductForm, username: string) => void;

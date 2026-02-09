@@ -19,6 +19,7 @@ const OrderContext = createContext<OrderContextType>({
   setCurrentTabSelected: throwError("setCurrentTabSelected"),
 
   menu: [],
+  setMenu: throwError("setMenu"),
 
   handleAdd: throwError("handleAdd"),
   handleDelete: throwError("handleDelete"),
