@@ -12,20 +12,21 @@ import { isEmpty } from "../../../../../utils/array";
 
 
 export default function Basket() {
-  const { basket } =
-    useContext(OrderContext);
-
-  const isBasketEmpty = isEmpty(basket)
+  const {
+    basket,
+  } = useContext(OrderContext);
+  const isBasketEmpty = isEmpty(basket);
 
   const sumToPay = useMemo(
     () =>
       basket.reduce(
         (total, basketProduct) =>
           total + (basketProduct.price ?? 0) * (basketProduct.quantity ?? 0),
-        0
+        0,
       ),
-    [basket]
+    [basket],
   );
+
 
   return (
     <BasketStyled>
@@ -33,11 +34,7 @@ export default function Basket() {
         <Total amountToPay={formatPrice(sumToPay)} />
       </BasketSection>
 
-      {isBasketEmpty ? (
-        <EmptyBasket />
-      ) : (
-        <BasketProducts/>
-      )}
+      {isBasketEmpty ? <EmptyBasket /> : <BasketProducts />}
 
       <BasketSection>
         <BasketFooter />
@@ -50,7 +47,8 @@ export const BasketStyled = styled.section`
   font-family: ${theme.fonts.family.stylish};
   background-color: ${theme.colors.background_white};
   box-shadow: ${theme.shadows.strong};
-  height: 89vh;
+  /* height: 89vh; */
+  height  : 804px;
   /* width : 350px; */
   display: flex;
   flex-direction: column;

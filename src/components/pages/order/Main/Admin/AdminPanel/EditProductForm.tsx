@@ -1,12 +1,16 @@
 import HintMessage from "./HintMessage";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import OrderContext from "../../../../../../context/OrderContext";
 import EditInfoMessage from "./EditInfoMessage";
 import Form from "./Form";
+import SavingMessage from "./SavingMessage";
+import { useDisplaySuccessMsg } from "../../../../../../hooks/useDisplaySuccessMessage";
 
 export default function EditProductForm() {
 
-  const { productSelected, setProductSelected, handleEdit, titleEditRef , updateBasketProductPrice } = useContext(OrderContext);
+  const [valueOnFocus, setValueOnFocus] = useState<string>("");
+  const { username , productSelected, setProductSelected, handleEdit, titleEditRef , updateBasketProductPrice } = useContext(OrderContext);
+  const { isSubmitted : isSaving , DisplaySuccessMsg } = useDisplaySuccessMsg();
  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,21 +23,42 @@ export default function EditProductForm() {
     setProductSelected(updatedProduct);
 
     // pour que la modification soit mis a jour et transferée dans le menu
-    handleEdit(updatedProduct);
+    handleEdit(updatedProduct , username);
 
     // puis metre à jour le panier en même temps
     if (name === "price") {
-      updateBasketProductPrice(updatedProduct.id, Number(value));
+      updateBasketProductPrice(updatedProduct.id, Number(value) , username);
     }
   };
+
+
+  const handleOnFocus = (e: React.ChangeEvent<HTMLInputElement>) => {
+   setValueOnFocus(e.target.value);
+  };
+
+  const handleOnBlur = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const valueOnBlur = e.target.value;
+    if (valueOnFocus !== valueOnBlur.trim()) {
+      DisplaySuccessMsg()
+    }
+ 
+  };
+
 
   if (!productSelected.id ) {
     return <HintMessage />
   }
+
   
   return (
-    <Form product={productSelected} onChange={handleChange} ref={titleEditRef}>
-      <EditInfoMessage />
+    <Form
+      product={productSelected}
+      onChange={handleChange}
+      onFocus={handleOnFocus}
+      onBlur={handleOnBlur}
+      ref={titleEditRef}
+    >
+      {isSaving ? <SavingMessage /> :<EditInfoMessage />  }
     </Form>
   );
  

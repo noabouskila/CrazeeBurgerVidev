@@ -9,8 +9,8 @@ import EmptyMenuClient from "./EmptyMenuClient";
 
 import { checkIsProductSelected } from "./helper";
 import { DEFAULT_IMAGE, EMPTY_PRODUCT } from "../../../../../enums/products";
-import { theme } from "../../../../../theme";
 import { findObjectById, isEmpty } from "../../../../../utils/array";
+import Spinner from "../../../../reusable-ui/Spinner";
 
 
 export default function Menu() {
@@ -25,6 +25,8 @@ export default function Menu() {
     handleAddToBasket,
     selectProductForEdit,
     setShouldFocusInput,
+    username ,
+    isLoadingMenu
   } = useContext(OrderContext);
 
 
@@ -32,7 +34,7 @@ export default function Menu() {
 
   const handleCardOnDelete = (event: React.MouseEvent<HTMLElement>  , id: string ) => {
     event.stopPropagation();
-    handleDelete(id);
+    handleDelete(id , username);
 
 
     // Si le produit supprimé est celui qui est sélectionné, réinitialiser productSelected
@@ -44,10 +46,15 @@ export default function Menu() {
   };
 
 
+
   // affichage
+  if (isLoadingMenu) {
+    return <Spinner label="Chargement du menu..." color="#ff6600"  />;
+  }
+
     if (isEmpty(menu)) {
       return isModeAdmin ? (
-        <EmptyMenuAdmin onResetMenu={resetMenu} />
+        <EmptyMenuAdmin onResetMenu={()=>resetMenu(username)} />
       ) : (
         <EmptyMenuClient />
       );
@@ -58,7 +65,7 @@ export default function Menu() {
     const productToAdd = findObjectById(menu , id);
     if (!productToAdd) return;
 
-    handleAddToBasket(productToAdd);
+    handleAddToBasket(productToAdd , username);
   };
 
 
@@ -92,5 +99,4 @@ export const MenuStyled = styled.section`
   grid-row-gap: 60px;
   padding: 50px 50px 150px;
   justify-items: center;
-  box-shadow: ${theme.shadows.strong};
 `;

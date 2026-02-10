@@ -19,6 +19,7 @@ const OrderContext = createContext<OrderContextType>({
   setCurrentTabSelected: throwError("setCurrentTabSelected"),
 
   menu: [],
+  setMenu: throwError("setMenu"),
 
   handleAdd: throwError("handleAdd"),
   handleDelete: throwError("handleDelete"),
@@ -39,6 +40,9 @@ const OrderContext = createContext<OrderContextType>({
   updateBasketProductPrice: throwError("handleUpdatePriceToBasket"),
   selectProductForEdit: throwError("handleUpdateToBasket"),
   setShouldFocusInput: throwError("setShouldFocusInput"),
+  username: "",
+  isLoadingMenu : false,
+  isLoadingBasket : false
 });
 
 export default OrderContext;

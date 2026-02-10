@@ -74,6 +74,8 @@ export type FormType = {
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
   children?: ReactNode;
+  onFocus?: React.FocusEventHandler<HTMLInputElement>;
+  onBlur?: React.FocusEventHandler<HTMLInputElement>;
 };
 
 

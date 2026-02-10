@@ -9,6 +9,9 @@ import { EMPTY_PRODUCT } from "../../../enums/products";
 import { useMenuProducts } from "../../../hooks/useMenuProducts";
 import { useBasket } from "../../../hooks/useBasket";
 import { convertMenuItemToProductForm } from "../../../utils/productUtils";
+import { useParams } from "react-router-dom";
+
+import { initializeUserSession } from "./helpers/initializeUserSession";
 
 
 export default function OrderPage() {
@@ -16,23 +19,35 @@ export default function OrderPage() {
   const [isModeAdmin, setIsModeAdmin] = useState(false);
   const [isCollapse, setIsCollapse] = useState(true);
   const [currentTabSelected, setCurrentTabSelected] = useState("add");
- 
+
   const [newProduct, setNewProduct] = useState(EMPTY_PRODUCT);
-  const [productSelected, setProductSelected] = useState<ProductForm>(EMPTY_PRODUCT);
+  const [productSelected, setProductSelected] =
+    useState<ProductForm>(EMPTY_PRODUCT);
   const titleEditRef = useRef<HTMLInputElement | null>(null);
 
- 
-  // customs hooks
-  const { menu, handleAdd, handleDelete, handleEdit, resetMenu } = useMenuProducts();
-  const {basket,handleAddToBasket,handleDeleteBasketProduct,updateBasketProductPrice, } = useBasket();
-
   const [shouldFocusInput, setShouldFocusInput] = useState(false);
+  const [isLoadingMenu, setIsLoadingMenu] = useState(true);
+  const [isLoadingBasket, setIsLoadingBasket] = useState(true);
 
+  // récupérer le username dans l'url
+  const { username } = useParams<{ username: string }>();
+  if (!username) {
+    throw new Error("Username manquant dans l’URL");
+  }
 
+  // customs hooks
+  const { menu, setMenu, handleAdd, handleDelete, handleEdit, resetMenu } =
+    useMenuProducts();
+  const {
+    basket,
+    setBasket,
+    handleAddToBasket,
+    handleDeleteBasketProduct,
+    updateBasketProductPrice,
+  } = useBasket();
 
   const selectProductForEdit = (productId: string) => {
     if (!isModeAdmin) return;
-
     // ouvrir le panneau
     setIsCollapse(true);
 
@@ -49,16 +64,26 @@ export default function OrderPage() {
     // signaler le focus
     setShouldFocusInput(true);
   };
-   useEffect(() => {
-     if (shouldFocusInput && isCollapse && currentTabSelected === "edit")
-       // focus sur linput du titre
-       titleEditRef.current?.focus();
 
-     // reset le flag pour ne pas refocus à chaque render
-     setShouldFocusInput(false);
-   }, [shouldFocusInput, isCollapse, setCurrentTabSelected]);
+  // gérer le focus de linput du titre après suppression d'une card
+  useEffect(() => {
+    if (shouldFocusInput && isCollapse && currentTabSelected === "edit")
+      // focus sur linput du titre
+      titleEditRef.current?.focus();
 
+    // reset le flag pour ne pas refocus à chaque render
+    setShouldFocusInput(false);
+  }, [shouldFocusInput, isCollapse, setCurrentTabSelected]);
 
+  useEffect(() => {
+    initializeUserSession(
+      username,
+      setMenu,
+      setBasket,
+      setIsLoadingMenu,
+      setIsLoadingBasket,
+    );
+  }, []);
 
   const orderContextValue = {
     isModeAdmin,
@@ -71,6 +96,7 @@ export default function OrderPage() {
     setCurrentTabSelected,
 
     menu,
+    setMenu,
     handleAdd,
     handleDelete,
     handleEdit,
@@ -86,11 +112,15 @@ export default function OrderPage() {
     titleEditRef,
 
     basket,
+    setBasket,
     handleAddToBasket,
     handleDeleteBasketProduct,
     updateBasketProductPrice,
     selectProductForEdit,
     setShouldFocusInput,
+    username,
+    isLoadingMenu,
+    isLoadingBasket,
   };
 
   return (

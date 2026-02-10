@@ -18,13 +18,14 @@ export default function BasketProducts() {
     handleDeleteBasketProduct,
     selectProductForEdit,
     productSelected,
+    username
   } = useContext(OrderContext);
 
 
 
-  const handleOnDelete = (e: React.MouseEvent<HTMLDivElement> , id: string) => {
+  const handleOnDelete = (e: React.MouseEvent<HTMLDivElement> , id: string ,username : string ) => {
     e.stopPropagation()
-    handleDeleteBasketProduct(id);
+    handleDeleteBasketProduct(id ,username);
   };
 
   return (
@@ -49,7 +50,7 @@ export default function BasketProducts() {
               }
               price={menuProduct.price}
               quantity={basketProduct.quantity}
-              onDelete={(e) => handleOnDelete(e, basketProduct.id)}
+              onDelete={(e) => handleOnDelete(e, basketProduct.id , username)}
               isModeAdmin={isModeAdmin}
               onClick={() => selectProductForEdit(basketProduct.id)}
               isSelected={checkIsProductSelected(basketProduct.id,productSelected.id
