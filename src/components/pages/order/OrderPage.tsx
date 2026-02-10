@@ -136,6 +136,10 @@ export default function OrderPage() {
 }
 
 export const OrderPageStyled = styled.section`
+  background-image: url("/assets/pattern-burger.png");
+  background-size: 200px 150px;
+  background-color: transparent;
+  background-repeat: repeat;
   background-color: ${theme.colors.primary};
   height: 100vh;
   display: flex;
