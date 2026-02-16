@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { theme } from "../../../../../theme";
 import BasketSection from "../../../../reusable-ui/BasketSections";
 import Total from "./Total";
-import { formatPrice } from '../../../../../utils/maths';
 import BasketFooter from "./BasketFooter";
 import { useContext, useMemo } from "react";
 import OrderContext from "../../../../../context/OrderContext";
@@ -31,7 +30,7 @@ export default function Basket() {
   return (
     <BasketStyled>
       <BasketSection>
-        <Total amountToPay={formatPrice(sumToPay)} />
+        <Total amountToPay={(sumToPay)} />
       </BasketSection>
 
       {isBasketEmpty ? <EmptyBasket /> : <BasketProducts />}
