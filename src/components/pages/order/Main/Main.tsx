@@ -1,13 +1,16 @@
-import styled from "styled-components";
 import Basket from "./Basket/Basket";
 import Menu from "./Menu/Menu";
 import Admin from "./Admin/Admin";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import OrderContext from "../../../../context/OrderContext";
 import { theme } from "../../../../theme";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
+import { adminAnimation } from "../../../../theme/animations";
+import styled from "styled-components";
 
 export default function Main() {
   const { isModeAdmin } = useContext(OrderContext);
+  const adminRef = useRef<HTMLElement | null>(null);
 
   return (
     <MainStyled className="main">
@@ -17,7 +20,20 @@ export default function Main() {
         <div className="menu">
           <Menu />
         </div>
-        {isModeAdmin && <Admin />}
+
+        {isModeAdmin && (
+          <TransitionGroup>
+            <CSSTransition
+              key="admin-panel"
+              classNames="admin"
+              timeout={500}
+              appear
+              nodeRef={adminRef}
+            >
+              <Admin ref={adminRef} />
+            </CSSTransition>
+          </TransitionGroup>
+        )}
       </div>
     </MainStyled>
   );
@@ -31,7 +47,7 @@ export const MainStyled = styled.section`
 
   display: grid;
   grid-template-columns: 25% 1fr;
-  overflow-y: scroll;
+  overflow: hidden;
 
   /* Masquer la scrollbar sur Chrome, Safari et Edge */
   &::-webkit-scrollbar {
@@ -44,9 +60,17 @@ export const MainStyled = styled.section`
 
   .menu-and-admin {
     position: relative;
+    height: 100%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
     box-shadow: ${theme.shadows.strong};
     .menu {
-      /* min-height: 100%; */
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
     }
+
+    ${adminAnimation}
   }
 `;
