@@ -2,22 +2,27 @@ import styled from "styled-components";
 import AdminPanel from "./AdminPanel/AdminPanel";
 import AdminTabs from "./AdminTabs";
 import OrderContext from "../../../../../context/OrderContext";
-import { useContext } from "react";
+import { forwardRef, useContext } from "react";
 
-export default function Admin() {
+const Admin = forwardRef<HTMLElement, { className?: string }>(function Admin(
+  { className },
+  ref
+) {
   const { isCollapse } = useContext(OrderContext);
 
   return (
-    <AdminStyled>
+    <AdminStyled ref={ref} className={className}>
       <AdminTabs />
 
       {isCollapse && <AdminPanel />}
     </AdminStyled>
   );
-}
+});
+
+export default Admin;
 
 export const AdminStyled = styled.section`
-  position: sticky;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
