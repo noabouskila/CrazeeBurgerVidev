@@ -39,11 +39,13 @@ export default function CasinoEffect({
 export const CasinoEffectStyled = styled.div`
   display: inline-grid;
   overflow: hidden;
+  position :relative ;
   span {
     display: inline-block;
     grid-area: 1 / 1;
     white-space: nowrap;
     will-change: transform;
+    
   }
   .count-animated-enter {
     transform: translateY(100%);
@@ -52,9 +54,13 @@ export const CasinoEffectStyled = styled.div`
     transform: translateY(0%);
     transition: 1s;
   }
-  .count-animated-enter-done {}
+  .count-animated-enter-done {
+  }
   .count-animated-exit {
     transform: translateY(0%);
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
   .count-animated-exit-active {
     transform: translateY(-100%);
